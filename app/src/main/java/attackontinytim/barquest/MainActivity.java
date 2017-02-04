@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private static Button battle;
     private static Button scan;
     private static Button character;
+    private static Button inventory;
+    private static Button shop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         battle = (Button)findViewById(R.id.battleButton);
         scan = (Button)findViewById(R.id.scannerButton);
         character = (Button)findViewById(R.id.characterButton);
+        inventory = (Button)findViewById(R.id.inventoryButton);
+        shop = (Button)findViewById(R.id.shopButton);
         battle.setOnClickListener(
             new View.OnClickListener() {
                 public void onClick(View v) {
@@ -60,6 +64,22 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
+                        startActivity(intent);
+                    }
+                }
+        );
+        inventory.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                        startActivity(intent);
+                    }
+                }
+        );
+        shop.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
                         startActivity(intent);
                     }
                 }

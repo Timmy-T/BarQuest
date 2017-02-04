@@ -16,7 +16,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:id="@+id/textView4" />
 
     <Button
         android:text="Battle"
@@ -43,4 +44,22 @@
         android:layout_above="@+id/battleButton"
         android:layout_toEndOf="@+id/scannerButton"
         android:id="@+id/characterButton" />
+
+    <Button
+        android:text="Inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="67dp"
+        android:id="@+id/inventoryButton" />
+
+    <Button
+        android:text="Shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shopButton"
+        android:layout_alignBaseline="@+id/inventoryButton"
+        android:layout_alignBottom="@+id/inventoryButton"
+        android:layout_alignStart="@+id/battleButton" />
 </RelativeLayout>
