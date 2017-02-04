@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="fb8232a5f9d98e57dee28585fc467273cbbc3b3b">
+        sha1="cd18014a7a31ec45a1cc095123bcedc1abc50551">
         <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ca8221d76665ad68f94bc6a088fcf26e877dc0ff\classes.dex" />
     </item>
     <item
@@ -48,30 +48,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fe067a9ac483959726bb7711183f93f96303550b">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_30c2ef2bb82f88cfa6aef175118893cba42aa6d2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
         <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.0_a2de20d9fd47234dc890e1fb3d87e71a61b1c09a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_1e612e54a836f8cb50f4b57e99173228f6876d03\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -108,6 +90,24 @@
         revision="25.0.2"
         sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
         <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_901cb656507e57083934007f72d6073ff8366da7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="845582444c1a028464a14f7a0cb11c51b533e972">
+        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_30c2ef2bb82f88cfa6aef175118893cba42aa6d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_1e612e54a836f8cb50f4b57e99173228f6876d03\classes.dex" />
     </item>
     <item
         is-multidex="true"

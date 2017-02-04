@@ -14,7 +14,9 @@ import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static Button button_submit;
+    private static Button battle;
+    private static Button scan;
+    private static Button character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +37,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonListener(){
-        button_submit = (Button)findViewById(R.id.battleButton);
-        button_submit.setOnClickListener(
+        battle = (Button)findViewById(R.id.battleButton);
+        scan = (Button)findViewById(R.id.scannerButton);
+        character = (Button)findViewById(R.id.characterButton);
+        battle.setOnClickListener(
             new View.OnClickListener() {
                 public void onClick(View v) {
                      Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
                     startActivity(intent);
                 }
             }
+        );
+        scan.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
+                        startActivity(intent);
+                    }
+                }
+        );
+        character.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
+                        startActivity(intent);
+                    }
+                }
         );
     }
 
