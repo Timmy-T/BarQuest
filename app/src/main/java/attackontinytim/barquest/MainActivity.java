@@ -14,6 +14,8 @@ import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Player player = new Player("HERO");
+
 
     // Buttons
     private static Button battle;

@@ -5,7 +5,7 @@ public class Battle {
     /* VARIABLES */
     /* ********* */
 
-    private Player player;
+    public Player player;
     private Enemy enemy;
     private double wep_triangle;
 
@@ -20,7 +20,7 @@ public class Battle {
     /* ************ */
 
     /** Default constructor */
-    private Battle(){
+    public Battle(){
 
         // name, attack, weight, crit, type
         Weapon testWeapon = new Weapon("testWeapon", 1, 1, 1, "close");
