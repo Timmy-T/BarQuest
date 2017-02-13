@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="5e12b8e8ecb8a43f77e54542c8035c4ed1577e0b">
+        sha1="45efb9cf3862d0d25bdec895d1df415aa6dfbbe8">
         <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ca8221d76665ad68f94bc6a088fcf26e877dc0ff\classes.dex" />
     </item>
     <item
@@ -21,21 +21,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.0_27e8f24824da095fa2f0eda2732c18c2c1780060\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
         <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.0_b26139cb178a2c6158e361b3b9d5562231b5b0e9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.0_27e8f24824da095fa2f0eda2732c18c2c1780060\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="74d03c19c92e16f435803957ca847da518b5732e">
+        sha1="7b329ebcb0240f1577adc55021a2a6416cf1a797">
         <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_30c2ef2bb82f88cfa6aef175118893cba42aa6d2\classes.dex" />
     </item>
     <item
