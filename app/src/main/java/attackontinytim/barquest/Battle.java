@@ -20,27 +20,36 @@ public class Battle {
     /* ************ */
 
     /** Default constructor */
-    private Battle(){}
+    private Battle(){
+
+        // name, attack, weight, crit, type
+        Weapon testWeapon = new Weapon("testWeapon", 1, 1, 1, "close");
+
+        // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
+        this.player = new Player("testPlayer", 1, 20, 1, 1, 1, 0, 0);
+        this.player.set_active(testWeapon);
+        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
+        this.enemy = new Enemy("testEnemy", 1, 20, 1, 1, 1, "close");
+
+        setWeaponTriangle();
+    }
+
+    // Constructor for testing
+    public Battle(Player player){
+        this.player = player;
+
+        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
+        this.enemy = new Enemy("testEnemy", 1, 20, 1, 1, 1, "close");
+
+        setWeaponTriangle();
+    }
 
     /** Constructs a Battle object with a Player and Enemy Character */
     public Battle(Player player, Enemy enemy) {
         this.player = player;
         this.enemy = enemy;
 
-        //this is disgusting
-        if ((this.player.getActive().getType().equals("long") && this.enemy.getType().equals("mid")) ||
-                (this.player.getActive().getType().equals("mid") && this.enemy.getType().equals("close")) ||
-                (this.player.getActive().getType().equals("close") && this.enemy.getType().equals("long"))){
-            this.wep_triangle = 1.1;
-        }
-        else if ((this.player.getActive().getType().equals("long") && this.enemy.getType().equals("close")) ||
-                (this.player.getActive().getType().equals("mid") && this.enemy.getType().equals("long")) ||
-                (this.player.getActive().getType().equals("close") && this.enemy.getType().equals("mid"))){
-            this.wep_triangle = 0.9;
-        }
-        else{
-            this.wep_triangle = 1;
-        }
+        setWeaponTriangle();
     }
 
     /* ************* */
@@ -102,6 +111,26 @@ public class Battle {
             fled = true;
         }
         return fled;
+    }
+
+    // Miscellaneous Methods
+    ////////////////////////
+
+    private void setWeaponTriangle(){
+        //this is disgusting
+        if ((this.player.getActive().getType().equals("long") && this.enemy.getType().equals("mid")) ||
+                (this.player.getActive().getType().equals("mid") && this.enemy.getType().equals("close")) ||
+                (this.player.getActive().getType().equals("close") && this.enemy.getType().equals("long"))){
+            this.wep_triangle = 1.1;
+        }
+        else if ((this.player.getActive().getType().equals("long") && this.enemy.getType().equals("close")) ||
+                (this.player.getActive().getType().equals("mid") && this.enemy.getType().equals("long")) ||
+                (this.player.getActive().getType().equals("close") && this.enemy.getType().equals("mid"))){
+            this.wep_triangle = 0.9;
+        }
+        else{
+            this.wep_triangle = 1;
+        }
     }
 }
 

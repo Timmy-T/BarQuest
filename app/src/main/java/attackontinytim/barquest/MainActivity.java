@@ -14,6 +14,8 @@ import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    // Buttons
     private static Button battle;
     private static Button scan;
     private static Button character;
