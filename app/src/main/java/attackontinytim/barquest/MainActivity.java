@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 public void onClick(View v) {
                      Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
+                    intent.putExtra("attackontinytim.barquest.Player", player);
                     startActivity(intent);
                 }
             }

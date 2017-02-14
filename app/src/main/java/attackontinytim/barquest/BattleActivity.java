@@ -1,15 +1,15 @@
 package attackontinytim.barquest;
 
-import android.os.Parcelable;
+//import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.os.Parcel;
+//import android.os.Parcel;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     public Player player;
-    private Battle battle = new Battle();
+    private Battle battle;
 
     /*@Override
     public int describeContents() {
@@ -43,6 +43,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.battle_laout);
 
+        Bundle bundle = getIntent().getExtras();
+        Player player = bundle.getParcelable("attackontinytim.barquest.Player");
+        battle = new Battle(player);
 
         TextView textView = (TextView) this.findViewById(R.id.textView2);
         textView.setText("Player Name: " + battle.player.getName());

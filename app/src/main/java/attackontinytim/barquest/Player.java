@@ -1,6 +1,9 @@
 package attackontinytim.barquest;
 
-public class Player extends Character {
+import android.os.Parcelable;
+import android.os.Parcel;
+
+public class Player extends Character implements Parcelable {
     
     /* ********* */
     /* VARIABLES */
@@ -36,6 +39,9 @@ public class Player extends Character {
         this.speed = 5;
         this.experience = 0;
         this.money = 0;
+
+        // Default cuz reasons
+        this.active = new Weapon("FIST", 0, 0, 0, "close");
     }
     
     /** Construct a Player object with the provided stats (for testing) */
@@ -48,6 +54,9 @@ public class Player extends Character {
         this.speed = speed;
         this.experience = experience;
         this.money = money;
+
+        // Default cuz reasons
+        this.active = new Weapon("FIST", 0, 0, 0, "close");
     }
     
     
@@ -99,4 +108,51 @@ public class Player extends Character {
             this.experience = this.experience - 100;
         }
     }
+
+    // Framework Methods
+    /////////////////////
+
+    // Parcel Constructor
+    public Player(Parcel in) {
+        name = in.readString();
+        level = in.readInt();
+        hitPoints = in.readInt();
+        attack = in.readInt();
+        defense = in.readInt();
+        speed = in.readInt();
+        experience = in.readInt();
+        money = in.readInt();
+        this.active = in.readParcelable(Weapon.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        // TO-DO: Parcelelize weapon attributes
+
+        dest.writeString(name);
+        dest.writeInt(level);
+        dest.writeInt(hitPoints);
+        dest.writeInt(attack);
+        dest.writeInt(defense);
+        dest.writeInt(speed);
+        dest.writeInt(experience);
+        dest.writeInt(money);
+        dest.writeParcelable(active, flags);
+    }
+
+    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
+
+        public Player createFromParcel(Parcel in) {
+            return new Player(in);
+        }
+
+        public Player[] newArray(int size) {
+            return new Player[size];
+        }
+    };
 }

@@ -1,6 +1,9 @@
 package attackontinytim.barquest;
 
-public class Weapon {
+import android.os.Parcelable;
+import android.os.Parcel;
+
+public class Weapon implements Parcelable{
     
     /* ********* */
     /* VARIABLES */
@@ -60,4 +63,45 @@ public class Weapon {
     public String getType() {
         return type;
     }
+
+    // Framework Methods
+    ///////////////////////
+    // Framework Methods
+    /////////////////////
+
+    // Parcel Constructor
+    public Weapon(Parcel in) {
+        name = in.readString();
+        type = in.readString();
+        attack = in.readInt();
+        weight = in.readInt();
+        crit = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        // TO-DO: Parcelelize weapon attributes
+
+        dest.writeString(name);
+        dest.writeString(type);
+        dest.writeInt(attack);
+        dest.writeInt(weight);
+        dest.writeInt(crit);
+    }
+
+    public static final Parcelable.Creator<Weapon> CREATOR = new Parcelable.Creator<Weapon>() {
+
+        public Weapon createFromParcel(Parcel in) {
+            return new Weapon(in);
+        }
+
+        public Weapon[] newArray(int size) {
+            return new Weapon[size];
+        }
+    };
 }
