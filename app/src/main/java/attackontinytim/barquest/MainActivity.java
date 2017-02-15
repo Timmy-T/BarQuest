@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
+                        intent.putExtra("attackontinytim.barquest.Player", player);
                         startActivity(intent);
                     }
                 }
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
+                        intent.putExtra("attackontinytim.barquest.Player", player);
                         startActivity(intent);
                     }
                 }
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                        intent.putExtra("attackontinytim.barquest.Player", player);
                         startActivity(intent);
                     }
                 }
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
+                        intent.putExtra("attackontinytim.barquest.Player", player);
                         startActivity(intent);
                     }
                 }
