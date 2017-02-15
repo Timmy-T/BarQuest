@@ -14,7 +14,11 @@ import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
 
+    // global Player
     public Player player = new Player("HERO");
+
+    // Return
+    static public int MAIN_RETURN_CODE = 1;
 
 
     // Buttons
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                      Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
                     intent.putExtra("attackontinytim.barquest.Player", player);
-                    startActivity(intent);
+                    startActivityForResult(intent,  MAIN_RETURN_CODE);
                 }
             }
         );
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
                         intent.putExtra("attackontinytim.barquest.Player", player);
-                        startActivity(intent);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
                         intent.putExtra("attackontinytim.barquest.Player", player);
-                        startActivity(intent);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -80,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
                         intent.putExtra("attackontinytim.barquest.Player", player);
-                        startActivity(intent);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -89,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
                         intent.putExtra("attackontinytim.barquest.Player", player);
-                        startActivity(intent);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -116,5 +120,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case  1:
+                Bundle bundle = getIntent().getExtras();
+                player = bundle.getParcelable("attackontinytim.barquest.Player");
+                //do something with bundle attached
+        }
     }
 }

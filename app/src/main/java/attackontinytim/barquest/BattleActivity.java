@@ -1,14 +1,12 @@
 package attackontinytim.barquest;
 
-//import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-//import android.os.Parcel;
+import android.content.Intent;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
-    public Player player;
     private Battle battle;
 
     /*@Override
@@ -49,5 +47,18 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
         TextView textView = (TextView) this.findViewById(R.id.textView2);
         textView.setText("Player Name: " + battle.player.getName());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                case 1:
+                    Intent intent = new Intent();
+                    intent.putExtra("attackontinytim.barquest.Player", battle.player);
+                    setResult(RESULT_OK, intent);
+                    finish();
+            }
+        }
     }
 }
