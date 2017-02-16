@@ -13,53 +13,40 @@
     tools:context="attackontinytim.barquest.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView4" />
-
-    <Button
-        android:text="Battle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="57dp"
-        android:id="@+id/battleButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Scan"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/scannerButton" />
+        android:id="@+id/scannerButton"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
         android:text="Character"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/battleButton"
-        android:layout_toEndOf="@+id/scannerButton"
-        android:id="@+id/characterButton" />
+        android:id="@+id/characterButton"
+        android:layout_below="@+id/battleButton"/>
 
     <Button
         android:text="Inventory"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="67dp"
-        android:id="@+id/inventoryButton" />
+        android:id="@+id/inventoryButton"
+        android:layout_below="@+id/characterButton"/>
 
     <Button
         android:text="Shop"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/shopButton"
-        android:layout_alignBaseline="@+id/inventoryButton"
-        android:layout_alignBottom="@+id/inventoryButton"
-        android:layout_alignStart="@+id/battleButton" />
+        android:layout_below="@+id/inventoryButton"/>
+
+    <Button
+        android:text="Battle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/battleButton"
+        android:layout_below="@+id/scannerButton"
+        android:layout_alignParentStart="true"/>
+
 </RelativeLayout>

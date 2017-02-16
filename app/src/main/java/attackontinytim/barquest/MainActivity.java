@@ -27,14 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         onClickButtonListener();
     }
 
@@ -44,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         character = (Button)findViewById(R.id.characterButton);
         inventory = (Button)findViewById(R.id.inventoryButton);
         shop = (Button)findViewById(R.id.shopButton);
+
         battle.setOnClickListener(
             new View.OnClickListener() {
                 public void onClick(View v) {
@@ -53,36 +46,36 @@ public class MainActivity extends AppCompatActivity {
             }
         );
         scan.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
-                        startActivity(intent);
-                    }
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
+                    startActivity(intent);
                 }
+            }
         );
         character.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
-                        startActivity(intent);
-                    }
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
+                    startActivity(intent);
                 }
+            }
         );
         inventory.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
-                        startActivity(intent);
-                    }
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                    startActivity(intent);
                 }
+            }
         );
         shop.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
-                        startActivity(intent);
-                    }
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
+                    startActivity(intent);
                 }
+            }
         );
     }
 

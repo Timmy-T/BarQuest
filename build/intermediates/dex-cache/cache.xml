@@ -3,138 +3,138 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5e12b8e8ecb8a43f77e54542c8035c4ed1577e0b">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_ca8221d76665ad68f94bc6a088fcf26e877dc0ff\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.0_98d01b3d8d1b917422c93ba87d47ce01648e86bf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.0_27e8f24824da095fa2f0eda2732c18c2c1780060\classes.dex" />
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.1.0_9db64b8e87762edd67cb8c600eb839c96ff35272\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.0_b26139cb178a2c6158e361b3b9d5562231b5b0e9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_76a1010ba19c68c1bab94e5314928aeb36b077de\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.0_a2de20d9fd47234dc890e1fb3d87e71a61b1c09a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.0_4a0ec35243db24dbba4de7e8b68e6d99dd2f62ff\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\design\25.1.0\jars\classes.jar"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\design\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.0_06ec8f129cb7b087ffa5f380dbf21cb51d8ebb55\classes.dex" />
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.1.0_6d6a1699d4847fdb7b4f79d8f02501f165894462\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.0_f7fabe4e1de30866dd9d03395759a8e2e02d2c5e\classes.dex" />
+        sha1="f620099535118e5f2e618ca70d037f7e9892741e">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4bae8be5a11a866b30e1224395a2bcf4ca2b3d63\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.1.0_b0ea0d4004065ebb305b9784e8a2448690257697\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.1.0_86f1966e379307cd423d00587c3329b50c7ed471\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_901cb656507e57083934007f72d6073ff8366da7\classes.dex" />
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.1.0_ec13c1b4486e4b9994a252912896532e689db2a2\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="74d03c19c92e16f435803957ca847da518b5732e">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_30c2ef2bb82f88cfa6aef175118893cba42aa6d2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_1e612e54a836f8cb50f4b57e99173228f6876d03\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.0_3873ba2cae1305b9438320b8f62c809abd00a9da\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.0_e51c0a65fbacc0d0450259c1b40acfe329faf33b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="C:\Users\Robert\Documents\Computer Science\4096 Software Systems Development I\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_6683cbf798427e0f58fc6469a96900e78cdccc72\classes.dex" />
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.1.0_d8abd31bd6de02fbdc8481adae3324e290bd7258\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.1.0_c1dbae6fc3435841669da415663fee65313e6e47\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.1.0_49fb902302a73687819c9d37695cfb2eb13fa8ff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.1.0_04b284e896c38b0d1c74a6be2b663861bf26dc78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.1.0_b6272f49163b08bf87559f745ace19acc47ec638\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.1.0_83d9393ea3c7b337fc1863c23df9d0bb4c358e5d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.1.0_e0bdd8f158e80252866c2f9207660efc509bb51c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d9a2a893da2b486d176ff67389ccf9a76e7ae11e">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dd3e0f958666fcc68d6b82cbfcfc83411376131d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.1.0_7120f5b88a9a47c2e851641a8f417a1230f733cb\classes.dex" />
     </item>
 
 </items>
