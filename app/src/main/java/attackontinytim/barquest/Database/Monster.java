@@ -4,6 +4,7 @@ import android.database.Cursor;
 
 public class Monster {
 
+    private int id;
     private String name;
     private int HP;
     private int XP;
@@ -15,8 +16,10 @@ public class Monster {
     private int defense;
     private int attack;
 
-    public Monster(String name, int HP, int XP, String attackType, double money, int level, String rarity, int speed, int defense, int attack)
+    public Monster(int id, String name, int HP, int XP, String attackType, double money, int level,
+                   String rarity, int speed, int defense, int attack)
     {
+        this.id = id;
         this.name=name;
         this.HP=HP;
         this.XP=XP;
@@ -31,18 +34,27 @@ public class Monster {
 
     public Monster(Cursor cursor)
     {
-        this.name= cursor.getString(0);
-        this.HP=cursor.getInt(1);
-        this.XP=cursor.getInt(2);
-        this.attackType = cursor.getString(3);
-        this.money = cursor.getDouble(4);
-        this.level = cursor.getInt(5);
-        this.rarity = cursor.getString(6);
-        this.speed = cursor.getInt(7);
-        this.defense = cursor.getInt(8);
-        this.attack = cursor.getInt(9);
+        this.id = cursor.getInt(0);
+        this.name= cursor.getString(1);
+        this.HP=cursor.getInt(2);
+        this.XP=cursor.getInt(3);
+        this.attackType = cursor.getString(4);
+        this.money = cursor.getDouble(5);
+        this.level = cursor.getInt(6);
+        this.rarity = cursor.getString(7);
+        this.speed = cursor.getInt(8);
+        this.defense = cursor.getInt(9);
+        this.attack = cursor.getInt(10);
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getAttackType() {
         return attackType;
