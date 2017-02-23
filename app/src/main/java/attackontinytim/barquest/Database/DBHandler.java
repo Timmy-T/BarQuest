@@ -13,7 +13,7 @@ public class DBHandler extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "MonsterTable";
+    private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
     private static final String TABLE_MONSTERS = "Monsters";
     // Monster Table Columns names
@@ -31,9 +31,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.onUpgrade(this.getWritableDatabase(), 0, 1);
-
-
     }
 
 
@@ -94,7 +91,7 @@ public class DBHandler extends SQLiteOpenHelper {
      * @param name Name of the monster
      * @return Monster object
      */
-    public Monster getMonster(String name) {
+    public Monster getMonsterByName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_MONSTERS, new String[] {
                         KEY_ID,
@@ -109,6 +106,36 @@ public class DBHandler extends SQLiteOpenHelper {
                         KEY_DEFENSE,
                         KEY_ATTACK}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Monster contact = new Monster(cursor);
+        cursor.close();
+        // return monster
+        return contact;
+    }
+
+    /**
+     * Returns a monster object with the given name
+     * @param Id Of the monster
+     * @return Monster object
+     */
+    public Monster getMonsterByID(Integer Id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_MONSTERS, new String[] {
+                        KEY_ID,
+                        KEY_NAME,
+                        KEY_HP,
+                        KEY_XP,
+                        KEY_ATTACKTYPE,
+                        KEY_MONEY,
+                        KEY_LEVEL,
+                        KEY_RARITY,
+                        KEY_SPEED,
+                        KEY_DEFENSE,
+                        KEY_ATTACK}, KEY_ID + "=?",
+                new String[] { String.valueOf(Id) }, null, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();

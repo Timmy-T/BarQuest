@@ -1,5 +1,7 @@
 package attackontinytim.barquest.Database;
 
+import android.database.Cursor;
+
 /**
  * Created by Tim Buesking on 2/21/2017.
  */
@@ -19,6 +21,17 @@ public class Item {
         this.name = name;
         this.value = value;
         this.weight = weight;
+    }
+
+    // TO DO: Change cursor to not be hardcode index instead use cursor.getString(cursor.getColumnIndex("COLUMN NAME"))
+    // This is not currently done because the Item class and the DB interaction class are two separate classes
+    public Item (Cursor cursor){
+        this.name = cursor.getString(0);
+        this.attackType = cursor.getString(1);
+        this.attack = cursor.getInt(2);
+        this.criticalRate = cursor.getInt(3);
+        this.value = cursor.getDouble(4);
+        this.weight = cursor.getDouble(5);
     }
 
     public String getAttackType() {
