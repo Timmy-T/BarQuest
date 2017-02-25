@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         onClickButtonListener();
     }
 
+    // THIS is disgusting
     public void onClickButtonListener(){
         battle = (Button)findViewById(R.id.battleButton);
         scan = (Button)findViewById(R.id.scannerButton);
@@ -56,7 +57,24 @@ public class MainActivity extends AppCompatActivity {
             new View.OnClickListener() {
                 public void onClick(View v) {
                      Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
-                    intent.putExtra("attackontinytim.barquest.Player", player);
+                    Bundle bundle = new Bundle();
+
+                    bundle.putString("name", player.getName());
+                    bundle.putInt("level", player.getLevel());
+                    bundle.putInt("hitPoints", player.getHitPoints());
+                    bundle.putInt("attack", player.getAttack());
+                    bundle.putInt("defense", player.getDefense());
+                    bundle.putInt("speed", player.getSpeed());
+                    bundle.putInt("experience", player.getExperience());
+                    bundle.putInt("money", player.getMoney());
+
+                    bundle.putString("weaponName", player.getActive().getName());
+                    bundle.putString("weaponType", player.getActive().getType());
+                    bundle.putInt("weaponAttack", player.getActive().getAttack());
+                    bundle.putInt("weaponWeight", player.getActive().getWeight());
+                    bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+                    intent.putExtras(bundle);
                     startActivityForResult(intent,  MAIN_RETURN_CODE);
                 }
             }
@@ -65,7 +83,24 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
-                        intent.putExtra("attackontinytim.barquest.Player", player);
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("name", player.getName());
+                        bundle.putInt("level", player.getLevel());
+                        bundle.putInt("hitPoints", player.getHitPoints());
+                        bundle.putInt("attack", player.getAttack());
+                        bundle.putInt("defense", player.getDefense());
+                        bundle.putInt("speed", player.getSpeed());
+                        bundle.putInt("experience", player.getExperience());
+                        bundle.putInt("money", player.getMoney());
+
+                        bundle.putString("weaponName", player.getActive().getName());
+                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putInt("weaponAttack", player.getActive().getAttack());
+                        bundle.putInt("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+                        intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
@@ -74,7 +109,24 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
-                        intent.putExtra("attackontinytim.barquest.Player", player);
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("name", player.getName());
+                        bundle.putInt("level", player.getLevel());
+                        bundle.putInt("hitPoints", player.getHitPoints());
+                        bundle.putInt("attack", player.getAttack());
+                        bundle.putInt("defense", player.getDefense());
+                        bundle.putInt("speed", player.getSpeed());
+                        bundle.putInt("experience", player.getExperience());
+                        bundle.putInt("money", player.getMoney());
+
+                        bundle.putString("weaponName", player.getActive().getName());
+                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putInt("weaponAttack", player.getActive().getAttack());
+                        bundle.putInt("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+                        intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
@@ -83,7 +135,24 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
-                        intent.putExtra("attackontinytim.barquest.Player", player);
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("name", player.getName());
+                        bundle.putInt("level", player.getLevel());
+                        bundle.putInt("hitPoints", player.getHitPoints());
+                        bundle.putInt("attack", player.getAttack());
+                        bundle.putInt("defense", player.getDefense());
+                        bundle.putInt("speed", player.getSpeed());
+                        bundle.putInt("experience", player.getExperience());
+                        bundle.putInt("money", player.getMoney());
+
+                        bundle.putString("weaponName", player.getActive().getName());
+                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putInt("weaponAttack", player.getActive().getAttack());
+                        bundle.putInt("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+                        intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
@@ -92,7 +161,24 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
-                        intent.putExtra("attackontinytim.barquest.Player", player);
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("name", player.getName());
+                        bundle.putInt("level", player.getLevel());
+                        bundle.putInt("hitPoints", player.getHitPoints());
+                        bundle.putInt("attack", player.getAttack());
+                        bundle.putInt("defense", player.getDefense());
+                        bundle.putInt("speed", player.getSpeed());
+                        bundle.putInt("experience", player.getExperience());
+                        bundle.putInt("money", player.getMoney());
+
+                        bundle.putString("weaponName", player.getActive().getName());
+                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putInt("weaponAttack", player.getActive().getAttack());
+                        bundle.putInt("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+                        intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
                 }
@@ -124,11 +210,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case  1:
-                Bundle bundle = getIntent().getExtras();
-                player = bundle.getParcelable("attackontinytim.barquest.Player");
-                //do something with bundle attached
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                default:
+                    Bundle bundle = data.getExtras();
+
+                    Player player = new Player();
+                    player.set_name(bundle.getString("name"));
+                    player.set_level(bundle.getInt("level"));
+                    player.set_hit_points(bundle.getInt("hitPoints"));
+                    player.set_attack(bundle.getInt("attack"));
+                    player.set_defense(bundle.getInt("defense"));
+                    player.set_speed(bundle.getInt("speed"));
+                    player.set_experience(bundle.getInt("experience"));
+                    player.set_money(bundle.getInt("money"));
+
+                    String weaponName = bundle.getString("weaponName");
+                    String weaponType = bundle.getString("weaponType");
+                    int weaponAttack = bundle.getInt("weaponAttack");
+                    int weaponWeight = bundle.getInt("weaponWeight");
+                    int weaponCrit = bundle.getInt("weaponCrit");
+                    Weapon active = new Weapon(weaponName, weaponAttack, weaponWeight, weaponCrit, weaponType);
+
+                    player.set_active(active);
+            }
         }
     }
 }
