@@ -1,53 +1,79 @@
 package attackontinytim.barquest;
 
-//import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-//import android.os.Parcel;
+import android.content.Intent;
+import android.widget.Button;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
-    public Player player;
     private Battle battle;
-
-    /*@Override
-    public int describeContents() {
-        return 0;
-    }
-
-    // write your object's data to the passed-in Parcel
-    @Override
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeInt(mData);
-    }
-
-    // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
-    public static final Parcelable.Creator<BattleActivity> CREATOR = new Parcelable.Creator<BattleActivity>() {
-        public BattleActivity createFromParcel(Parcel in) {
-            return new BattleActivity(in);
-        }
-
-        public BattleActivity[] newArray(int size) {
-            return new BattleActivity[size];
-        }
-    };
-
-    // example constructor that takes a Parcel and gives you an object populated with it's values
-    private BattleActivity(Parcel in) {
-        mData = in.readInt();
-    }*/
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.battle_laout);
-
         Bundle bundle = getIntent().getExtras();
-        Player player = bundle.getParcelable("attackontinytim.barquest.Player");
-        battle = new Battle(player);
 
+        player = new Player();
+        player.set_name(bundle.getString("name"));
+        player.set_level(bundle.getInt("level"));
+        player.set_hit_points(bundle.getInt("hitPoints"));
+        player.set_attack(bundle.getInt("attack"));
+        player.set_defense(bundle.getInt("defense"));
+        player.set_speed(bundle.getInt("speed"));
+        player.set_experience(bundle.getInt("experience"));
+        player.set_money(bundle.getInt("money"));
+
+        String weaponName = bundle.getString("weaponName");
+        String weaponType = bundle.getString("weaponType");
+        int weaponAttack = bundle.getInt("weaponAttack");
+        int weaponWeight = bundle.getInt("weaponWeight");
+        int weaponCrit = bundle.getInt("weaponCrit");
+        Weapon active = new Weapon(weaponName, weaponAttack, weaponWeight, weaponCrit, weaponType);
+
+        player.set_active(active);
+        battle = new Battle(player);
         TextView textView = (TextView) this.findViewById(R.id.textView2);
         textView.setText("Player Name: " + battle.player.getName());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                default:
+                    end();
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        end();
+    }
+
+    private void end(){
+        Bundle bundle = new Bundle();
+
+        bundle.putString("name", player.getName());
+        bundle.putInt("level", player.getLevel());
+        bundle.putInt("hitPoints", player.getHitPoints());
+        bundle.putInt("attack", player.getAttack());
+        bundle.putInt("defense", player.getDefense());
+        bundle.putInt("speed", player.getSpeed());
+        bundle.putInt("experience", player.getExperience());
+        bundle.putInt("money", player.getMoney());
+
+        bundle.putString("weaponName", player.getActive().getName());
+        bundle.putString("weaponType", player.getActive().getType());
+        bundle.putInt("weaponAttack", player.getActive().getAttack());
+        bundle.putInt("weaponWeight", player.getActive().getWeight());
+        bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+        setResult(RESULT_OK,getIntent().putExtras(bundle));
+        finish();
     }
 }

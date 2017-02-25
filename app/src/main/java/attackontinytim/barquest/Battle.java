@@ -117,15 +117,18 @@ public class Battle {
     ////////////////////////
 
     private void setWeaponTriangle(){
-        //this is disgusting
-        if ((this.player.getActive().getType().equals("long") && this.enemy.getType().equals("mid")) ||
-                (this.player.getActive().getType().equals("mid") && this.enemy.getType().equals("close")) ||
-                (this.player.getActive().getType().equals("close") && this.enemy.getType().equals("long"))){
+        //this is JAVA
+        String weapType = this.player.getActive().getType();
+        String mons = this.enemy.getType();
+
+        if ((weapType.equals("long") && mons.equals("mid")) ||
+                (weapType.equals("mid") && mons.equals("close")) ||
+                (weapType.equals("close") && mons.equals("long"))){
             this.wep_triangle = 1.1;
         }
-        else if ((this.player.getActive().getType().equals("long") && this.enemy.getType().equals("close")) ||
-                (this.player.getActive().getType().equals("mid") && this.enemy.getType().equals("long")) ||
-                (this.player.getActive().getType().equals("close") && this.enemy.getType().equals("mid"))){
+        else if ((weapType.equals("long") && mons.equals("close")) ||
+                (weapType.equals("mid") && mons.equals("long")) ||
+                (weapType.equals("close") && mons.equals("mid"))){
             this.wep_triangle = 0.9;
         }
         else{

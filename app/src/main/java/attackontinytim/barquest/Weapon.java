@@ -21,7 +21,7 @@ public class Weapon implements Parcelable{
     /* ************ */
     
     /** Obligatory default constructor */
-    private Weapon(){}
+    public Weapon(){}
     
     /** Construct a Weapon object with the provided stats */
     public Weapon(String name, int attack, int weight, int crit, String type) {

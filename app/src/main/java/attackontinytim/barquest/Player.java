@@ -27,7 +27,7 @@ public class Player extends Character implements Parcelable {
     /* ************ */
     
     /** Obligatory default constructor */
-    private Player(){}
+    public Player(){}
     
     /** Construct a Player object with the provided name (fresh player character) */
     public Player(String name) {
