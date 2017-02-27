@@ -30,22 +30,6 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Scan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/scannerButton" />
-
-    <Button
-        android:text="Character"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/battleButton"
-        android:layout_toEndOf="@+id/scannerButton"
-        android:id="@+id/characterButton" />
-
-    <Button
         android:text="Inventory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,4 +46,30 @@
         android:layout_alignBaseline="@+id/inventoryButton"
         android:layout_alignBottom="@+id/inventoryButton"
         android:layout_alignStart="@+id/battleButton" />
+
+    <Button
+        android:text="Character"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/characterButton"
+        android:layout_above="@+id/battleButton"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scannerButton"
+        android:layout_above="@+id/battleButton"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_marginStart="22dp" />
+
+    <Button
+        android:text="Level Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/levelUpButton"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/scannerButton"
+        android:layout_marginStart="34dp" />
 </RelativeLayout>

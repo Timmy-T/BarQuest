@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private static Button character;
     private static Button inventory;
     private static Button shop;
+    private static Button levelUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         character = (Button)findViewById(R.id.characterButton);
         inventory = (Button)findViewById(R.id.inventoryButton);
         shop = (Button)findViewById(R.id.shopButton);
+        levelUp = (Button)findViewById(R.id.levelUpButton);
         battle.setOnClickListener(
             new View.OnClickListener() {
                 public void onClick(View v) {
@@ -83,6 +85,32 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString("name", player.getName());
+                        bundle.putInt("level", player.getLevel());
+                        bundle.putInt("hitPoints", player.getHitPoints());
+                        bundle.putInt("attack", player.getAttack());
+                        bundle.putInt("defense", player.getDefense());
+                        bundle.putInt("speed", player.getSpeed());
+                        bundle.putInt("experience", player.getExperience());
+                        bundle.putInt("money", player.getMoney());
+
+                        bundle.putString("weaponName", player.getActive().getName());
+                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putInt("weaponAttack", player.getActive().getAttack());
+                        bundle.putInt("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+        levelUp.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
                         Bundle bundle = new Bundle();
 
                         bundle.putString("name", player.getName());
