@@ -32,7 +32,6 @@
 
         <TextView
             android:id="@+id/CharName"
-            android:text="Character Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_columnSpan="2"
@@ -44,32 +43,65 @@
             android:layout_row="0"
             android:layout_column="0"/>
 
-        <TextView
-            android:id="@+id/LevelProgroess"
-            android:text="EXP"
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:textSize="20sp"
-            android:paddingBottom="30dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
+            android:layout_gravity="center"
             android:layout_row="1"
-            android:layout_column="0"/>
+            android:layout_column="0"
+            android:layout_columnSpan="2">
 
-        <ProgressBar
-            android:id="@+id/firstBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:paddingBottom="30dp"
-            android:paddingTop="10dp"
-            android:layout_row="1"
-            android:layout_column="1"/>
+            <TableRow>
+
+                <TextView
+                    android:text="EXP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_row="0"
+                    android:layout_column="0"/>
+
+                <ProgressBar
+                    android:id="@+id/ExpBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="10dp"
+                    android:layout_row="0"
+                    android:layout_column="1"/>
+
+                <TextView
+                    android:id="@+id/expstat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:paddingBottom="30dp"
+                    android:paddingTop="10dp"
+                    android:layout_row="0"
+                    android:layout_column="3"
+                    android:text="/100"
+                    />
+            </TableRow>
+
+        </TableLayout>
 
         <TableLayout
-            android:id="@+id/StatTable"
             android:layout_width="150dp"
             android:layout_height="300dp"
             android:layout_gravity="center|top"
@@ -77,11 +109,22 @@
             android:layout_column="0">
             <TableRow>
                 <TextView
-                    android:text="Lvl"
+                    android:text="Money"
                     android:textSize="20sp"
                     android:padding="10dip" />
                 <TextView
-                    android:text="1"
+                    android:id="@+id/moneystat"
+                    android:textSize="20sp"
+                    android:gravity="end"
+                    android:padding="10dip" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="Level"
+                    android:textSize="20sp"
+                    android:padding="10dip" />
+                <TextView
+                    android:id="@+id/lvlstat"
                     android:textSize="20sp"
                     android:gravity="end"
                     android:padding="10dip" />
@@ -92,7 +135,7 @@
                     android:textSize="20sp"
                     android:padding="10dip" />
                 <TextView
-                    android:text="10"
+                    android:id="@+id/hpstat"
                     android:textSize="20sp"
                     android:gravity="end"
                     android:padding="10dip" />
@@ -103,7 +146,7 @@
                     android:textSize="20sp"
                     android:padding="10dip" />
                 <TextView
-                    android:text="10"
+                    android:id="@+id/atkstat"
                     android:textSize="20sp"
                     android:gravity="end"
                     android:padding="10dip" />
@@ -114,7 +157,7 @@
                     android:textSize="20sp"
                     android:padding="10dip" />
                 <TextView
-                    android:text="10"
+                    android:id="@+id/defstat"
                     android:textSize="20sp"
                     android:gravity="end"
                     android:padding="10dip" />
@@ -125,7 +168,7 @@
                     android:textSize="20sp"
                     android:padding="10dip" />
                 <TextView
-                    android:text="10"
+                    android:id="@+id/spdstat"
                     android:textSize="20sp"
                     android:gravity="end"
                     android:padding="10dip" />

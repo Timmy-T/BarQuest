@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f620099535118e5f2e618ca70d037f7e9892741e">
+        sha1="55f8bb849050f1cfff6e8ae36afac10d112e55fd">
         <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4bae8be5a11a866b30e1224395a2bcf4ca2b3d63\classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d9a2a893da2b486d176ff67389ccf9a76e7ae11e">
+        sha1="3283f8b0a513b600174b2f5a6ae11b5e06d60343">
         <dex dex="C:\Users\Karolein\Documents\GitHub\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dd3e0f958666fcc68d6b82cbfcfc83411376131d\classes.dex" />
     </item>
     <item
