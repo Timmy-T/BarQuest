@@ -20,13 +20,13 @@ public class DBHandlerItems extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
-    private static final String TABLE_ITEMS= "Items";
+    private static final String TABLE_ITEMS= "Weapon";
     // Item Table Columns names
     private static final String KEY_NAME = "Name";
     private static final String KEY_ATTACKTYPE = "AttackType";
     private static final String KEY_ATTACK = "Attack";
     private static final String KEY_CRITRATE = "CriticalRate";
-    private static final String KEY_VALUE = "Rarity";
+    private static final String KEY_VALUE = "Value";
     private static final String KEY_WEIGHT= "Speed";
 
     public DBHandlerItems(Context context) {
