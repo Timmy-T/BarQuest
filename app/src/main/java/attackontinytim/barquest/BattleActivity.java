@@ -6,6 +6,8 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Button;
 
+import attackontinytim.barquest.Database.Weapon;
+
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     private Battle battle;
@@ -30,9 +32,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         String weaponName = bundle.getString("weaponName");
         String weaponType = bundle.getString("weaponType");
         int weaponAttack = bundle.getInt("weaponAttack");
-        int weaponWeight = bundle.getInt("weaponWeight");
+        double weaponWeight = bundle.getDouble("weaponWeight");
         int weaponCrit = bundle.getInt("weaponCrit");
-        Weapon active = new Weapon(weaponName, weaponAttack, weaponWeight, weaponCrit, weaponType);
+        double weaponValue = bundle.getDouble("weaponValue");
+
+        Weapon active = new Weapon(weaponType, weaponAttack, weaponCrit, weaponName, weaponValue, weaponWeight);
 
         player.set_active(active);
         battle = new Battle(player);
@@ -68,10 +72,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         bundle.putInt("money", player.getMoney());
 
         bundle.putString("weaponName", player.getActive().getName());
-        bundle.putString("weaponType", player.getActive().getType());
+        bundle.putString("weaponType", player.getActive().getAttackType());
         bundle.putInt("weaponAttack", player.getActive().getAttack());
-        bundle.putInt("weaponWeight", player.getActive().getWeight());
-        bundle.putInt("weaponCrit", player.getActive().getCrit());
+        bundle.putDouble("weaponWeight", player.getActive().getWeight());
+        bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+        bundle.putDouble("weaponValue", player.getActive().getValue());
 
         setResult(RESULT_OK,getIntent().putExtras(bundle));
         finish();

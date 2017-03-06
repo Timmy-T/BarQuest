@@ -3,6 +3,8 @@ package attackontinytim.barquest;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+import attackontinytim.barquest.Database.Weapon;
+
 public class Player extends Character implements Parcelable {
     
     /* ********* */
@@ -41,7 +43,7 @@ public class Player extends Character implements Parcelable {
         this.money = 0;
 
         // Default cuz reasons
-        this.active = new Weapon("FIST", 0, 0, 0, "close");
+        this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
     }
     
     /** Construct a Player object with the provided stats (for testing) */
@@ -56,7 +58,7 @@ public class Player extends Character implements Parcelable {
         this.money = money;
 
         // Default cuz reasons
-        this.active = new Weapon("FIST", 0, 0, 0, "close");
+        this.active = new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
     }
     
     

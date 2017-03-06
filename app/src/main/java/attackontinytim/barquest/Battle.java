@@ -1,5 +1,7 @@
 package attackontinytim.barquest;
 
+import attackontinytim.barquest.Database.Weapon;
+
 public class Battle {
     /* ********* */
     /* VARIABLES */
@@ -23,7 +25,7 @@ public class Battle {
     public Battle(){
 
         // name, attack, weight, crit, type
-        Weapon testWeapon = new Weapon("testWeapon", 1, 1, 1, "close");
+        Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
         this.player = new Player("testPlayer", 1, 20, 1, 1, 1, 0, 0);
@@ -78,7 +80,7 @@ public class Battle {
     private Boolean calc_crit(){
         Boolean critical = false;
         int diceRoll = (int)(Math.random() * (101));
-        if(diceRoll <= this.player.speed + this.player.getActive().getCrit()){
+        if(diceRoll <= this.player.speed + this.player.getActive().getCriticalRate()){
             critical = true;
         }
         return critical;
@@ -118,7 +120,7 @@ public class Battle {
 
     private void setWeaponTriangle(){
         //this is JAVA
-        String weapType = this.player.getActive().getType();
+        String weapType = this.player.getActive().getAttackType();
         String mons = this.enemy.getType();
 
         if ((weapType.equals("long") && mons.equals("mid")) ||

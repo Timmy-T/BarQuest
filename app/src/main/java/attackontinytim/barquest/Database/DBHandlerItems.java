@@ -21,7 +21,7 @@ public class DBHandlerItems extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
     private static final String TABLE_ITEMS= "Items";
-    // Item Table Columns names
+    // Weapon Table Columns names
     private static final String KEY_NAME = "Name";
     private static final String KEY_ATTACKTYPE = "AttackType";
     private static final String KEY_ATTACK = "Attack";
@@ -58,18 +58,18 @@ public class DBHandlerItems extends SQLiteOpenHelper {
     }
 
     /**
-     * Function that adds an item to the Item table in the database
-     * @param item An item object to add to the database
+     * Function that adds an weapon to the Weapon table in the database
+     * @param weapon An weapon object to add to the database
      */
-    public void addItem(Item item) {
+    public void addItem(Weapon weapon) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME , item.getName());
-        values.put(KEY_ATTACKTYPE , item.getAttackType());
-        values.put(KEY_ATTACK , item.getAttack());
-        values.put(KEY_CRITRATE , item.getCriticalRate());
-        values.put(KEY_VALUE , item.getValue());
-        values.put(KEY_WEIGHT, item.getWeight());
+        values.put(KEY_NAME , weapon.getName());
+        values.put(KEY_ATTACKTYPE , weapon.getAttackType());
+        values.put(KEY_ATTACK , weapon.getAttack());
+        values.put(KEY_CRITRATE , weapon.getCriticalRate());
+        values.put(KEY_VALUE , weapon.getValue());
+        values.put(KEY_WEIGHT, weapon.getWeight());
 
         // Inserting Row
         db.insert(TABLE_ITEMS, null, values);
@@ -79,9 +79,9 @@ public class DBHandlerItems extends SQLiteOpenHelper {
     /**
      * Returns an itme object with the given name
      * @param name Name of the item
-     * @return Item object
+     * @return Weapon object
      */
-    public Item getItemByName(String name) {
+    public Weapon getItemByName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_ITEMS, new String[] {
                         KEY_NAME ,
@@ -95,7 +95,7 @@ public class DBHandlerItems extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Item contact = new Item(cursor);
+        Weapon contact = new Weapon(cursor);
         cursor.close();
         // return item
         return contact;
@@ -105,8 +105,8 @@ public class DBHandlerItems extends SQLiteOpenHelper {
      *  Returns a List of all items in the items table
      * @return List containing all items
      */
-    public List<Item> getAllItems() {
-        List<Item> itemList = new ArrayList<Item>();
+    public List<Weapon> getAllItems() {
+        List<Weapon> weaponList = new ArrayList<Weapon>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_ITEMS;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -114,15 +114,15 @@ public class DBHandlerItems extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Item item = new Item(cursor);
+                Weapon weapon = new Weapon(cursor);
                 // Adding contact to list
-                itemList.add(item);
+                weaponList.add(weapon);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         // return contact list
-        return itemList;
+        return weaponList;
     }
 
     /**
@@ -139,34 +139,34 @@ public class DBHandlerItems extends SQLiteOpenHelper {
     }
 
     /**
-     * Updates a given item's values in the item table
-     * @param item Item to update, update is made based on item name
+     * Updates a given weapon's values in the weapon table
+     * @param weapon Weapon to update, update is made based on weapon name
      * @return Returns result of the update command
      */
-    public int updateItem(Item item) {
+    public int updateItem(Weapon weapon) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME , item.getName());
-        values.put(KEY_ATTACKTYPE , item.getAttackType());
-        values.put(KEY_ATTACK , item.getAttack());
-        values.put(KEY_CRITRATE , item.getCriticalRate());
-        values.put(KEY_VALUE , item.getValue());
-        values.put(KEY_WEIGHT, item.getWeight());
+        values.put(KEY_NAME , weapon.getName());
+        values.put(KEY_ATTACKTYPE , weapon.getAttackType());
+        values.put(KEY_ATTACK , weapon.getAttack());
+        values.put(KEY_CRITRATE , weapon.getCriticalRate());
+        values.put(KEY_VALUE , weapon.getValue());
+        values.put(KEY_WEIGHT, weapon.getWeight());
 
         // updating row
         return db.update(TABLE_ITEMS, values, KEY_NAME + " = ?",
-                new String[]{String.valueOf(item.getName())});
+                new String[]{String.valueOf(weapon.getName())});
     }
 
     /**
-     * Deletes an item record from the database
-     * @param item Item to be deleted from database
+     * Deletes an weapon record from the database
+     * @param weapon Weapon to be deleted from database
      */
-    public void deleteItem(Item item) {
+    public void deleteItem(Weapon weapon) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ITEMS, KEY_NAME + " = ?",
-                new String[] { String.valueOf(item.getName()) });
+                new String[] { String.valueOf(weapon.getName()) });
         db.close();
     }
 }

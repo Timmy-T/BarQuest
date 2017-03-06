@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.content.DialogInterface;
 
+import attackontinytim.barquest.Database.Weapon;
+
 public class MainActivity extends AppCompatActivity {
 
     // global Player
@@ -70,11 +72,13 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putInt("experience", player.getExperience());
                     bundle.putInt("money", player.getMoney());
 
+
                     bundle.putString("weaponName", player.getActive().getName());
-                    bundle.putString("weaponType", player.getActive().getType());
+                    bundle.putString("weaponType", player.getActive().getAttackType());
                     bundle.putInt("weaponAttack", player.getActive().getAttack());
-                    bundle.putInt("weaponWeight", player.getActive().getWeight());
-                    bundle.putInt("weaponCrit", player.getActive().getCrit());
+                    bundle.putDouble("weaponWeight", player.getActive().getWeight());
+                    bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+                    bundle.putDouble("weaponValue", player.getActive().getValue());
 
                     intent.putExtras(bundle);
                     startActivityForResult(intent,  MAIN_RETURN_CODE);
@@ -97,10 +101,11 @@ public class MainActivity extends AppCompatActivity {
                         bundle.putInt("money", player.getMoney());
 
                         bundle.putString("weaponName", player.getActive().getName());
-                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putString("weaponType", player.getActive().getAttackType());
                         bundle.putInt("weaponAttack", player.getActive().getAttack());
-                        bundle.putInt("weaponWeight", player.getActive().getWeight());
-                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+                        bundle.putDouble("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+                        bundle.putDouble("weaponValue", player.getActive().getValue());
 
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
@@ -123,10 +128,12 @@ public class MainActivity extends AppCompatActivity {
                         bundle.putInt("money", player.getMoney());
 
                         bundle.putString("weaponName", player.getActive().getName());
-                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putString("weaponType", player.getActive().getAttackType());
                         bundle.putInt("weaponAttack", player.getActive().getAttack());
-                        bundle.putInt("weaponWeight", player.getActive().getWeight());
-                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+                        bundle.putDouble("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+                        bundle.putDouble("weaponValue", player.getActive().getValue());
+
 
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
@@ -149,10 +156,12 @@ public class MainActivity extends AppCompatActivity {
                         bundle.putInt("money", player.getMoney());
 
                         bundle.putString("weaponName", player.getActive().getName());
-                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putString("weaponType", player.getActive().getAttackType());
                         bundle.putInt("weaponAttack", player.getActive().getAttack());
-                        bundle.putInt("weaponWeight", player.getActive().getWeight());
-                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+                        bundle.putDouble("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+                        bundle.putDouble("weaponValue", player.getActive().getValue());
+
 
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
@@ -175,10 +184,11 @@ public class MainActivity extends AppCompatActivity {
                         bundle.putInt("money", player.getMoney());
 
                         bundle.putString("weaponName", player.getActive().getName());
-                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putString("weaponType", player.getActive().getAttackType());
                         bundle.putInt("weaponAttack", player.getActive().getAttack());
-                        bundle.putInt("weaponWeight", player.getActive().getWeight());
-                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+                        bundle.putDouble("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+                        bundle.putDouble("weaponValue", player.getActive().getValue());
 
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
@@ -201,10 +211,11 @@ public class MainActivity extends AppCompatActivity {
                         bundle.putInt("money", player.getMoney());
 
                         bundle.putString("weaponName", player.getActive().getName());
-                        bundle.putString("weaponType", player.getActive().getType());
+                        bundle.putString("weaponType", player.getActive().getAttackType());
                         bundle.putInt("weaponAttack", player.getActive().getAttack());
-                        bundle.putInt("weaponWeight", player.getActive().getWeight());
-                        bundle.putInt("weaponCrit", player.getActive().getCrit());
+                        bundle.putDouble("weaponWeight", player.getActive().getWeight());
+                        bundle.putInt("weaponCrit", player.getActive().getCriticalRate());
+                        bundle.putDouble("weaponValue", player.getActive().getValue());
 
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
@@ -256,9 +267,11 @@ public class MainActivity extends AppCompatActivity {
                     String weaponName = bundle.getString("weaponName");
                     String weaponType = bundle.getString("weaponType");
                     int weaponAttack = bundle.getInt("weaponAttack");
-                    int weaponWeight = bundle.getInt("weaponWeight");
+                    double weaponWeight = bundle.getDouble("weaponWeight");
                     int weaponCrit = bundle.getInt("weaponCrit");
-                    Weapon active = new Weapon(weaponName, weaponAttack, weaponWeight, weaponCrit, weaponType);
+                    double weaponValue = bundle.getDouble("weaponValue");
+
+                    Weapon active = new Weapon(weaponType, weaponAttack, weaponCrit, weaponName, weaponValue, weaponWeight);
 
                     player.set_active(active);
             }

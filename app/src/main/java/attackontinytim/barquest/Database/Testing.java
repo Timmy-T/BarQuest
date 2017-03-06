@@ -10,9 +10,8 @@ import attackontinytim.barquest.MainActivity;
 import attackontinytim.barquest.R;
 
 public class Testing extends AppCompatActivity {
+
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -35,9 +34,9 @@ public class Testing extends AppCompatActivity {
 
         DBHandlerItems itemDB = new DBHandlerItems(activity);
         if (itemDB.getItemCount() == 0){
-            itemDB.addItem(new Item("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-            itemDB.addItem(new Item("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-            itemDB.addItem(new Item("Long", 55,3,"David Bowie", 10, 2.5));
+            itemDB.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
+            itemDB.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
+            itemDB.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
         }
     }
 
@@ -112,47 +111,47 @@ public class Testing extends AppCompatActivity {
 
         // Inserting rows
         Log.d("Insert: ", "Inserting ..");
-        db.addItem(new Item("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-        db.addItem(new Item("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-        db.addItem(new Item("Long", 55,3,"David Bowie", 10, 2.5));
+        db.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
+        db.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
+        db.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
 
-        // Reading all items
-        Log.d("Reading: ", "Reading all items..");
-        List<Item> items= db.getAllItems();
+        // Reading all weapons
+        Log.d("Reading: ", "Reading all weapons..");
+        List<Weapon> weapons = db.getAllItems();
 
-        for (Item item  : items) {
-            String log = "Name: " + item.getName() + " ,Attack Type: " + item.getAttackType() + ", Attack" + item.getAttack();
-            // Writing items to log
-            Log.d("Item: : ", log);
+        for (Weapon weapon : weapons) {
+            String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
+            // Writing weapons to log
+            Log.d("Weapon: : ", log);
         }
 
         // Getting a monster from the list
-        Item myItem = items.get(0);
+        Weapon myWeapon = weapons.get(0);
         // Changing its name
-        myItem.setName("Dev's Sword");
+        myWeapon.setName("Dev's Sword");
         // Adding to item table
-        db.addItem(myItem);
-        Item addedItem = db.getItemByName("Dev's Sword");
+        db.addItem(myWeapon);
+        Weapon addedWeapon = db.getItemByName("Dev's Sword");
 
-        Log.d("Checking data: ", "Fetching Updated Item List");
-        items= db.getAllItems();
+        Log.d("Checking data: ", "Fetching Updated Weapon List");
+        weapons = db.getAllItems();
 
-        for (Item item  : items) {
-            String log = "Name: " + item.getName() + " ,Attack Type: " + item.getAttackType() + ", Attack" + item.getAttack();
-            // Writing items to log
-            Log.d("Item: : ", log);
+        for (Weapon weapon : weapons) {
+            String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
+            // Writing weapons to log
+            Log.d("Weapon: : ", log);
         }
 
         Log.d("Deleting Data: ", "Kill it");
-        db.deleteItem(myItem);
+        db.deleteItem(myWeapon);
 
-        Log.d("Checking data: ", "Fetching Updated Item List");
-        items= db.getAllItems();
+        Log.d("Checking data: ", "Fetching Updated Weapon List");
+        weapons = db.getAllItems();
 
-        for (Item item  : items) {
-            String log = "Name: " + item.getName() + " ,Attack Type: " + item.getAttackType() + ", Attack" + item.getAttack();
-            // Writing items to log
-            Log.d("Item: : ", log);
+        for (Weapon weapon : weapons) {
+            String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
+            // Writing weapons to log
+            Log.d("Weapon: : ", log);
         }
     }
 }
