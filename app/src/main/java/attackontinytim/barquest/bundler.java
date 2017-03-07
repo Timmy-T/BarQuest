@@ -11,8 +11,13 @@ import android.os.Bundle;
 /**
  * Created by Tim Buesking on 3/6/2017.
  */
-
 public class bundler {
+
+    /**
+     * Function that generates a bundle containing the hero and weapon information.
+     * This bundle is to be used for passing information between activities
+     * @param hero A Hero object the be serialized into a bundle. This hero must also have a weapon
+     */
     public static Bundle generateBundle(Hero hero) {
         Bundle bundle = new Bundle();
 
@@ -36,6 +41,13 @@ public class bundler {
         return bundle;
     }
 
+    /**
+     * Function that unbundles a hero object from a bundle.
+     * To be used when receiving a bundle from another activity
+     * @param bundle A Bundle object to be decompressed. This bundle must contain a hero
+     *               and weapon class
+     * @return Hero a hero object
+     */
     public static Hero unbundleHero(Bundle bundle){
         Hero hero = new Hero();
         hero.setId(bundle.getInt("id"));
