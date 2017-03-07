@@ -17,9 +17,6 @@ public class CharacterScreenActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
-
-
-
     }
 
     @Override

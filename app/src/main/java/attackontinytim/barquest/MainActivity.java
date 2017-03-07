@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.content.DialogInterface;
+import android.R.layout;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,14 +37,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         onClickButtonListener();
     }
 
@@ -56,15 +49,15 @@ public class MainActivity extends AppCompatActivity {
         shop = (Button)findViewById(R.id.shopButton);
         levelUp = (Button)findViewById(R.id.levelUpButton);
         battle.setOnClickListener(
-            new View.OnClickListener() {
-                public void onClick(View v) {
-                     Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
-                    Bundle bundle = bundler.generateBundle(hero);
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
 
-                    intent.putExtras(bundle);
-                    startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
                 }
-            }
         );
         scan.setOnClickListener(
                 new View.OnClickListener() {
