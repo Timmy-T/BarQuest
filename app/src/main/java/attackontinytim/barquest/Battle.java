@@ -1,5 +1,6 @@
 package attackontinytim.barquest;
 
+import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
 public class Battle {
@@ -7,8 +8,8 @@ public class Battle {
     /* VARIABLES */
     /* ********* */
 
-    public Player player;
-    private Enemy enemy;
+    public Hero hero;
+    private Monster enemy;
     private double wep_triangle;
 
     /** Battle Formula Modifiers - more to come? */
@@ -28,27 +29,27 @@ public class Battle {
         Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.player = new Player("testPlayer", 1, 20, 1, 1, 1, 0, 0);
-        this.player.set_active(testWeapon);
+        this.hero = new Hero(0, "testPlayer", 20, 0, 1, 5, 5,5, 0, testWeapon);
+
         // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Enemy("testEnemy", 1, 20, 1, 1, 1, "close");
+        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
 
         setWeaponTriangle();
     }
 
     // Constructor for testing
-    public Battle(Player player){
-        this.player = player;
+    public Battle(Hero hero){
+        this.hero = hero;
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Enemy("testEnemy", 1, 20, 1, 1, 1, "close");
+        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
 
         setWeaponTriangle();
     }
 
-    /** Constructs a Battle object with a Player and Enemy Character */
-    public Battle(Player player, Enemy enemy) {
-        this.player = player;
+    /** Constructs a Battle object with a Hero and Enemy Character */
+    public Battle(Hero hero, Monster enemy) {
+        this.hero = hero;
         this.enemy = enemy;
 
         setWeaponTriangle();
@@ -63,7 +64,7 @@ public class Battle {
     private Boolean calc_hit() {
         Boolean landed = false;
 
-        int calc = (int)Math.round((CH_SPD * this.player.speed) - (WEP_WT * this.player.getActive().getWeight()) - (MON_SPD * this.enemy.speed));
+        int calc = (int)Math.round((CH_SPD * this.hero.getSpeed()) - (WEP_WT * this.hero.getActive().getWeight()) - (MON_SPD * this.enemy.getSpeed()));
         int maxCalc = Math.max(0, calc);
         int diceRoll = (int)(Math.random() * (101));
 
@@ -80,7 +81,7 @@ public class Battle {
     private Boolean calc_crit(){
         Boolean critical = false;
         int diceRoll = (int)(Math.random() * (101));
-        if(diceRoll <= this.player.speed + this.player.getActive().getCriticalRate()){
+        if(diceRoll <= this.hero.getSpeed() + this.hero.getActive().getCriticalRate()){
             critical = true;
         }
         return critical;
@@ -92,7 +93,7 @@ public class Battle {
     private int calc_dmg(){
         int damage = 0;
 
-        int calc = (int)Math.round(this.wep_triangle * (this.player.attack + this.player.getActive().getAttack()) - this.enemy.defense);
+        int calc = (int)Math.round(this.wep_triangle * (this.hero.getAttack() + this.hero.getActive().getAttack()) - this.enemy.getDefense());
         damage = Math.max(1, calc);
 
         //multiply damage if critical hit lands
@@ -109,7 +110,7 @@ public class Battle {
         Boolean fled = false;
 
         int diceRoll = (int)(Math.random() * (101));
-        if(diceRoll <= Math.max(0, (this.player.speed - this.player.getActive().getWeight() - this.enemy.speed))){
+        if(diceRoll <= Math.max(0, (this.hero.getSpeed() - this.hero.getActive().getWeight() - this.enemy.getSpeed()))){
             fled = true;
         }
         return fled;
@@ -120,8 +121,8 @@ public class Battle {
 
     private void setWeaponTriangle(){
         //this is JAVA
-        String weapType = this.player.getActive().getAttackType();
-        String mons = this.enemy.getType();
+        String weapType = this.hero.getActive().getAttackType();
+        String mons = this.enemy.getAttackType();
 
         if ((weapType.equals("long") && mons.equals("mid")) ||
                 (weapType.equals("mid") && mons.equals("close")) ||
