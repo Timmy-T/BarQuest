@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-
-import attackontinytim.barquest.Database.Weapon;
+import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -148,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
                 default:
-                    Bundle bundle = getIntent().getExtras();
+                    Bundle bundle = data.getExtras();
                     hero = bundler.unbundleHero(bundle);
             }
         }

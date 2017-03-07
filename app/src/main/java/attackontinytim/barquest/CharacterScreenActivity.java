@@ -16,6 +16,8 @@ public class CharacterScreenActivity extends AppCompatActivity {
         setContentView(R.layout.character_screen_layout);
 
         Bundle bundle = getIntent().getExtras();
+        hero = bundler.unbundleHero(bundle);
+
 
 
     }
