@@ -14,8 +14,6 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-<<<<<<< HEAD
-=======
         android:text="Scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,58 +28,32 @@
         android:layout_below="@+id/battleButton"/>
 
     <Button
->>>>>>> refs/remotes/origin/UI
+        android:text="Level Up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/levelUpButton"
+        android:layout_below="@+id/characterButton"/>
+
+    <Button
         android:text="Inventory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/inventoryButton"
-        android:layout_below="@+id/characterButton"/>
+        android:layout_below="@+id/levelUpButton"/>
 
     <Button
         android:text="Shop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/shopButton"
-<<<<<<< HEAD
-        android:layout_alignBaseline="@+id/inventoryButton"
-        android:layout_alignBottom="@+id/inventoryButton"
-        android:layout_alignStart="@+id/battleButton" />
-
-    <Button
-        android:text="Character"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/characterButton"
-        android:layout_above="@+id/battleButton"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Scan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scannerButton"
-        android:layout_above="@+id/battleButton"
-        android:layout_toEndOf="@+id/textView4"
-        android:layout_marginStart="22dp" />
-
-    <Button
-        android:text="Level Up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/levelUpButton"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/scannerButton"
-        android:layout_marginStart="34dp" />
-=======
         android:layout_below="@+id/inventoryButton"/>
+
 
     <Button
         android:text="Battle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/battleButton"
-        android:layout_below="@+id/scannerButton"
-        android:layout_alignParentStart="true"/>
+        android:layout_below="@+id/scannerButton"/>
 
->>>>>>> refs/remotes/origin/UI
 </RelativeLayout>
