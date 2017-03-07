@@ -36,14 +36,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         onClickButtonListener();
     }
 
@@ -54,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
         character = (Button)findViewById(R.id.characterButton);
         inventory = (Button)findViewById(R.id.inventoryButton);
         shop = (Button)findViewById(R.id.shopButton);
+<<<<<<< HEAD
         levelUp = (Button)findViewById(R.id.levelUpButton);
+=======
+
+>>>>>>> refs/remotes/origin/UI
         battle.setOnClickListener(
             new View.OnClickListener() {
                 public void onClick(View v) {
@@ -82,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         );
         scan.setOnClickListener(
+<<<<<<< HEAD
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
@@ -131,9 +128,17 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
+=======
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
+                    startActivity(intent);
+>>>>>>> refs/remotes/origin/UI
                 }
+            }
         );
         character.setOnClickListener(
+<<<<<<< HEAD
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
@@ -157,9 +162,17 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
+=======
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
+                    startActivity(intent);
+>>>>>>> refs/remotes/origin/UI
                 }
+            }
         );
         inventory.setOnClickListener(
+<<<<<<< HEAD
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
@@ -183,9 +196,17 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
+=======
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                    startActivity(intent);
+>>>>>>> refs/remotes/origin/UI
                 }
+            }
         );
         shop.setOnClickListener(
+<<<<<<< HEAD
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
@@ -209,7 +230,14 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
+=======
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
+                    startActivity(intent);
+>>>>>>> refs/remotes/origin/UI
                 }
+            }
         );
     }
 

@@ -3,6 +3,7 @@ package attackontinytim.barquest;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class InventoryActivity extends AppCompatActivity {
 
@@ -70,5 +71,8 @@ public class InventoryActivity extends AppCompatActivity {
 
         setResult(RESULT_OK,getIntent().putExtras(bundle));
         finish();
+    }
+
+    public void InventoryActivity(View view) {
     }
 }
