@@ -1,5 +1,7 @@
 package attackontinytim.barquest.Database;
 
+import android.database.Cursor;
+
 /**
  * Created by Tim Buesking on 2/21/2017.
  */
@@ -10,6 +12,14 @@ public class ConsumableItem {
         this.effectStrength = effectStrength;
         this.name = name;
         this.value = value;
+    }
+
+    public ConsumableItem(Cursor cursor)
+    {
+        this.effect = cursor.getString(0);
+        this.effectStrength= cursor.getInt(1);
+        this.name=cursor.getString(2);
+        this.value=cursor.getInt(3);
     }
 
     public String getEffect() {
