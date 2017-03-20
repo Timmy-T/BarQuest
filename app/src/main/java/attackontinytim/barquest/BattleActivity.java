@@ -1,9 +1,13 @@
 package attackontinytim.barquest;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import attackontinytim.barquest.Database.Weapon;
 
@@ -11,6 +15,14 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     private Battle battle;
     private Hero hero;
+
+    // Return
+    static public int MAIN_RETURN_CODE = 1;
+
+    // Buttons
+    private static Button attack;
+    private static Button item;
+    private static Button flee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +33,82 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         hero = bundler.unbundleHero(bundle);
 
         battle = new Battle(hero);
-        TextView textView = (TextView) this.findViewById(R.id.textView2);
-        textView.setText("Player Name: " + battle.hero.getName());
+
+        // Hook up UI variables to backend variables for Hero
+        TextView Name = (TextView) findViewById(R.id.CharName);
+        TextView LvlStat = (TextView) findViewById(R.id.lvlstat);
+        TextView TotalHPStat = (TextView) findViewById(R.id.hpstat);
+        TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
+
+        Name.setText(battle.hero.getName());
+        LvlStat.setText(battle.hero.getLevel());
+        TotalHPStat.setText(hero.getHP());
+        CurrHPStat.setText(battle.hero.getHP());
+
+        // Hook up UI variables to backend variables for Monster
+        TextView MonName = (TextView) findViewById(R.id.MonName);
+        TextView MonLvl = (TextView) findViewById(R.id.monlvl);
+        TextView TotalMonHP = (TextView) findViewById(R.id.monhp);
+        TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
+
+        MonName.setText(battle.hero.getName());
+        MonLvl.setText(battle.hero.getLevel());
+        TotalMonHP.setText(hero.getHP());
+        CurrMonHP.setText(battle.hero.getHP());
+
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_CANCELED) {
-            switch (requestCode) {
-                default:
-                    end();
+    public void onClickButtonListener() {
+        attack = (Button) findViewById(R.id.attackButton);
+        item = (Button) findViewById(R.id.itemButton);
+        flee = (Button) findViewById(R.id.fleeButton);
+
+        attack.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.Battle");
+                        Bundle bundle = bundler.generateBundle(hero);
+
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                    }
+                }
+        );
+
+        item.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                    }
+                }
+        );
+
+        flee.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.MainActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                    }
+                }
+        );
+    }
+
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if (resultCode != RESULT_CANCELED) {
+                switch (requestCode) {
+                    default:
+                        end();
+                }
             }
         }
-    }
 
     @Override
     public void onBackPressed() {

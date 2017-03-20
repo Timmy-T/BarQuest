@@ -16,8 +16,20 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/darker_gray"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="@android:color/black"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BarQuest: The BaRPG"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
