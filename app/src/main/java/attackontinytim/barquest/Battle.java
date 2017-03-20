@@ -120,7 +120,7 @@ public class Battle {
     ////////////////////////
 
     private void setWeaponTriangle(){
-        //this is JAVA
+
         String weapType = this.hero.getActive().getAttackType();
         String mons = this.enemy.getAttackType();
 
@@ -136,6 +136,16 @@ public class Battle {
         }
         else{
             this.wep_triangle = 1;
+        }
+    }
+
+
+    //actually executes the battle stuff here.
+    private void performBattle(){
+
+        while(this.hero.getHP() > 0 || this.enemy.getHP() > 0){
+            //for now, hero always attacks first - may change in the future
+
         }
     }
 }
