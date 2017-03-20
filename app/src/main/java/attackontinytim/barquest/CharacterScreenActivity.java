@@ -1,9 +1,11 @@
 package attackontinytim.barquest;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.R.layout;
 
 import attackontinytim.barquest.Database.Weapon;
 
@@ -19,6 +21,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
 
+        // Hook up UI variables to backend variables
         TextView Name = (TextView) findViewById(R.id.CharName);
         TextView Exp = (TextView) findViewById(R.id.expstat);
         TextView Money = (TextView) findViewById(R.id.moneystat);
@@ -36,6 +39,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
         AtkStat.setText(String.valueOf(hero.getAttack()));
         DefStat.setText(String.valueOf(hero.getDefense()));
         SpdStat.setText(String.valueOf(hero.getSpeed()));
+
     }
 
     @Override

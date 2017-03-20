@@ -9,7 +9,7 @@ public class Battle {
     /* ********* */
 
     public Hero hero;
-    private Monster enemy;
+    public Monster enemy;
     private double wep_triangle;
 
     /** Battle Formula Modifiers - more to come? */
