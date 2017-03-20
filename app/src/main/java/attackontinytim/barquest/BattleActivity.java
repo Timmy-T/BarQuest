@@ -9,12 +9,14 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     private Battle battle;
     private Hero hero;
+    private Monster enemy;
 
     // Return
     static public int MAIN_RETURN_CODE = 1;
@@ -40,10 +42,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         TextView TotalHPStat = (TextView) findViewById(R.id.hpstat);
         TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
 
-        Name.setText(battle.hero.getName());
-        LvlStat.setText(battle.hero.getLevel());
-        TotalHPStat.setText(hero.getHP());
-        CurrHPStat.setText(battle.hero.getHP());
+        Name.setText(String.valueOf(battle.hero.getName()));
+        LvlStat.setText(String.valueOf(battle.hero.getLevel()));
+        TotalHPStat.setText(String.valueOf(hero.getHP()));
+        CurrHPStat.setText(String.valueOf(battle.hero.getHP()));
 
         // Hook up UI variables to backend variables for Monster
         TextView MonName = (TextView) findViewById(R.id.MonName);
@@ -51,10 +53,12 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         TextView TotalMonHP = (TextView) findViewById(R.id.monhp);
         TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
 
-        MonName.setText(battle.hero.getName());
-        MonLvl.setText(battle.hero.getLevel());
-        TotalMonHP.setText(hero.getHP());
-        CurrMonHP.setText(battle.hero.getHP());
+        MonName.setText(String.valueOf(battle.enemy.getName()));
+        MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
+        TotalMonHP.setText(String.valueOf(battle.enemy.getHP()));
+        CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
+
+        onClickButtonListener();
 
     }
 
@@ -66,9 +70,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.Battle");
+                        // insert Battle() functions here to do calculations and update accordingly
+                        Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
                         Bundle bundle = bundler.generateBundle(hero);
-
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
@@ -78,9 +82,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         item.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        // temporary; need to find a way to click "back" and not go back to MainActivity
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
                         Bundle bundle = bundler.generateBundle(hero);
-
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
@@ -90,9 +94,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        // need to reset battle()?
                         Intent intent = new Intent("attackontinytim.barquest.MainActivity");
                         Bundle bundle = bundler.generateBundle(hero);
-
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
