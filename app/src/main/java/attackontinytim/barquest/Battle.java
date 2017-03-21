@@ -64,7 +64,7 @@ public class Battle {
     /** Calculates if the attack hits or not - returns true if hit, false for miss
      * Hit = 100D <= max(0, α*CSpd - β*WWt - δ*MSpd */
     protected Boolean calc_hit() {
-        Boolean landed = Boolean.FALSE;
+        Boolean landed = Boolean.TRUE;
 
         int calc = (int)Math.round((CH_SPD * this.hero.getSpeed()) - (WEP_WT * this.hero.getActive().getWeight()) - (MON_SPD * this.enemy.getSpeed()));
         int maxCalc = Math.max(0, calc);
