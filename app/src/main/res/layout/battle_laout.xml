@@ -34,31 +34,33 @@
             android:id="@+id/heroPic"
             android:layout_width="100dp"
             android:layout_height="300dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_column="0"
+            android:layout_columnWeight="2"
             android:layout_gravity="center|bottom"
             android:layout_row="1"
-            android:layout_column="0"
-            android:layout_columnWeight="2"/>
+            android:scaleType="fitEnd"
+            app:srcCompat="@mipmap/ic_launcher" />
 
         <ImageView
             android:id="@+id/attackPic"
             android:layout_width="100dp"
             android:layout_height="300dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
             android:layout_gravity="center|bottom"
             android:layout_row="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"/>
+            android:scaleType="fitEnd"
+            app:srcCompat="@drawable/attack_slash" />
 
         <ImageView
             android:id="@+id/monsterPic"
             android:layout_width="100dp"
             android:layout_height="300dp"
-            app:srcCompat="@mipmap/ic_launcher"
-            android:layout_gravity="center|bottom"
-            android:layout_row="1"
             android:layout_column="2"
-            android:layout_columnWeight="2"/>
+            android:layout_columnWeight="2"
+            android:layout_row="1"
+            android:scaleType="fitEnd"
+            android:src="@drawable/temp_monster" />
 
         <GridLayout
             android:layout_width="100dp"

@@ -33,6 +33,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         Bundle bundle = getIntent().getExtras();
 
         hero = bundler.unbundleHero(bundle);
+        // enemy = new Monster(/*some sort of Cursor*/);
 
         battle = new Battle(hero);
 
@@ -55,7 +56,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
         MonName.setText(String.valueOf(battle.enemy.getName()));
         MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
-        TotalMonHP.setText(String.valueOf(battle.enemy.getHP()));
+        TotalMonHP.setText(String.valueOf(battle.enemy.getHP())); // change this once you can construct a monster
         CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
 
         onClickButtonListener();
