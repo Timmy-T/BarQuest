@@ -70,7 +70,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // insert Battle() functions here to do calculations and update accordingly
+                        /**insert Battle() functions here to do calculations and update accordingly*/
+                        battle.performBattle();
                         Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
@@ -125,4 +126,5 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
         finish();
     }
+
 }

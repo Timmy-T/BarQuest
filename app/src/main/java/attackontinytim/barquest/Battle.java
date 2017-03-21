@@ -1,5 +1,7 @@
 package attackontinytim.barquest;
 
+import android.widget.TextView;
+
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -61,15 +63,15 @@ public class Battle {
 
     /** Calculates if the attack hits or not - returns true if hit, false for miss
      * Hit = 100D <= max(0, α*CSpd - β*WWt - δ*MSpd */
-    private Boolean calc_hit() {
-        Boolean landed = false;
+    protected Boolean calc_hit() {
+        Boolean landed = Boolean.FALSE;
 
         int calc = (int)Math.round((CH_SPD * this.hero.getSpeed()) - (WEP_WT * this.hero.getActive().getWeight()) - (MON_SPD * this.enemy.getSpeed()));
         int maxCalc = Math.max(0, calc);
         int diceRoll = (int)(Math.random() * (101));
 
         if(diceRoll <= maxCalc){
-            landed = true;
+            landed = Boolean.TRUE;
         }
 
         return landed;
@@ -78,7 +80,7 @@ public class Battle {
     /** Calculates Critical hit rate
      * Crit Rate = 100D <= CSpd + WCrit
      * returns true if crit, false if not */
-    private Boolean calc_crit(){
+    protected Boolean calc_crit(){
         Boolean critical = false;
         int diceRoll = (int)(Math.random() * (101));
         if(diceRoll <= this.hero.getSpeed() + this.hero.getActive().getCriticalRate()){
@@ -90,7 +92,7 @@ public class Battle {
     /** Calculates damage based on the formula:
      * Damage = max(1, (Attack Type Modifier * (CAtk + WAtk) - MDef))
      * returns an int with the damage value calculated */
-    private int calc_dmg(){
+    protected int calc_dmg(){
         int damage = 0;
 
         int calc = (int)Math.round(this.wep_triangle * (this.hero.getAttack() + this.hero.getActive().getAttack()) - this.enemy.getDefense());
@@ -106,7 +108,7 @@ public class Battle {
     /** Calculates flee rate based on the formula:
      * 100D <= max(0, (CSpd - WWt - MSpeed))
      * returns a true if successful, false if not */
-    private Boolean calc_flee(){
+    protected Boolean calc_flee(){
         Boolean fled = false;
 
         int diceRoll = (int)(Math.random() * (101));
@@ -120,7 +122,7 @@ public class Battle {
     ////////////////////////
 
     private void setWeaponTriangle(){
-        //this is JAVA
+
         String weapType = this.hero.getActive().getAttackType();
         String mons = this.enemy.getAttackType();
 
@@ -136,6 +138,25 @@ public class Battle {
         }
         else{
             this.wep_triangle = 1;
+        }
+    }
+
+    /**It's showtime
+    */
+    protected void performBattle(){
+        //for now, hero always attacks first - will change in the future */
+        if(this.enemy.getHP() > 0 && this.hero.getHP() > 0) {
+            if (this.calc_hit() == Boolean.TRUE) {
+                //crit calculations are automatically done in the calc_dmg() stage
+                int damage = this.calc_dmg();
+
+                //subtract damage from monster's HP
+                this.enemy.setHP(this.enemy.getHP() - damage);
+
+                //enemy automatically attacks if they still have health left
+                if (this.enemy.getHP() > 0 && this.hero.getHP() > 0)
+                    this.hero.setHP(this.hero.getHP() - this.enemy.getAttack());
+            }
         }
     }
 }
