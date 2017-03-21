@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -29,6 +30,8 @@ public class ScannerActivity extends AppCompatActivity {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt("Scan a barcode");
         integrator.setBeepEnabled(false);
+
+        integrator.setOrientationLocked(true);
         integrator.initiateScan();
 
     }
@@ -43,6 +46,8 @@ public class ScannerActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 Log.d("HERE", result.getContents());
+                TextView scanResult = (TextView) findViewById(R.id.scannerID);
+                scanResult.setText(result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
