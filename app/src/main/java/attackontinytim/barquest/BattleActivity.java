@@ -114,8 +114,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         // need to reset battle()?
                         Intent intent = new Intent("attackontinytim.barquest.MainActivity");
                         Bundle bundle = bundler.generateBundle(hero);
-                        intent.putExtras(bundle);
-                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                        setResult(RESULT_OK,getIntent().putExtras(bundle));
+                        finish();
                     }
                 }
         );

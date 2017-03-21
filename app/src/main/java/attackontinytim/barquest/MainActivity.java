@@ -1,7 +1,11 @@
 package attackontinytim.barquest;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -35,7 +39,29 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         onClickButtonListener();
+
+        checkPermissions();
+
     }
+
+    private void checkPermissions() {
+// Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            }
+
+
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
+
+    if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this,
+        new String[]{Manifest.permission.CAMERA}, 0);
+        }
+}
 
     // THIS is disgusting
     public void onClickButtonListener(){
