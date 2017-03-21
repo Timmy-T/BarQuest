@@ -25,7 +25,12 @@ public class ScannerActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
 
-        new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        integrator.setPrompt("Scan a barcode");
+        integrator.setBeepEnabled(false);
+        integrator.initiateScan();
+
     }
 
     // Get the results:
