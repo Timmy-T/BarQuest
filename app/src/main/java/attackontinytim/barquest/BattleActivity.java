@@ -70,25 +70,12 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        /**insert Battle() functions here to do calculations and update accordingly
-                        //for now, hero always attacks first - will change in the future */
-                        if(battle.enemy.getHP() > 0 && battle.hero.getHP() > 0) {
-                            if (battle.calc_hit() == Boolean.TRUE) {
-                                //crit calculations are automatically done in the calc_dmg() stage
-                                int damage = battle.calc_dmg();
-
-                                //subtract damage from monster's HP
-                                battle.enemy.setHP(battle.enemy.getHP() - damage);
-                                //enemy automatically attacks if they still have health left
-                                if (battle.enemy.getHP() > 0 && battle.hero.getHP() > 0)
-                                    battle.hero.setHP(battle.hero.getHP() - battle.enemy.getAttack());
-                            }
-
-                            Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
-                            Bundle bundle = bundler.generateBundle(hero);
-                            intent.putExtras(bundle);
-                            startActivityForResult(intent, MAIN_RETURN_CODE);
-                        }
+                        /**insert Battle() functions here to do calculations and update accordingly*/
+                        battle.performBattle();
+                        Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );

@@ -1,5 +1,7 @@
 package attackontinytim.barquest;
 
+import android.widget.TextView;
+
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -139,5 +141,23 @@ public class Battle {
         }
     }
 
+    /**It's showtime
+    */
+    protected void performBattle(){
+        //for now, hero always attacks first - will change in the future */
+        if(this.enemy.getHP() > 0 && this.hero.getHP() > 0) {
+            if (this.calc_hit() == Boolean.TRUE) {
+                //crit calculations are automatically done in the calc_dmg() stage
+                int damage = this.calc_dmg();
+
+                //subtract damage from monster's HP
+                this.enemy.setHP(this.enemy.getHP() - damage);
+
+                //enemy automatically attacks if they still have health left
+                if (this.enemy.getHP() > 0 && this.hero.getHP() > 0)
+                    this.hero.setHP(this.hero.getHP() - this.enemy.getAttack());
+            }
+        }
+    }
 }
 
