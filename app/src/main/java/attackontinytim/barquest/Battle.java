@@ -62,28 +62,28 @@ public class Battle {
     /* ************* */
 
     /** Calculates if the attack hits or not - returns true if hit, false for miss
-     * Hit = 100D <= max(0, α*CSpd - β*WWt - δ*MSpd */
+     * Hit = 100D <= max(0, 100 + α*CSpd - β*WWt - δ*MSpd */
     protected Boolean calc_hit() {
-        Boolean landed = Boolean.TRUE;
+        Boolean landed = false;
 
-        int calc = (int)Math.round((CH_SPD * this.hero.getSpeed()) - (WEP_WT * this.hero.getActive().getWeight()) - (MON_SPD * this.enemy.getSpeed()));
+        int calc = (int)Math.round(100 + (CH_SPD * this.hero.getSpeed()) - (WEP_WT * this.hero.getActive().getWeight()) - (MON_SPD * this.enemy.getSpeed()));
         int maxCalc = Math.max(0, calc);
         int diceRoll = (int)(Math.random() * (101));
 
         if(diceRoll <= maxCalc){
-            landed = Boolean.TRUE;
+            landed = true;
         }
 
         return landed;
     }
 
     /** Calculates Critical hit rate
-     * Crit Rate = 100D <= CSpd + WCrit
+     * Crit Rate = 100D <= CSpd/2 + WCrit
      * returns true if crit, false if not */
     protected Boolean calc_crit(){
         Boolean critical = false;
         int diceRoll = (int)(Math.random() * (101));
-        if(diceRoll <= this.hero.getSpeed() + this.hero.getActive().getCriticalRate()){
+        if(diceRoll <= this.hero.getSpeed()/2 + this.hero.getActive().getCriticalRate()){
             critical = true;
         }
         return critical;
