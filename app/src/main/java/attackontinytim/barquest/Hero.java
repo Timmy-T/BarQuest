@@ -191,7 +191,8 @@ public class Hero implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
+	
+	// This allows us to use parcelling for easier transmission of Hero objects
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         // TO-DO: Parcelelize weapon attributes
