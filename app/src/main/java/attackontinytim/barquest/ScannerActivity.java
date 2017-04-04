@@ -17,6 +17,7 @@ public class ScannerActivity extends AppCompatActivity {
 
     public Hero hero;
 
+	// This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class ScannerActivity extends AppCompatActivity {
 
     }
 
-    // Get the results:
+    // This is called when the activity is ended via result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -54,11 +55,14 @@ public class ScannerActivity extends AppCompatActivity {
         }
     }
 
+	// This is what is called when back is pressed
     @Override
     public void onBackPressed() {
+		// it ends the acitivity
         end();
     }
 
+	// This is the act of ending the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
 

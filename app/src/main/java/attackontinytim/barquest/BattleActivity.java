@@ -113,7 +113,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                     }
                 }
         );
-
+		
+		// Robert says: Check out the end function below
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {

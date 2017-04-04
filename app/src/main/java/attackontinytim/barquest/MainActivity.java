@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private static Button inventory;
     private static Button shop;
     private static Button levelUp;
-
+	
+	// This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+	// This reconstructs the hero after a called activity ends
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
