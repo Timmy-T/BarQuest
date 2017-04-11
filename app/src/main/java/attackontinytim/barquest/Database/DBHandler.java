@@ -165,7 +165,6 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
         // return contact list
         return monsterList;
     }
@@ -178,7 +177,6 @@ public class DBHandler extends SQLiteOpenHelper {
             String countQuery = "SELECT * FROM " + TABLE_MONSTERS;
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(countQuery, null);
-            cursor.close();
             // return count
             return cursor.getCount();
         }

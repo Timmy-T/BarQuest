@@ -31,13 +31,13 @@ public class Testing extends AppCompatActivity {
             monsterDB.addMonster(new Monster(3,"MatLab", 200, 100, "Mid", 5.0, 1, "Uncommon", 50, 5, 25));
             monsterDB.addMonster(new Monster(4,"Jimbo", 10000, 5000, "Mid", 5.0, 1, "Common", 45, 55, 35));
         }
-
+        /*
         DBHandlerItems itemDB = new DBHandlerItems(activity);
         if (itemDB.getItemCount() == 0){
             itemDB.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
             itemDB.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
             itemDB.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
-        }
+        }*/
     }
 
 
