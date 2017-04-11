@@ -78,21 +78,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        String TAG = BattleActivity.class.getSimpleName();
-
-                        /**insert Battle() functions here to do calculations and update accordingly*/
-                        Log.d(TAG, "Character HP before battle:" + String.valueOf(battle.hero.getHP()));
-                        Log.d(TAG, "Monster HP before battle:" + String.valueOf(battle.enemy.getHP()));
                         battle.performBattle();
-                        Log.d(TAG, "Character HP after battle:" + String.valueOf(battle.hero.getHP()));
-                        Log.d(TAG, "Monster HP after battle:" + String.valueOf(battle.enemy.getHP()));
                         reloadBattleScreen();
-                        Log.d(TAG, "Character HP after reload:" + String.valueOf(battle.hero.getHP()));
-                        Log.d(TAG, "Monster HP after reload:" + String.valueOf(battle.enemy.getHP()));
-                        /*Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
-                        Bundle bundle = bundler.generateBundle(hero);
-                        intent.putExtras(bundle);
-                        startActivityForResult(intent, MAIN_RETURN_CODE);*/
                     }
                 }
         );
