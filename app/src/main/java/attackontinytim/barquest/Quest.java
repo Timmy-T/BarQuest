@@ -2,6 +2,7 @@ package attackontinytim.barquest;
 
 import android.os.Parcelable;
 import android.os.Parcel;
+import java.util.Random;
 
 public class Quest implements Parcelable {
     
@@ -11,17 +12,32 @@ public class Quest implements Parcelable {
     
     /** Common variables for all Quest objects */
     private int id;
+    private int currentCompleted;
+    private int completionGoal;
 
      /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
     
-    /** Obligatory default constructor */
-    public Quest(){}
+    // Default constructor
+    public Quest() {
+        this.id = 0;
+        this.currentCompleted = 0;
+        this.completionGoal = 0;
+    }
     
-    /** Construct a Quest object with the provided id*/
+    // Construct a Quest object with the provided id
     public Quest(int newID) {
         this.id = newID;
+        this.currentCompleted = 0;
+        this.completionGoal = 3 + (int)(Math.random() * ((10 - 3) + 1));
+    }
+
+    // Construct a Quest from all components
+    public Quest(int id, int currentCompleted, int completionGoal) {
+        this.id = id;
+        this.currentCompleted = currentCompleted;
+        this.completionGoal = completionGoal;
     }
    
     
@@ -35,9 +51,19 @@ public class Quest implements Parcelable {
     public int getId() {
         return id;
     }
+    public int getCurrentCompleted()  {
+        return currentCompleted;
+    }
+    public int getCompletionGoal()  {
+        return completionGoal;
+    }
 
     public void setId(int id) {
         this.id = id;
+    }
+    public void setCurrentCompleted(int currentCompleted) {this.currentCompleted = currentCompleted;}
+    public void setCompletionGoal(int completionGoal) {
+        this.completionGoal = completionGoal;
     }
     
     /* ************* */
@@ -49,17 +75,8 @@ public class Quest implements Parcelable {
     /////////////////////
 
     // Parcel Constructor
-    /*public Hero(Parcel in) {
+    public Quest(Parcel in) {
         this.id = in.readInt();
-        this.name = in.readString();
-        this.HP = in.readInt();
-        this.XP = in.readInt();
-        this.level = in.readInt();
-        this.speed = in.readInt();
-        this.defense = in.readInt();
-        this.attack = in.readInt();
-        this.money = in.readDouble();
-        this.active = in.readParcelable(Weapon.class.getClassLoader());
     }
 
     @Override
@@ -67,30 +84,21 @@ public class Quest implements Parcelable {
         return 0;
     }
 	
-	// This allows us to use parcelling for easier transmission of Hero objects
+	// This allows us to use parcelling for easier transmission of Quest objects
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        // TO-DO: Parcelelize weapon attributes
+        // TO-DO: Parcelelize Quest attributes
         dest.writeInt(this.getId());
-        dest.writeString(this.getName());
-        dest.writeInt(this.getHP());
-        dest.writeInt(this.getXP());
-        dest.writeInt(this.getLevel());
-        dest.writeInt(this.getSpeed());
-        dest.writeInt(this.getDefense());
-        dest.writeInt(this.getAttack());
-        dest.writeDouble(this.getMoney());
-        dest.writeParcelable(this.getActive(), flags);
     }
 
-    public static final Parcelable.Creator<Hero> CREATOR = new Parcelable.Creator<Hero>() {
+    public static final Parcelable.Creator<Quest> CREATOR = new Parcelable.Creator<Quest>() {
 
-        public Hero createFromParcel(Parcel in) {
-            return new Hero(in);
+        public Quest createFromParcel(Parcel in) {
+            return new Quest(in);
         }
 
-        public Hero[] newArray(int size) {
-            return new Hero[size];
+        public Quest[] newArray(int size) {
+            return new Quest[size];
         }
-    };*/
+    };
 }
