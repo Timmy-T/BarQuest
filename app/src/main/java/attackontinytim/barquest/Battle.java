@@ -80,7 +80,7 @@ public class Battle {
         if ((int)Math.round(this.enemy.getDefense()/MON_DEF) > this.enemy.getSpeed())
             evade += (int)Math.round(this.enemy.getDefense()/MON_DEF);
 
-        int calc = this.wep_triangle * (100 + this.hero_atk_spd - evade);
+        int calc = (int)this.wep_triangle * (100 + this.hero_atk_spd - evade);
         int maxCalc = Math.max(0, calc);
         int diceRoll = (int)(Math.random() * (101));
 
@@ -100,7 +100,7 @@ public class Battle {
         if ((int)Math.round(this.hero.getDefense()/CH_DEF) > this.hero.getSpeed())
             evade += (int)Math.round(this.hero.getDefense()/CH_DEF);
 
-        int calc = (2 - this.wep_triangle) * (100 + this.enemy_atk_spd - evade);
+        int calc = (int)(2 - this.wep_triangle) * (100 + this.enemy_atk_spd - evade);
         int maxCalc = Math.max(0, calc);
         int diceRoll = (int)(Math.random() * (101));
 
