@@ -21,6 +21,7 @@ public class Hero implements Parcelable {
     private int defense;
     private int attack;
     private double money;
+    private int AP;
     private Weapon active;
 
      /* ************ */
@@ -37,6 +38,7 @@ public class Hero implements Parcelable {
         this.HP = 20;
         this.XP = 0 ;
         this.money = 0;
+        this.AP = 10;
         this.level = 1;
         this.speed = 5;
         this.defense = 5;
@@ -46,11 +48,12 @@ public class Hero implements Parcelable {
     }
     
     /** Construct a Hero object with the provided stats (for testing) */
-    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active) {
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP) {
         this.id = id;
         this.name = name;
         this.HP = HP;
         this.XP = XP;
+        this.AP = AP;
         this.level = level;
         this.speed = speed;
         this.defense = defense;
@@ -60,9 +63,7 @@ public class Hero implements Parcelable {
         // Default cuz reasons
         this.active = active;
     }
-    
-    
-    
+
     
     /* *********** */
     /* GET-METHODS */
@@ -96,16 +97,16 @@ public class Hero implements Parcelable {
         return XP;
     }
 
-    public double getMoney() {
-        return money;
-    }
-
-    public Weapon getActive() {
-        return active;
-    }
-
     public void setXP(int XP) {
         this.XP = XP;
+    }
+
+    public int getAP() { return AP; }
+
+    public void setAP(int AP) { this.AP = AP; }
+
+    public double getMoney() {
+        return money;
     }
 
     public void setMoney(double money) {
@@ -144,6 +145,10 @@ public class Hero implements Parcelable {
         this.attack = attack;
     }
 
+    public Weapon getActive() {
+        return active;
+    }
+
     public void setActive(Weapon active) {
         this.active = active;
     }
@@ -157,6 +162,22 @@ public class Hero implements Parcelable {
     /* ************* */
     /* MISC. METHODS */
     /* ************* */
+
+    /** Copy Constructor makes a deep copy of the hero */
+    public Hero cloneHero() {
+        return new Hero(
+                this.getId(),
+                this.getName(),
+                this.getHP(),
+                this.getXP(),
+                this.getLevel(),
+                this.getSpeed(),
+                this.getDefense(),
+                this.getAttack(),
+                this.getMoney(),
+                this.getActive(),
+                this.getAP());
+    }
     
     /** Increment Hero Experience count by the provided amount */
     public void inc_experience(int expGain) {
@@ -179,6 +200,7 @@ public class Hero implements Parcelable {
         this.name = in.readString();
         this.HP = in.readInt();
         this.XP = in.readInt();
+        this.AP = in.readInt();
         this.level = in.readInt();
         this.speed = in.readInt();
         this.defense = in.readInt();
@@ -200,6 +222,7 @@ public class Hero implements Parcelable {
         dest.writeString(this.getName());
         dest.writeInt(this.getHP());
         dest.writeInt(this.getXP());
+        dest.writeInt(this.getAP());
         dest.writeInt(this.getLevel());
         dest.writeInt(this.getSpeed());
         dest.writeInt(this.getDefense());

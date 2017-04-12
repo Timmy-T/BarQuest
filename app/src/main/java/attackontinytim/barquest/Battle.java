@@ -31,7 +31,7 @@ public class Battle {
         Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.hero = new Hero(0, "testPlayer", 20, 0, 1, 5, 5,5, 0, testWeapon);
+        this.hero = new Hero(0, "testPlayer", 20, 0, 1, 5, 5,5, 0, testWeapon, 10);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, String type
         this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
