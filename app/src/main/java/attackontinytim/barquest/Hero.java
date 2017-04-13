@@ -6,11 +6,15 @@ import android.os.Parcel;
 import attackontinytim.barquest.Database.Weapon;
 
 public class Hero implements Parcelable {
-    
+
+    private static final double CH_SPD  = 2;
+    private static final double CH_ATK  = 2;
+    private static final double WEP_WT = 2;
+
     /* ********* */
     /* VARIABLES */
     /* ********* */
-    
+
     /** Common variables for all Hero objects */
     private int id;
     private String name;
@@ -27,10 +31,10 @@ public class Hero implements Parcelable {
      /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
-    
+
     /** Obligatory default constructor */
     public Hero(){}
-    
+
     /** Construct a Hero object with the provided name (fresh hero character) */
     public Hero(String name) {
         this.id = 0;
@@ -46,7 +50,7 @@ public class Hero implements Parcelable {
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
     }
-    
+
     /** Construct a Hero object with the provided stats (for testing) */
     public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP) {
         this.id = id;
@@ -64,7 +68,23 @@ public class Hero implements Parcelable {
         this.active = active;
     }
 
-    
+    /** Copy Constructor makes a deep copy of the hero */
+    public Hero cloneHero() {
+        return new Hero(
+                this.getId(),
+                this.getName(),
+                this.getHP(),
+                this.getXP(),
+                this.getLevel(),
+                this.getSpeed(),
+                this.getDefense(),
+                this.getAttack(),
+                this.getMoney(),
+                this.getActive(),
+                this.getAP());
+    }
+
+
     /* *********** */
     /* GET-METHODS */
     /* *********** */
@@ -156,32 +176,28 @@ public class Hero implements Parcelable {
     public static Creator<Hero> getCREATOR() {
         return CREATOR;
     }
-    
-    
-    
+
+
+
     /* ************* */
     /* MISC. METHODS */
     /* ************* */
 
-    /** Copy Constructor makes a deep copy of the hero */
-    public Hero cloneHero() {
-        return new Hero(
-                this.getId(),
-                this.getName(),
-                this.getHP(),
-                this.getXP(),
-                this.getLevel(),
-                this.getSpeed(),
-                this.getDefense(),
-                this.getAttack(),
-                this.getMoney(),
-                this.getActive(),
-                this.getAP());
+    public int getAtkSpd(){
+        int atk_spd = (int)Math.round(CH_SPD * this.getSpeed());
+
+        if ((int)Math.round(WEP_WT * this.getActive().getWeight()) > this.getAttack())
+            atk_spd -= (int)Math.round(WEP_WT * this.getActive().getWeight());
+
+        if ((int)Math.round(this.getAttack()/CH_ATK) > this.getSpeed())
+            atk_spd += (int)Math.round(this.getAttack()/CH_ATK);
+
+        return atk_spd;
     }
-    
+
     /** Increment Hero Experience count by the provided amount */
     public void inc_experience(int expGain) {
-        
+
         this.setXP( this.getXP() + expGain);
 
         // While loop in case multiple levels are gained
@@ -213,8 +229,8 @@ public class Hero implements Parcelable {
     public int describeContents() {
         return 0;
     }
-	
-	// This allows us to use parcelling for easier transmission of Hero objects
+
+    // This allows us to use parcelling for easier transmission of Hero objects
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         // TO-DO: Parcelelize weapon attributes
