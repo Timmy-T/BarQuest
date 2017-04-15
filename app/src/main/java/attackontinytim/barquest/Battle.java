@@ -1,7 +1,8 @@
 package attackontinytim.barquest;
 
 import android.widget.TextView;
-
+import android.os.Handler;
+import java.lang.Runnable;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -141,23 +142,38 @@ public class Battle {
         }
     }
 
-    /**It's showtime
-    */
-    protected void performBattle(){
-        //for now, hero always attacks first - will change in the future */
+    /**And it's finally showtime
+    /**performs hero's turn in a battle
+     * returns True if attack succeeds, False otherwise*/
+    protected boolean heroTurn() {
+        boolean success = false;
         if(this.enemy.getHP() > 0 && this.hero.getHP() > 0) {
             if (this.calc_hit() == Boolean.TRUE) {
+                success = true;
+
                 //crit calculations are automatically done in the calc_dmg() stage
                 int damage = this.calc_dmg();
 
                 //subtract damage from monster's HP
                 this.enemy.setHP(this.enemy.getHP() - damage);
-
-                //enemy automatically attacks if they still have health left
-                if (this.enemy.getHP() > 0 && this.hero.getHP() > 0)
-                    this.hero.setHP(this.hero.getHP() - this.enemy.getAttack());
             }
         }
+        return success;
     }
+
+    /**performs enemy's turn in a battle
+     * returns True if attack succeeds, False otherwise */
+    protected boolean enemyTurn() {
+        //TODO: needs to check if enemy ever misses the hit
+        boolean success = false;
+
+        if (this.enemy.getHP() > 0 && this.hero.getHP() > 0) {
+            success = true;
+            this.hero.setHP(this.hero.getHP() - this.enemy.getAttack());
+        }
+
+        return success;
+    }
+
 }
 
