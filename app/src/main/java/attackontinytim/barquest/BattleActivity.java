@@ -1,5 +1,6 @@
 package attackontinytim.barquest;
 
+import android.os.Handler;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,6 +75,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
+        //TODO: implement flee and item functionality
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
@@ -83,7 +85,20 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         /**insert Battle() functions here to do calculations and update accordingly*/
                         Log.d(TAG, "Character HP before battle:" + String.valueOf(battle.hero.getHP()));
                         Log.d(TAG, "Monster HP before battle:" + String.valueOf(battle.enemy.getHP()));
-                        battle.performBattle();
+
+                        //TODO: add function to check whether Hero or Enemy moves first
+                        //right now, hero always attacks first
+                        battle.heroTurn();
+
+                        //insert pause here for dramatic effect
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                battle.enemyTurn();
+                                reloadBattleScreen();
+                            }
+                        }, 1500); //wait 1.5s
+
                         Log.d(TAG, "Character HP after battle:" + String.valueOf(battle.hero.getHP()));
                         Log.d(TAG, "Monster HP after battle:" + String.valueOf(battle.enemy.getHP()));
                         reloadBattleScreen();
