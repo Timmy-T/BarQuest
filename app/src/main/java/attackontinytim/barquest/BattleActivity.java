@@ -54,7 +54,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         Name.setText(String.valueOf(battle.hero.getName()));
         LvlStat.setText(String.valueOf(battle.hero.getLevel()));
         TotalHPStat.setText(String.valueOf(HeroHP));
-        CurrHPStat.setText(String.valueOf(battle.hero.getHP()));
+        CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
 
         // Hook up UI variables to backend variables for Monster
         TextView MonName = (TextView) findViewById(R.id.MonName);
@@ -65,7 +65,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         MonName.setText(String.valueOf(battle.enemy.getName()));
         MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
         TotalMonHP.setText(String.valueOf(MonHP)); // change this once you can construct a monster
-        CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
+        CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
 
         onClickButtonListener();
 
@@ -75,33 +75,46 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-        //TODO: implement flee, item, and exp functionality
+        //TODO: implement flee and functionality
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        String TAG = BattleActivity.class.getSimpleName();
+                        final String TAG = BattleActivity.class.getSimpleName();
+                        final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
+                        final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
 
                         /**insert Battle() functions here to do calculations and update accordingly
                         Log.d(TAG, "Character HP before battle:" + String.valueOf(battle.hero.getHP()));
                         Log.d(TAG, "Monster HP before battle:" + String.valueOf(battle.enemy.getHP()));*/
 
-                        if(battle.heroPriority())
+                        if(battle.heroPriority()) {
                             battle.heroTurn();
-                        else
+                            CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
+                        }
+                        else {
                             battle.enemyTurn();
+                            CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
+                        }
 
                         //insert pause here for dramatic effect
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run(){
-                                if(battle.heroPriority())
+                                if(battle.heroPriority()) {
                                     battle.enemyTurn();
-                                else
+                                    CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
+                                    Log.d(TAG, "we get here sometimes");
+                                }
+                                else {
                                     battle.heroTurn();
-                                reloadBattleScreen();
+                                    CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
+                                    Log.d(TAG, "we get here sometimes too");
+                                }
                             }
                         }, 1500); //wait 1.5s
+
+                        reloadBattleScreen();
 
                         /** Log.d(TAG, "Character HP after battle:" + String.valueOf(battle.hero.getHP()));
                         Log.d(TAG, "Monster HP after battle:" + String.valueOf(battle.enemy.getHP()));
@@ -188,7 +201,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         Name.setText(String.valueOf(battle.hero.getName()));
         LvlStat.setText(String.valueOf(battle.hero.getLevel()));
         TotalHPStat.setText(String.valueOf(HeroHP));
-        CurrHPStat.setText(String.valueOf(battle.hero.getHP()));
+        CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
 
         // Hook up UI variables to backend variables for Monster
         TextView MonName = (TextView) findViewById(R.id.MonName);
@@ -199,7 +212,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         MonName.setText(String.valueOf(battle.enemy.getName()));
         MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
         TotalMonHP.setText(String.valueOf(MonHP)); // change this once you can construct a monster
-        CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
+        CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
 
     }
 }

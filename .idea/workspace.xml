@@ -11,11 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b6698c58-1572-446d-bcda-a56c43346bef" name="Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Monster.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Monster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Hero.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Hero.java" />
     </list>
     <ignored path="BarQuest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="Battle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+            <state relative-caret-position="371">
+              <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,8 +60,8 @@
       <file leaf-file-name="BattleActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="110" column="27" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
+            <state relative-caret-position="437">
+              <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2655,8 +2652,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+        <state relative-caret-position="371">
+          <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2665,8 +2662,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="110" column="27" selection-start-line="110" selection-start-column="27" selection-end-line="110" selection-end-column="27" />
+        <state relative-caret-position="437">
+          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
