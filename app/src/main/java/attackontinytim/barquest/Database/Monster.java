@@ -4,6 +4,9 @@ import android.database.Cursor;
 
 public class Monster {
 
+    private static final double MON_SPD  = 2;
+    private static final double MON_ATK  = 2;
+
     private int id;
     private String name;
     private int HP;
@@ -47,6 +50,21 @@ public class Monster {
         this.attack = cursor.getInt(10);
     }
 
+    /** Copy Constructor makes a deep copy of the Monster */
+    public Monster cloneMonster() {
+        return new Monster(
+                this.getId(),
+                this.getName(),
+                this.getHP(),
+                this.getXP(),
+                this.getAttackType(),
+                this.getMoney(),
+                this.getLevel(),
+                this.getRarity(),
+                this.getSpeed(),
+                this.getDefense(),
+                this.getAttack());
+    }
 
     public int getId() {
         return id;
@@ -134,5 +152,14 @@ public class Monster {
 
     public void setXP(int XP) {
         this.XP = XP;
+    }
+
+    public int getAtkSpd(){
+        int atk_spd = (int)Math.round(MON_SPD * this.getSpeed());
+
+        if ((int)Math.round(this.getAttack()/MON_ATK) > this.getSpeed())
+            atk_spd += (int)Math.round(this.getAttack()/MON_ATK);
+
+        return atk_spd;
     }
 }

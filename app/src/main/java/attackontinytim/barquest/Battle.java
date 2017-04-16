@@ -3,6 +3,7 @@ package attackontinytim.barquest;
 import android.widget.TextView;
 import android.os.Handler;
 import java.lang.Runnable;
+import android.util.Log;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -10,6 +11,7 @@ public class Battle {
     /* ********* */
     /* VARIABLES */
     /* ********* */
+    String TAG = BattleActivity.class.getSimpleName();
 
     public Hero hero;
     public Monster enemy;
@@ -211,12 +213,12 @@ public class Battle {
 
         if (this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
             if(this.calc_hit_enemy()){
+                Log.d(TAG, "battleHero HP before: " + String.valueOf(this.battleHero.getHP()));
                 success = true;
                 this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
+                Log.d(TAG, "battleHero HP after: " + String.valueOf(this.battleHero.getHP()));
             }
         }
-
         return success;
     }
-
 }
