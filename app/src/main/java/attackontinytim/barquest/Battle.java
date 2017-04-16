@@ -1,7 +1,9 @@
 package attackontinytim.barquest;
 
 import android.widget.TextView;
-
+import android.os.Handler;
+import java.lang.Runnable;
+import android.util.Log;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -9,17 +11,17 @@ public class Battle {
     /* ********* */
     /* VARIABLES */
     /* ********* */
+    String TAG = BattleActivity.class.getSimpleName();
 
     public Hero hero;
     public Monster enemy;
-
-    private Hero battleHero;
-    private Monster battleEnemy;
+    protected Hero battleHero;
+    protected Monster battleEnemy;
 
     private double wep_triangle;
 
-    /** Battle Formula Modifiers */
-    private static final double CH_DEF  = 2;
+    /** Battle Formula Modifiers*/
+    private static final double CH_DEF = 2;
     private static final double MON_DEF  = 2;
     private static final int CRIT_MULT = 2;
 
@@ -177,41 +179,47 @@ public class Battle {
         }
     }
 
-    /**It's showtime
-     */
-    protected void performBattle(){
-        int damage;
+    /** Returns true if Hero has attack priority; false otherwise */
+    protected boolean heroPriority(){
+        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
+            return true;
+        return false;
+    }
+
+    /**And it's finally showtime
+     /**performs hero's turn in a battle
+     * returns True if attack succeeds, False otherwise*/
+    protected boolean heroTurn() {
+        boolean success = false;
         if(this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
-            if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd()) {
-                if (this.calc_hit_hero()) {
-                    //crit calculations are automatically done in the calc_dmg() stage
-                    damage = this.calc_dmg();
+            if (this.calc_hit_hero()) {
+                success = true;
+                Log.d(TAG, "battleEnemy HP before: " + String.valueOf(this.battleEnemy.getHP()));
+                //crit calculations are automatically done in the calc_dmg() stage
+                int damage = this.calc_dmg();
 
-                    //subtract damage from monster's HP
-                    this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
-
-                    //enemy automatically attacks if they still have health left
-                    if (this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
-                        if (this.calc_hit_enemy()) {
-                            this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
-                        }
-                    }
-                }
-            }
-            else {
-                if (this.calc_hit_enemy()) {
-                    this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
-                    if (this.battleHero.getHP() > 0 && this.battleEnemy.getHP() > 0){
-                        if (this.calc_hit_hero()) {
-                            damage = this.calc_dmg();
-                            this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
-                        }
-                    }
-                }
+                //subtract damage from monster's HP
+                this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
+                Log.d(TAG, "battleEnemy HP after: " + String.valueOf(this.battleEnemy.getHP()));
             }
         }
-        if(this.battleEnemy.getHP() <= 0){
-            this.hero.inc_experience(this.battleEnemy.getXP());
+        return success;
+    }
+
+    /**performs enemy's turn in a battle
+     * returns True if attack succeeds, False otherwise */
+    protected boolean enemyTurn() {
+        boolean success = false;
+
+        if (this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
+            if(this.calc_hit_enemy()){
+                Log.d(TAG, "battleHero HP before: " + String.valueOf(this.battleHero.getHP()));
+                success = true;
+                this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
+                Log.d(TAG, "battleHero HP after: " + String.valueOf(this.battleHero.getHP()));
+            }
         }
+        return success;
     }
 }
+//TODO: function to check if battle has ended and give exp accordingly

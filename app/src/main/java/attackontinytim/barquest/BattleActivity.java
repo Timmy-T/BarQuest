@@ -1,5 +1,6 @@
 package attackontinytim.barquest;
 
+import android.os.Handler;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     private static Button item;
     private static Button flee;
 
-	// This is what is done when the BattleActivity is created
+    // This is what is done when the BattleActivity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         Name.setText(String.valueOf(battle.hero.getName()));
         LvlStat.setText(String.valueOf(battle.hero.getLevel()));
         TotalHPStat.setText(String.valueOf(HeroHP));
-        CurrHPStat.setText(String.valueOf(battle.hero.getHP()));
+        CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
 
         // Hook up UI variables to backend variables for Monster
         TextView MonName = (TextView) findViewById(R.id.MonName);
@@ -64,7 +65,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         MonName.setText(String.valueOf(battle.enemy.getName()));
         MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
         TotalMonHP.setText(String.valueOf(MonHP)); // change this once you can construct a monster
-        CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
+        CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
 
         onClickButtonListener();
 
@@ -74,12 +75,55 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
+        //TODO: implement flee and item functionality
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        battle.performBattle();
+                        final String TAG = BattleActivity.class.getSimpleName();
+                        final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
+                        final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
+
+                        /**insert Battle() functions here to do calculations and update accordingly
+                        Log.d(TAG, "Character HP before battle:" + String.valueOf(battle.hero.getHP()));
+                        Log.d(TAG, "Monster HP before battle:" + String.valueOf(battle.enemy.getHP()));*/
+
+                        if(battle.heroPriority()) {
+                            battle.heroTurn();
+                            CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
+                        }
+                        else {
+                            battle.enemyTurn();
+                            CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
+                        }
+
+                        //insert pause here for dramatic effect
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                if(battle.heroPriority()) {
+                                    battle.enemyTurn();
+                                    CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
+                                }
+                                else {
+                                    battle.heroTurn();
+                                    CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
+                                }
+                            }
+                        }, 1500); //wait 1.5s
+
                         reloadBattleScreen();
+
+                        /** Log.d(TAG, "Character HP after battle:" + String.valueOf(battle.hero.getHP()));
+                        Log.d(TAG, "Monster HP after battle:" + String.valueOf(battle.enemy.getHP()));
+                        reloadBattleScreen();
+                        Log.d(TAG, "Character HP after reload:" + String.valueOf(battle.hero.getHP()));
+                        Log.d(TAG, "Monster HP after reload:" + String.valueOf(battle.enemy.getHP()));
+                         */
+                        /*Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);*/
                     }
                 }
         );
@@ -88,11 +132,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         // temporary; need to find a way to click "back" and not go back to MainActivity
-						/////////////////////////////
-						////////////////////////////
-						// CHECK COMMENTS BELOW
-						/////////////////////////////
-						/////////////////////////////
+                        /////////////////////////////
+                        ////////////////////////////
+                        // CHECK COMMENTS BELOW
+                        /////////////////////////////
+                        /////////////////////////////
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
@@ -100,8 +144,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                     }
                 }
         );
-		
-		// Robert says: Check out the end function below
+
+        // Robert says: Check out the end function below
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -115,25 +159,25 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         );
     }
 
-		// Completion of activity; not the same as pressing back
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (resultCode != RESULT_CANCELED) {
-                switch (requestCode) {
-                    default:
-                        end();
-                }
+    // Completion of activity; not the same as pressing back
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                default:
+                    end();
             }
         }
-		
-	// This is what is called when back is pressed
+    }
+
+    // This is what is called when back is pressed
     @Override
     public void onBackPressed() {
-		// Change it to whatever you want; right now it just ends
+        // Change it to whatever you want; right now it just ends
         end();
     }
 
-	// end the activity
+    // end the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
         setResult(RESULT_OK,getIntent().putExtras(bundle));
@@ -155,7 +199,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         Name.setText(String.valueOf(battle.hero.getName()));
         LvlStat.setText(String.valueOf(battle.hero.getLevel()));
         TotalHPStat.setText(String.valueOf(HeroHP));
-        CurrHPStat.setText(String.valueOf(battle.hero.getHP()));
+        CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
 
         // Hook up UI variables to backend variables for Monster
         TextView MonName = (TextView) findViewById(R.id.MonName);
@@ -166,8 +210,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         MonName.setText(String.valueOf(battle.enemy.getName()));
         MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
         TotalMonHP.setText(String.valueOf(MonHP)); // change this once you can construct a monster
-        CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
+        CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
 
     }
-
 }
