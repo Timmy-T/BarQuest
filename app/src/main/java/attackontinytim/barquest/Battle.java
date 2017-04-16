@@ -195,13 +195,13 @@ public class Battle {
         if(this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
             if (this.calc_hit_hero()) {
                 success = true;
-                Log.d(TAG, "battleEnemy HP before: " + String.valueOf(this.battleHero.getHP()));
+                Log.d(TAG, "battleEnemy HP before: " + String.valueOf(this.battleEnemy.getHP()));
                 //crit calculations are automatically done in the calc_dmg() stage
                 int damage = this.calc_dmg();
 
                 //subtract damage from monster's HP
                 this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
-                Log.d(TAG, "battleEnemy HP after: " + String.valueOf(this.battleHero.getHP()));
+                Log.d(TAG, "battleEnemy HP after: " + String.valueOf(this.battleEnemy.getHP()));
             }
         }
         return success;
@@ -224,3 +224,4 @@ public class Battle {
     }
 }
 //TODO: function to check if battle has ended and give exp accordingly
+

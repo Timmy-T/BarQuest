@@ -104,12 +104,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 if(battle.heroPriority()) {
                                     battle.enemyTurn();
                                     CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
-                                    Log.d(TAG, "we get here sometimes");
                                 }
                                 else {
                                     battle.heroTurn();
                                     CurrMonHP.setText(String.valueOf(battle.battleEnemy.getHP()));
-                                    Log.d(TAG, "we get here sometimes too");
                                 }
                             }
                         }, 1500); //wait 1.5s
