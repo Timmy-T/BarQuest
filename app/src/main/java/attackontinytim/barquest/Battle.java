@@ -13,12 +13,15 @@ public class Battle {
 
     public Hero hero;
     public Monster enemy;
+
+    private Hero battleHero;
+    private Monster battleEnemy;
+
     private double wep_triangle;
 
     /** Battle Formula Modifiers - more to come? */
-    private static final double CH_SPD  = 1;
-    private static final double WEP_WT = 2;
-    private static final double MON_SPD  = 3;
+    private static final double CH_DEF = 2;
+    private static final double MON_DEF  = 2;
     private static final int CRIT_MULT = 2;
 
     /* ************ */
@@ -32,10 +35,14 @@ public class Battle {
         Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.hero = new Hero(0, "testPlayer", 20, 0, 1, 5, 5,5, 0, testWeapon);
+        this.hero = new Hero(0, "testPlayer", 20, 0, 1, 5, 5,5, 0, testWeapon, 10);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, String type
         this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
+
+        // Create temp objects for stat manipulation
+        this.battleHero = this.hero.cloneHero();
+        this.battleEnemy = this.enemy.cloneMonster();
 
         setWeaponTriangle();
     }
@@ -47,6 +54,10 @@ public class Battle {
         // String name, int level, int hitPoints, int attack, int defense, int speed, String type
         this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
 
+        // Create temp objects for stat manipulation
+        this.battleHero = this.hero.cloneHero();
+        this.battleEnemy = this.enemy.cloneMonster();
+
         setWeaponTriangle();
     }
 
@@ -55,6 +66,10 @@ public class Battle {
         this.hero = hero;
         this.enemy = enemy;
 
+        // Create temp objects for stat manipulation
+        this.battleHero = this.hero.cloneHero();
+        this.battleEnemy = this.enemy.cloneMonster();
+
         setWeaponTriangle();
     }
 
@@ -62,12 +77,36 @@ public class Battle {
     /* Battle Methods */
     /* ************* */
 
-    /** Calculates if the attack hits or not - returns true if hit, false for miss
-     * Hit = 100D <= max(0, 100 + α*CSpd - β*WWt - δ*MSpd */
-    protected Boolean calc_hit() {
-        Boolean landed = false;
+    /** Calculates if the hero's attack hits or not - returns true if hit, false for miss
+     * Hit = 100D <= max(0, WepTri * (100 + CAtkSpd - MEvade) */
+    protected boolean calc_hit_hero() {
+        boolean landed = false;
 
-        int calc = (int)Math.round(100 + (CH_SPD * this.hero.getSpeed()) - (WEP_WT * this.hero.getActive().getWeight()) - (MON_SPD * this.enemy.getSpeed()));
+        int evade = this.battleEnemy.getAtkSpd();
+        if ((int)Math.round(this.battleEnemy.getDefense()/MON_DEF) > this.battleEnemy.getSpeed())
+            evade += (int)Math.round(this.battleEnemy.getDefense()/MON_DEF);
+
+        int calc = (int)this.wep_triangle * (100 + this.battleHero.getAtkSpd() - evade);
+        int maxCalc = Math.max(0, calc);
+        int diceRoll = (int)(Math.random() * (101));
+
+        if(diceRoll <= maxCalc){
+            landed = true;
+        }
+
+        return landed;
+    }
+
+    /** Calculates if the enemy's attack hits or not - returns true if hit, false for miss
+     * Hit = 100D <= max(0, (2 - WepTri) * (100 + MAtkSpd - CMEvade) */
+    protected boolean calc_hit_enemy() {
+        boolean landed = false;
+
+        int evade = this.battleHero.getAtkSpd();
+        if ((int)Math.round(this.battleHero.getDefense()/CH_DEF) > this.battleHero.getSpeed())
+            evade += (int)Math.round(this.battleHero.getDefense()/CH_DEF);
+
+        int calc = (int)(2 - this.wep_triangle) * (100 + this.battleEnemy.getAtkSpd() - evade);
         int maxCalc = Math.max(0, calc);
         int diceRoll = (int)(Math.random() * (101));
 
@@ -81,23 +120,21 @@ public class Battle {
     /** Calculates Critical hit rate
      * Crit Rate = 100D <= CSpd/2 + WCrit
      * returns true if crit, false if not */
-    protected Boolean calc_crit(){
-        Boolean critical = false;
+    protected boolean calc_crit(){
+        boolean critical = false;
         int diceRoll = (int)(Math.random() * (101));
-        if(diceRoll <= this.hero.getSpeed()/2 + this.hero.getActive().getCriticalRate()){
+        if(diceRoll <= this.battleHero.getSpeed()/2 + this.battleHero.getActive().getCriticalRate()){
             critical = true;
         }
         return critical;
     }
 
     /** Calculates damage based on the formula:
-     * Damage = max(1, (Attack Type Modifier * (CAtk + WAtk) - MDef))
+     * Damage = max(1, (WepTri * (CAtk + WAtk) - MDef))
      * returns an int with the damage value calculated */
     protected int calc_dmg(){
-        int damage = 0;
-
-        int calc = (int)Math.round(this.wep_triangle * (this.hero.getAttack() + this.hero.getActive().getAttack()) - this.enemy.getDefense());
-        damage = Math.max(1, calc);
+        int calc = (int)Math.round(this.wep_triangle * (this.battleHero.getAttack() + this.battleHero.getActive().getAttack()) - this.battleEnemy.getDefense());
+        int damage = Math.max(1, calc);
 
         //multiply damage if critical hit lands
         if(calc_crit()){
@@ -107,13 +144,13 @@ public class Battle {
     }
 
     /** Calculates flee rate based on the formula:
-     * 100D <= max(0, (CSpd - WWt - MSpeed))
-     * returns a true if successful, false if not */
-    protected Boolean calc_flee(){
-        Boolean fled = false;
+     * 100D <= max(50, (100 + CAtkSpd - MAtkSpd))
+     * returns true if successful, false if not */
+    protected boolean calc_flee(){
+        boolean fled = false;
 
         int diceRoll = (int)(Math.random() * (101));
-        if(diceRoll <= Math.max(0, (this.hero.getSpeed() - this.hero.getActive().getWeight() - this.enemy.getSpeed()))){
+        if(diceRoll <= Math.max(50, (100 + this.battleHero.getAtkSpd() - this.battleEnemy.getAtkSpd()))){
             fled = true;
         }
         return fled;
@@ -123,9 +160,8 @@ public class Battle {
     ////////////////////////
 
     private void setWeaponTriangle(){
-
-        String weapType = this.hero.getActive().getAttackType();
-        String mons = this.enemy.getAttackType();
+        String weapType = this.battleHero.getActive().getAttackType();
+        String mons = this.battleEnemy.getAttackType();
 
         if ((weapType.equals("long") && mons.equals("mid")) ||
                 (weapType.equals("mid") && mons.equals("close")) ||
@@ -142,20 +178,27 @@ public class Battle {
         }
     }
 
+    /** Returns true if Hero has attack priority; false otherwise */
+    protected boolean heroPriority(){
+        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
+            return true;
+        return false;
+    }
+
     /**And it's finally showtime
-    /**performs hero's turn in a battle
+     /**performs hero's turn in a battle
      * returns True if attack succeeds, False otherwise*/
     protected boolean heroTurn() {
         boolean success = false;
-        if(this.enemy.getHP() > 0 && this.hero.getHP() > 0) {
-            if (this.calc_hit() == Boolean.TRUE) {
+        if(this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
+            if (this.calc_hit_hero()) {
                 success = true;
 
                 //crit calculations are automatically done in the calc_dmg() stage
                 int damage = this.calc_dmg();
 
                 //subtract damage from monster's HP
-                this.enemy.setHP(this.enemy.getHP() - damage);
+                this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
             }
         }
         return success;
@@ -164,16 +207,16 @@ public class Battle {
     /**performs enemy's turn in a battle
      * returns True if attack succeeds, False otherwise */
     protected boolean enemyTurn() {
-        //TODO: needs to check if enemy ever misses the hit
         boolean success = false;
 
-        if (this.enemy.getHP() > 0 && this.hero.getHP() > 0) {
-            success = true;
-            this.hero.setHP(this.hero.getHP() - this.enemy.getAttack());
+        if (this.battleEnemy.getHP() > 0 && this.battleHero.getHP() > 0) {
+            if(this.calc_hit_enemy()){
+                success = true;
+                this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
+            }
         }
 
         return success;
     }
 
 }
-
