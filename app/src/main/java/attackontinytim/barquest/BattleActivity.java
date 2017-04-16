@@ -75,7 +75,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-        //TODO: implement flee and functionality
+        //TODO: implement flee and item functionality
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
