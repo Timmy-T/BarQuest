@@ -30,7 +30,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     private static Button item;
     private static Button flee;
 
-	// This is what is done when the BattleActivity is created
+    // This is what is done when the BattleActivity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,15 +86,19 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         Log.d(TAG, "Character HP before battle:" + String.valueOf(battle.hero.getHP()));
                         Log.d(TAG, "Monster HP before battle:" + String.valueOf(battle.enemy.getHP()));
 
-                        //TODO: add function to check whether Hero or Enemy moves first
-                        //right now, hero always attacks first
-                        battle.heroTurn();
+                        if(battle.heroPriority())
+                            battle.heroTurn();
+                        else
+                            battle.enemyTurn();
 
                         //insert pause here for dramatic effect
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run(){
-                                battle.enemyTurn();
+                                if(battle.heroPriority())
+                                    battle.enemyTurn();
+                                else
+                                    battle.heroTurn();
                                 reloadBattleScreen();
                             }
                         }, 1500); //wait 1.5s
@@ -116,11 +120,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         // temporary; need to find a way to click "back" and not go back to MainActivity
-						/////////////////////////////
-						////////////////////////////
-						// CHECK COMMENTS BELOW
-						/////////////////////////////
-						/////////////////////////////
+                        /////////////////////////////
+                        ////////////////////////////
+                        // CHECK COMMENTS BELOW
+                        /////////////////////////////
+                        /////////////////////////////
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
@@ -128,8 +132,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                     }
                 }
         );
-		
-		// Robert says: Check out the end function below
+
+        // Robert says: Check out the end function below
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -143,25 +147,25 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         );
     }
 
-		// Completion of activity; not the same as pressing back
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (resultCode != RESULT_CANCELED) {
-                switch (requestCode) {
-                    default:
-                        end();
-                }
+    // Completion of activity; not the same as pressing back
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                default:
+                    end();
             }
         }
-		
-	// This is what is called when back is pressed
+    }
+
+    // This is what is called when back is pressed
     @Override
     public void onBackPressed() {
-		// Change it to whatever you want; right now it just ends
+        // Change it to whatever you want; right now it just ends
         end();
     }
 
-	// end the activity
+    // end the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
         setResult(RESULT_OK,getIntent().putExtras(bundle));
@@ -197,5 +201,4 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         CurrMonHP.setText(String.valueOf(battle.enemy.getHP()));
 
     }
-
 }
