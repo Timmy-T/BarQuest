@@ -77,6 +77,8 @@ public class Quest implements Parcelable {
     // Parcel Constructor
     public Quest(Parcel in) {
         this.id = in.readInt();
+        this.currentCompleted = in.readInt();
+        this.completionGoal = in.readInt();
     }
 
     @Override
@@ -89,6 +91,8 @@ public class Quest implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         // TO-DO: Parcelelize Quest attributes
         dest.writeInt(this.getId());
+        dest.writeInt(this.getCurrentCompleted());
+        dest.writeInt(this.getCompletionGoal());
     }
 
     public static final Parcelable.Creator<Quest> CREATOR = new Parcelable.Creator<Quest>() {

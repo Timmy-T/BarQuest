@@ -14,7 +14,7 @@ public class QuestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.level_up_layout);
+        setContentView(R.layout.quest_layout);
 
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);

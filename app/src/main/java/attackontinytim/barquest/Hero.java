@@ -22,6 +22,7 @@ public class Hero implements Parcelable {
     private int attack;
     private double money;
     private Weapon active;
+    private Quest currentQuest;
 
      /* ************ */
     /* CONSTRUCTORS */
@@ -43,10 +44,11 @@ public class Hero implements Parcelable {
         this.attack = 5;
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
+        this.currentQuest = new Quest();
     }
     
     /** Construct a Hero object with the provided stats (for testing) */
-    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active) {
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, Quest currentQuest) {
         this.id = id;
         this.name = name;
         this.HP = HP;
@@ -59,6 +61,7 @@ public class Hero implements Parcelable {
 
         // Default cuz reasons
         this.active = active;
+        this.currentQuest = currentQuest;
     }
     
     
@@ -71,81 +74,67 @@ public class Hero implements Parcelable {
     public int getId() {
         return id;
     }
+    public String getName() {
+        return name;
+    }
+    public int getHP() {
+        return HP;
+    }
+    public int getXP() {
+        return XP;
+    }
+    public double getMoney() {
+        return money;
+    }
+    public Weapon getActive() {
+        return active;
+    }
+    public int getAttack() {
+        return attack;
+    }
+    public int getLevel() {
+        return level;
+    }
+    public int getSpeed() {
+        return speed;
+    }
+    public int getDefense() {
+        return defense;
+    }
+    public Quest getCurrentQuest() { return currentQuest; }
 
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHP() {
-        return HP;
-    }
-
     public void setHP(int HP) {
         this.HP = HP;
     }
-
-    public int getXP() {
-        return XP;
-    }
-
-    public double getMoney() {
-        return money;
-    }
-
-    public Weapon getActive() {
-        return active;
-    }
-
     public void setXP(int XP) {
         this.XP = XP;
     }
-
+    public void setName(String name) {
+        this.name = name;
+    }
     public void setMoney(double money) {
         this.money = money;
     }
-
-    public int getLevel() {
-        return level;
-    }
-
     public void setLevel(int level) {
         this.level = level;
     }
-
-    public int getSpeed() {
-        return speed;
-    }
-
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-
-    public int getDefense() {
-        return defense;
-    }
-
     public void setDefense(int defense) {
         this.defense = defense;
     }
-
-    public int getAttack() {
-        return attack;
-    }
-
     public void setAttack(int attack) {
         this.attack = attack;
     }
-
     public void setActive(Weapon active) {
         this.active = active;
+    }
+    public void setCurrentQuest(Quest currentQuest) {
+        this.currentQuest = currentQuest;
     }
 
     public static Creator<Hero> getCREATOR() {
@@ -185,6 +174,7 @@ public class Hero implements Parcelable {
         this.attack = in.readInt();
         this.money = in.readDouble();
         this.active = in.readParcelable(Weapon.class.getClassLoader());
+        this.currentQuest =  in.readParcelable(Quest.class.getClassLoader());
     }
 
     @Override
@@ -206,6 +196,7 @@ public class Hero implements Parcelable {
         dest.writeInt(this.getAttack());
         dest.writeDouble(this.getMoney());
         dest.writeParcelable(this.getActive(), flags);
+        dest.writeParcelable(this.getCurrentQuest(), flags);
     }
 
     public static final Parcelable.Creator<Hero> CREATOR = new Parcelable.Creator<Hero>() {
