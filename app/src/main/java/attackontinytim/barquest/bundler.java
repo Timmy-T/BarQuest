@@ -30,6 +30,7 @@ public class bundler {
         bundle.putInt("attack", hero.getAttack());
         bundle.putInt("defense", hero.getDefense());
         bundle.putDouble("money", hero.getMoney());
+        bundle.putInt("abilityPoints", hero.getAP());
 
         bundle.putString("weaponName", hero.getActive().getName());
         bundle.putString("weaponType", hero.getActive().getAttackType());
@@ -59,6 +60,7 @@ public class bundler {
         hero.setSpeed(bundle.getInt("speed"));
         hero.setXP(bundle.getInt("experience"));
         hero.setMoney(bundle.getInt("money"));
+        hero.setAP(bundle.getInt("abilityPoints"));
 
         String weaponName = bundle.getString("weaponName");
         String weaponType = bundle.getString("weaponType");

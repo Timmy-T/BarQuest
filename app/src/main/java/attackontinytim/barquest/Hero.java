@@ -6,11 +6,15 @@ import android.os.Parcel;
 import attackontinytim.barquest.Database.Weapon;
 
 public class Hero implements Parcelable {
-    
+
+    private static final double CH_SPD  = 2;
+    private static final double CH_ATK  = 2;
+    private static final double WEP_WT = 2;
+
     /* ********* */
     /* VARIABLES */
     /* ********* */
-    
+
     /** Common variables for all Hero objects */
     private int id;
     private String name;
@@ -21,16 +25,17 @@ public class Hero implements Parcelable {
     private int defense;
     private int attack;
     private double money;
+    private int AP;
     private Weapon active;
     private Quest currentQuest;
 
      /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
-    
+
     /** Obligatory default constructor */
     public Hero(){}
-    
+
     /** Construct a Hero object with the provided name (fresh hero character) */
     public Hero(String name) {
         this.id = 0;
@@ -38,6 +43,7 @@ public class Hero implements Parcelable {
         this.HP = 20;
         this.XP = 0 ;
         this.money = 0;
+        this.AP = 10;
         this.level = 1;
         this.speed = 5;
         this.defense = 5;
@@ -46,13 +52,14 @@ public class Hero implements Parcelable {
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
         this.currentQuest = new Quest();
     }
-    
+
     /** Construct a Hero object with the provided stats (for testing) */
-    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, Quest currentQuest) {
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP) {
         this.id = id;
         this.name = name;
         this.HP = HP;
         this.XP = XP;
+        this.AP = AP;
         this.level = level;
         this.speed = speed;
         this.defense = defense;
@@ -63,10 +70,24 @@ public class Hero implements Parcelable {
         this.active = active;
         this.currentQuest = currentQuest;
     }
-    
-    
-    
-    
+
+    /** Copy Constructor makes a deep copy of the hero */
+    public Hero cloneHero() {
+        return new Hero(
+                this.getId(),
+                this.getName(),
+                this.getHP(),
+                this.getXP(),
+                this.getLevel(),
+                this.getSpeed(),
+                this.getDefense(),
+                this.getAttack(),
+                this.getMoney(),
+                this.getActive(),
+                this.getAP());
+    }
+
+
     /* *********** */
     /* GET-METHODS */
     /* *********** */
@@ -74,62 +95,83 @@ public class Hero implements Parcelable {
     public int getId() {
         return id;
     }
-    public String getName() {
-        return name;
-    }
-    public int getHP() {
-        return HP;
-    }
-    public int getXP() {
-        return XP;
-    }
-    public double getMoney() {
-        return money;
-    }
-    public Weapon getActive() {
-        return active;
-    }
-    public int getAttack() {
-        return attack;
-    }
-    public int getLevel() {
-        return level;
-    }
-    public int getSpeed() {
-        return speed;
-    }
-    public int getDefense() {
-        return defense;
-    }
-    public Quest getCurrentQuest() { return currentQuest; }
 
     public void setId(int id) {
         this.id = id;
     }
-    public void setHP(int HP) {
-        this.HP = HP;
+
+    public String getName() {
+        return name;
     }
-    public void setXP(int XP) {
-        this.XP = XP;
-    }
+
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getXP() {
+        return XP;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
+    }
+
+    public int getAP() { return AP; }
+
+    public void setAP(int AP) { this.AP = AP; }
+
+    public double getMoney() {
+        return money;
+    }
+
     public void setMoney(double money) {
         this.money = money;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public int getDefense() {
+        return defense;
+    }
+
     public void setDefense(int defense) {
         this.defense = defense;
     }
+
+    public int getAttack() {
+        return attack;
+    }
+
     public void setAttack(int attack) {
         this.attack = attack;
     }
+
+    public Weapon getActive() {
+        return active;
+    }
+
     public void setActive(Weapon active) {
         this.active = active;
     }
@@ -140,16 +182,28 @@ public class Hero implements Parcelable {
     public static Creator<Hero> getCREATOR() {
         return CREATOR;
     }
-    
-    
-    
+
+
+
     /* ************* */
     /* MISC. METHODS */
     /* ************* */
-    
+
+    public int getAtkSpd(){
+        int atk_spd = (int)Math.round(CH_SPD * this.getSpeed());
+
+        if ((int)Math.round(WEP_WT * this.getActive().getWeight()) > this.getAttack())
+            atk_spd -= (int)Math.round(WEP_WT * this.getActive().getWeight());
+
+        if ((int)Math.round(this.getAttack()/CH_ATK) > this.getSpeed())
+            atk_spd += (int)Math.round(this.getAttack()/CH_ATK);
+
+        return atk_spd;
+    }
+
     /** Increment Hero Experience count by the provided amount */
     public void inc_experience(int expGain) {
-        
+
         this.setXP( this.getXP() + expGain);
 
         // While loop in case multiple levels are gained
@@ -168,6 +222,7 @@ public class Hero implements Parcelable {
         this.name = in.readString();
         this.HP = in.readInt();
         this.XP = in.readInt();
+        this.AP = in.readInt();
         this.level = in.readInt();
         this.speed = in.readInt();
         this.defense = in.readInt();
@@ -181,8 +236,8 @@ public class Hero implements Parcelable {
     public int describeContents() {
         return 0;
     }
-	
-	// This allows us to use parcelling for easier transmission of Hero objects
+
+    // This allows us to use parcelling for easier transmission of Hero objects
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         // TO-DO: Parcelelize weapon attributes
@@ -190,6 +245,7 @@ public class Hero implements Parcelable {
         dest.writeString(this.getName());
         dest.writeInt(this.getHP());
         dest.writeInt(this.getXP());
+        dest.writeInt(this.getAP());
         dest.writeInt(this.getLevel());
         dest.writeInt(this.getSpeed());
         dest.writeInt(this.getDefense());
