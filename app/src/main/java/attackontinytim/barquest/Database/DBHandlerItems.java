@@ -16,7 +16,7 @@ import java.util.List;
 public class DBHandlerItems extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -133,7 +133,7 @@ public class DBHandlerItems extends SQLiteOpenHelper {
         String countQuery = "SELECT * FROM " + TABLE_ITEMS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+
         // return count
         return cursor.getCount();
     }

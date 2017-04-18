@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private static Button inventory;
     private static Button shop;
     private static Button levelUp;
+    private static Button quest;
 	
 	// This is called when the activity is created
     @Override
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         inventory = (Button)findViewById(R.id.inventoryButton);
         shop = (Button)findViewById(R.id.shopButton);
         levelUp = (Button)findViewById(R.id.levelUpButton);
+        quest = (Button)findViewById(R.id.questButton);
 
         battle.setOnClickListener(
                 new View.OnClickListener() {
@@ -136,6 +138,16 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent("attackontinytim.barquest.ShopActivity");
                         Bundle bundle = bundler.generateBundle(hero);
 
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+        quest.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.QuestActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
                     }
