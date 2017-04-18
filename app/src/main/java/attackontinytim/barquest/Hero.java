@@ -50,11 +50,11 @@ public class Hero implements Parcelable {
         this.attack = 5;
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
-        this.currentQuest = new Quest();
+        this.currentQuest = new Quest(42);
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
-    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP) {
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP, Quest currentQuest) {
         this.id = id;
         this.name = name;
         this.HP = HP;
@@ -84,7 +84,8 @@ public class Hero implements Parcelable {
                 this.getAttack(),
                 this.getMoney(),
                 this.getActive(),
-                this.getAP());
+                this.getAP(),
+                this.getCurrentQuest());
     }
 
 
@@ -171,6 +172,7 @@ public class Hero implements Parcelable {
     public Weapon getActive() {
         return active;
     }
+    public Quest getCurrentQuest() {return currentQuest; }
 
     public void setActive(Weapon active) {
         this.active = active;

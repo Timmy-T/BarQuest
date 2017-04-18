@@ -10,6 +10,27 @@ public class QuestActivity extends AppCompatActivity {
 
     private Hero hero;
 
+    public void turnInQuest() {
+        int get = hero.getCurrentQuest().getCurrentCompleted();
+        int goal = hero.getCurrentQuest().getCompletionGoal();
+
+        if ((get != 0) && ((hero.getCurrentQuest().getCanTurnInEarly()) || (get == goal)))
+        {
+            // Default Quest is empty
+            Quest newQuest = new Quest();
+            // Money Calculation
+            double moneyGet = 0;
+            if (get == goal)
+                moneyGet = moneyGet + 1000;
+            moneyGet = moneyGet + 500*(get/goal);
+            // Add money to the heroes money bag
+            moneyGet = moneyGet + hero.getMoney();
+            hero.setMoney(moneyGet);
+            // Clear quest
+            hero.setCurrentQuest(newQuest);
+        }
+    }
+
 	// This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {

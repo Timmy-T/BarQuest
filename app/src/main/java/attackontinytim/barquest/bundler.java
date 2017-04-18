@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 /**
  * Created by Tim Buesking on 3/6/2017.
+ * Destroyed by Robert Jones shortly thereafter
  */
 public class bundler {
 
@@ -19,6 +20,12 @@ public class bundler {
      * @param hero A Hero object the be serialized into a bundle. This hero must also have a weapon
      */
     public static Bundle generateBundle(Hero hero) {
+        int temp;
+        if (!hero.getCurrentQuest().getCanTurnInEarly())
+            temp = 0;
+        else
+            temp = 1;
+
         Bundle bundle = new Bundle();
 
         bundle.putInt("id", hero.getId());
@@ -39,6 +46,11 @@ public class bundler {
         bundle.putInt("weaponCrit", hero.getActive().getCriticalRate());
         bundle.putDouble("weaponValue", hero.getActive().getValue());
 
+        bundle.putInt("questID", hero.getCurrentQuest().getId());
+        bundle.putInt("currentCompleted", hero.getCurrentQuest().getCurrentCompleted());
+        bundle.putInt("completionGoal", hero.getCurrentQuest().getCompletionGoal());
+        bundle.putInt("canTurnInEarly", temp);
+
         return bundle;
     }
 
@@ -50,6 +62,8 @@ public class bundler {
      * @return Hero a hero object
      */
     public static Hero unbundleHero(Bundle bundle){
+        boolean earlyValue;
+
         Hero hero = new Hero();
         hero.setId(bundle.getInt("id"));
         hero.setName(bundle.getString("name"));
@@ -71,8 +85,22 @@ public class bundler {
 
         Weapon active = new Weapon(weaponType, weaponAttack, weaponCrit, weaponName, weaponValue, weaponWeight);
 
+        int questID = bundle.getInt("questID");
+        int currentCompleted = bundle.getInt("currentCompleted");
+        int completionGoal = bundle.getInt("completionGoal");
+        int temp = bundle.getInt("canTurnInEarly");
+
+        if (temp == 0)
+            earlyValue = false;
+        else
+            earlyValue = true;
+
+        Quest heroQuest = new Quest(questID, currentCompleted, completionGoal, earlyValue);
 
         hero.setActive(active);
+        hero.setCurrentQuest(heroQuest);
+
         return hero;
     }
 }
+//TODO: Parcelable hero and Quest should be utilized. This will shorten the length of code and improve speed.
