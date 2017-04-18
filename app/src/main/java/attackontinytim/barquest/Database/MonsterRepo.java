@@ -3,12 +3,9 @@ package attackontinytim.barquest.Database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import attackontinytim.barquest.MainActivity;
 
 /**
  * Created by Tim Buesking on 4/17/2017.
@@ -100,6 +97,7 @@ public class MonsterRepo {
             cursor.moveToFirst();
 
         Monster contact = new Monster(cursor);
+
         DatabaseManager.getInstance().closeDatabase(); // Closing database connection
 
         // return monster
@@ -131,6 +129,7 @@ public class MonsterRepo {
             cursor.moveToFirst();
 
         Monster contact = new Monster(cursor);
+        cursor.close();
         DatabaseManager.getInstance().closeDatabase(); // Closing database connection
 
         // return monster
@@ -143,7 +142,7 @@ public class MonsterRepo {
      */
     public static List<Monster> getAllMonsters() {
 
-        List<Monster> monsterList = new ArrayList<Monster>();
+        List<Monster> monsterList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_MONSTERS;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -157,6 +156,7 @@ public class MonsterRepo {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
         DatabaseManager.getInstance().closeDatabase(); // Closing database connection
 
         // return contact list
@@ -174,6 +174,7 @@ public class MonsterRepo {
         // return count
 
         int count = cursor.getCount();
+        cursor.close();
         DatabaseManager.getInstance().closeDatabase(); // Closing database connection
 
         return count;

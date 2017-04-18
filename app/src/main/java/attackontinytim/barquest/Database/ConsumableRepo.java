@@ -81,7 +81,7 @@ public class ConsumableRepo {
      * @return List containing all consumables
      */
     public static List<ConsumableItem> getAllConsumables() {
-        List<ConsumableItem> conList = new ArrayList<ConsumableItem>();
+        List<ConsumableItem> conList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_CONSUMABLE;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();

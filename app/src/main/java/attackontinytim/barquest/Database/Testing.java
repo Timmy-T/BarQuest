@@ -51,7 +51,7 @@ public class Testing extends AppCompatActivity {
         // Changing its name
         myMon.setName("TY");
         // Changing its ID
-        myMon.setId(5);
+        myMon.setId(9999);
         // Adding to monster table
         MonsterRepo.addMonster(myMon);
         Monster addedMon = MonsterRepo.getMonsterByName("TY");

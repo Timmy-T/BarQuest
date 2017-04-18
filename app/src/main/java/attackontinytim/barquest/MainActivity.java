@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import junit.framework.Test;
+
 import attackontinytim.barquest.Database.DBHandler;
 import attackontinytim.barquest.Database.InsertDataValues;
 import attackontinytim.barquest.Database.Testing;

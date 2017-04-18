@@ -88,7 +88,7 @@ public class WeaponRepo {
      * @return List containing all items
      */
     public static List<Weapon> getAllItems() {
-        List<Weapon> weaponList = new ArrayList<Weapon>();
+        List<Weapon> weaponList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_ITEMS;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -119,7 +119,7 @@ public class WeaponRepo {
 
 
         int count = cursor.getCount();
-
+        cursor.close();
         DatabaseManager.getInstance().closeDatabase(); // Closing database connection
 
         // return count
