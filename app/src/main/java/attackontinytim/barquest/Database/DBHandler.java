@@ -25,6 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(MonsterRepo.createTable());
         db.execSQL(WeaponRepo.createTable());
+        db.execSQL(ConsumableRepo.createTable());
     }
 
     @Override
@@ -32,6 +33,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + MonsterRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + ConsumableRepo.getTableName());
         // Creating tables again
         onCreate(db);
     }

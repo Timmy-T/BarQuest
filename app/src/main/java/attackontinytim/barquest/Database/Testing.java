@@ -18,31 +18,6 @@ public class Testing extends AppCompatActivity {
 
     }
 
-    /**
-     * Adds dummy records to the database if none are present
-     * @param activity The calling activity
-     */
-    public void addRecords(MainActivity activity){
-
-        if (MonsterRepo.getMonsterCount() == 0) {
-            MonsterRepo.addMonster(new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5));
-            MonsterRepo.addMonster(new Monster(2,"Tim", 50, 10, "Long", 5.0, 1, "Rare", 15, 15, 15));
-            MonsterRepo.addMonster(new Monster(3,"MatLab", 200, 100, "Mid", 5.0, 1, "Uncommon", 50, 5, 25));
-            MonsterRepo.addMonster(new Monster(4,"Jimbo", 10000, 5000, "Mid", 5.0, 1, "Common", 45, 55, 35));
-        }
-
-        testMonster(activity);
-
-
-        if (WeaponRepo.getItemCount() == 0){
-            WeaponRepo.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-            WeaponRepo.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-            WeaponRepo.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
-        }
-        testItems(activity);
-    }
-
-
     public void testMonster(MainActivity activity){
 
         Log.d("Checking data: ", "Fetching Monster List");

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import attackontinytim.barquest.Database.DBHandler;
+import attackontinytim.barquest.Database.InsertDataValues;
 import attackontinytim.barquest.Database.Testing;
 import attackontinytim.barquest.Database.DatabaseManager;
 public class MainActivity extends AppCompatActivity {
@@ -50,12 +51,11 @@ public class MainActivity extends AppCompatActivity {
         // Checks for permissions to save and read from storage
         checkPermissions();
 
-        // Add records to the database
+        // Loads database handler
         dbHandler = new DBHandler(this.getApplicationContext());
         DatabaseManager.initializeInstance(dbHandler);
-
-        Testing t = new Testing();
-        t.addRecords(this);
+        // Inserts value to database if database is empty
+        InsertDataValues.createDatabaseValues();
     }
 
     private void checkPermissions() {
