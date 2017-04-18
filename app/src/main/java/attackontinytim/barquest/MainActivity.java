@@ -13,8 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import attackontinytim.barquest.Database.DBHandler;
 import attackontinytim.barquest.Database.Testing;
-
+import attackontinytim.barquest.Database.DatabaseManager;
 public class MainActivity extends AppCompatActivity {
 
     // global Hero
@@ -32,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private static Button shop;
     private static Button levelUp;
     private static Button quest;
-	
+
+    // DB Handler object for all database calls
+    private static DBHandler dbHandler;
+
 	// This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         checkPermissions();
 
         // Add records to the database
-        // TODO: Replace this call with a real function and not in the testing tools
+        dbHandler = new DBHandler(this.getApplicationContext());
+        DatabaseManager.initializeInstance(dbHandler);
+
         Testing t = new Testing();
         t.addRecords(this);
     }

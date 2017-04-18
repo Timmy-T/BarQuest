@@ -12,8 +12,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.List;
-import attackontinytim.barquest.Database.DBHandler;
 import attackontinytim.barquest.Database.Monster;
+import attackontinytim.barquest.Database.MonsterRepo;
 import attackontinytim.barquest.Database.Weapon;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
@@ -44,9 +44,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
         try{
             int monsterHash = bundle.getInt("MonsterHash");
-
-            DBHandler db = new DBHandler(this.getApplicationContext());
-            List<Monster> mon = db.getAllMonsters();
+            List<Monster> mon = MonsterRepo.getAllMonsters();
             int numOfMonsters = mon.size();
 
             enemy = mon.get(monsterHash%numOfMonsters);
