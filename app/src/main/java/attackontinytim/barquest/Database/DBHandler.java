@@ -11,7 +11,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -165,7 +165,6 @@ public class DBHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        cursor.close();
         // return contact list
         return monsterList;
     }
@@ -178,7 +177,6 @@ public class DBHandler extends SQLiteOpenHelper {
             String countQuery = "SELECT * FROM " + TABLE_MONSTERS;
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(countQuery, null);
-            cursor.close();
             // return count
             return cursor.getCount();
         }

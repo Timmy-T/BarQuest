@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+import attackontinytim.barquest.Database.DBHandler;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -18,7 +20,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     private Battle battle;
     private Hero hero;
-    private Monster enemy = new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5);
+    private Monster enemy;
     int HeroHP = 0;
     int MonHP = 0;
 
@@ -39,6 +41,20 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
         hero = bundler.unbundleHero(bundle);
         // enemy = new Monster(/*some sort of Cursor*/);
+
+        try{
+            int monsterHash = bundle.getInt("MonsterHash");
+
+            DBHandler db = new DBHandler(this.getApplicationContext());
+            List<Monster> mon = db.getAllMonsters();
+            int numOfMonsters = mon.size();
+
+            enemy = mon.get(monsterHash%numOfMonsters);
+        }
+        catch (Exception e){
+            Log.d("HERE", e.getMessage());
+            enemy = new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5);
+        }
 
         HeroHP = hero.getHP();
         MonHP = enemy.getHP();

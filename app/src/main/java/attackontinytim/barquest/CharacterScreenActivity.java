@@ -13,7 +13,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
 
     public Hero hero;
 
-	// This is called when the activity is created
+    // This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,27 +42,27 @@ public class CharacterScreenActivity extends AppCompatActivity {
         SpdStat.setText(String.valueOf(hero.getSpeed()));
 
     }
-	
-	// This is called when the activity is ended via result
+
+    // This is called when the activity is ended via result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
                 default:
-					// it ends the acitivity
+                    // it ends the acitivity
                     end();
             }
         }
     }
-	
-	// What is done when hardware back button is pressed
+
+    // What is done when hardware back button is pressed
     @Override
     public void onBackPressed() {
-		// it ends the acitivity
+        // it ends the acitivity
         end();
     }
 
-	// This is the act of ending the activity
+    // This is the act of ending the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
 
@@ -71,5 +71,5 @@ public class CharacterScreenActivity extends AppCompatActivity {
     }
 
 
-    
+
 }

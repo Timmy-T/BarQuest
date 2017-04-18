@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import attackontinytim.barquest.Database.Testing;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,8 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
         onClickButtonListener();
 
+        // Checks for permissions to save and read from storage
         checkPermissions();
 
+        // Add records to the database
+        // TODO: Replace this call with a real function and not in the testing tools
+        Testing t = new Testing();
+        t.addRecords(this);
     }
 
     private void checkPermissions() {
