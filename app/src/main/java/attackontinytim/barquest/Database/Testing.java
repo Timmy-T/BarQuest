@@ -32,13 +32,14 @@ public class Testing extends AppCompatActivity {
         }
 
         testMonster(activity);
-        /*
-        DBHandlerItems itemDB = new DBHandlerItems(activity);
-        if (itemDB.getItemCount() == 0){
-            itemDB.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-            itemDB.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-            itemDB.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
-        }*/
+
+
+        if (WeaponRepo.getItemCount() == 0){
+            WeaponRepo.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
+            WeaponRepo.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
+            WeaponRepo.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
+        }
+        testItems(activity);
     }
 
 
@@ -106,17 +107,15 @@ public class Testing extends AppCompatActivity {
 
     public void testItems(MainActivity activity){
 
-        DBHandlerItems db = new DBHandlerItems(activity);
-
         // Inserting rows
         Log.d("Insert: ", "Inserting ..");
-        db.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-        db.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-        db.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
+        //WeaponRepo.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
+        //WeaponRepo.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
+        //WeaponRepo.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
 
         // Reading all weapons
         Log.d("Reading: ", "Reading all weapons..");
-        List<Weapon> weapons = db.getAllItems();
+        List<Weapon> weapons = WeaponRepo.getAllItems();
 
         for (Weapon weapon : weapons) {
             String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
@@ -129,11 +128,11 @@ public class Testing extends AppCompatActivity {
         // Changing its name
         myWeapon.setName("Dev's Sword");
         // Adding to item table
-        db.addItem(myWeapon);
-        Weapon addedWeapon = db.getItemByName("Dev's Sword");
+        WeaponRepo.addItem(myWeapon);
+        Weapon addedWeapon = WeaponRepo.getItemByName("Dev's Sword");
 
         Log.d("Checking data: ", "Fetching Updated Weapon List");
-        weapons = db.getAllItems();
+        weapons = WeaponRepo.getAllItems();
 
         for (Weapon weapon : weapons) {
             String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
@@ -142,10 +141,10 @@ public class Testing extends AppCompatActivity {
         }
 
         Log.d("Deleting Data: ", "Kill it");
-        db.deleteItem(myWeapon);
+        WeaponRepo.deleteItem(myWeapon);
 
         Log.d("Checking data: ", "Fetching Updated Weapon List");
-        weapons = db.getAllItems();
+        weapons = WeaponRepo.getAllItems();
 
         for (Weapon weapon : weapons) {
             String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();

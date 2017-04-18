@@ -1,25 +1,17 @@
 package attackontinytim.barquest.Database;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Tim Buesking on 2/22/2017.
+ * Created by Tim Buesking on 4/17/2017.
  */
 
-public class DBHandlerItems extends SQLiteOpenHelper {
-
-    // Database Version
-    private static final int DATABASE_VERSION = 2;
-    // Database Name
-    private static final String DATABASE_NAME = "BarDatabase";
-    // Contacts table name
+public class WeaponRepo {
     private static final String TABLE_ITEMS= "Items";
     // Weapon Table Columns names
     private static final String KEY_NAME = "Name";
@@ -29,40 +21,28 @@ public class DBHandlerItems extends SQLiteOpenHelper {
     private static final String KEY_VALUE = "Rarity";
     private static final String KEY_WEIGHT= "Speed";
 
-    public DBHandlerItems(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+    public static String getTableName(){
+        return TABLE_ITEMS;
     }
 
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "("
+    public static String createTable() {
+        return "CREATE TABLE " + TABLE_ITEMS + "("
                 + KEY_NAME + " TEXT PRIMARY KEY,"
                 + KEY_ATTACKTYPE + " TEXT, "
                 + KEY_ATTACK + " INT,"
                 + KEY_CRITRATE + " INT, "
                 + KEY_VALUE + " DOUBLE,"
                 + KEY_WEIGHT+ " DOUBLE)";
-
-        db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ITEMS);
-
-        // Creating tables again
-        onCreate(db);
-
-    }
 
     /**
      * Function that adds an weapon to the Weapon table in the database
      * @param weapon An weapon object to add to the database
      */
-    public void addItem(Weapon weapon) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public static void addItem(Weapon weapon) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_NAME , weapon.getName());
         values.put(KEY_ATTACKTYPE , weapon.getAttackType());
@@ -73,7 +53,7 @@ public class DBHandlerItems extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_ITEMS, null, values);
-        db.close(); // Closing database connection
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
     }
 
     /**
@@ -81,8 +61,8 @@ public class DBHandlerItems extends SQLiteOpenHelper {
      * @param name Name of the item
      * @return Weapon object
      */
-    public Weapon getItemByName(String name) {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public static Weapon getItemByName(String name) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.query(TABLE_ITEMS, new String[] {
                         KEY_NAME ,
                         KEY_ATTACKTYPE ,
@@ -97,6 +77,8 @@ public class DBHandlerItems extends SQLiteOpenHelper {
 
         Weapon contact = new Weapon(cursor);
         cursor.close();
+
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
         // return item
         return contact;
     }
@@ -105,11 +87,11 @@ public class DBHandlerItems extends SQLiteOpenHelper {
      *  Returns a List of all items in the items table
      * @return List containing all items
      */
-    public List<Weapon> getAllItems() {
+    public static List<Weapon> getAllItems() {
         List<Weapon> weaponList = new ArrayList<Weapon>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + TABLE_ITEMS;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -121,6 +103,7 @@ public class DBHandlerItems extends SQLiteOpenHelper {
         }
 
         cursor.close();
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
         // return contact list
         return weaponList;
     }
@@ -129,13 +112,18 @@ public class DBHandlerItems extends SQLiteOpenHelper {
      *  Returns number of items in the database
      * @return Number of item records in the item table
      */
-    public int getItemCount() {
+    public static int getItemCount() {
         String countQuery = "SELECT * FROM " + TABLE_ITEMS;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
 
+
+        int count = cursor.getCount();
+
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+
         // return count
-        return cursor.getCount();
+        return count;
     }
 
     /**
@@ -143,8 +131,8 @@ public class DBHandlerItems extends SQLiteOpenHelper {
      * @param weapon Weapon to update, update is made based on weapon name
      * @return Returns result of the update command
      */
-    public int updateItem(Weapon weapon) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public static int updateItem(Weapon weapon) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME , weapon.getName());
@@ -155,18 +143,24 @@ public class DBHandlerItems extends SQLiteOpenHelper {
         values.put(KEY_WEIGHT, weapon.getWeight());
 
         // updating row
-        return db.update(TABLE_ITEMS, values, KEY_NAME + " = ?",
+        int result = db.update(TABLE_ITEMS, values, KEY_NAME + " = ?",
                 new String[]{String.valueOf(weapon.getName())});
+
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+
+        return result;
     }
 
     /**
      * Deletes an weapon record from the database
      * @param weapon Weapon to be deleted from database
      */
-    public void deleteItem(Weapon weapon) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public static void deleteItem(Weapon weapon) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         db.delete(TABLE_ITEMS, KEY_NAME + " = ?",
                 new String[] { String.valueOf(weapon.getName()) });
-        db.close();
+
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
     }
 }
+

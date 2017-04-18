@@ -11,7 +11,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -24,12 +24,14 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(MonsterRepo.createTable());
+        db.execSQL(WeaponRepo.createTable());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + MonsterRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
         // Creating tables again
         onCreate(db);
     }
