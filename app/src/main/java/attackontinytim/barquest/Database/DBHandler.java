@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -21,7 +21,18 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(MonsterRepo.createTable());
         db.execSQL(WeaponRepo.createTable());
         db.execSQL(ConsumableRepo.createTable());
-        db.execSQL(HeroRepo.createTable());
+
+        // TODO: Handle this better, this is for ensuring the Hero and inventory aren't wiped
+        // When the databases are updated
+        try {
+            db.execSQL(InventoryRepo.createTable());
+        } catch (Exception ex) {
+        }
+
+        try {
+            db.execSQL(InventoryRepo.createTable());
+        } catch (Exception ex) {
+        }
     }
 
     @Override
