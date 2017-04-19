@@ -1,9 +1,11 @@
 package attackontinytim.barquest;
 
+import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
 
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
 
 public class Hero implements Parcelable {
 
@@ -255,6 +257,20 @@ public class Hero implements Parcelable {
         dest.writeDouble(this.getMoney());
         dest.writeParcelable(this.getActive(), flags);
         dest.writeParcelable(this.getCurrentQuest(), flags);
+    }
+
+    public Hero(Cursor cursor)
+    {
+        this.id = cursor.getInt(0);
+        this.name = cursor.getString(1);
+        this.HP = cursor.getInt(2);
+        this.XP = cursor.getInt(3);
+        this.level = cursor.getInt(4);
+        this.speed = cursor.getInt(5);
+        this.defense = cursor.getInt(6);
+        this.attack = cursor.getInt(7);
+        this.money = cursor.getDouble(8);
+        this.active = WeaponRepo.getItemByName(cursor.getString(9));
     }
 
     public static final Parcelable.Creator<Hero> CREATOR = new Parcelable.Creator<Hero>() {

@@ -16,13 +16,14 @@ import android.widget.Button;
 import junit.framework.Test;
 
 import attackontinytim.barquest.Database.DBHandler;
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.InsertDataValues;
 import attackontinytim.barquest.Database.Testing;
 import attackontinytim.barquest.Database.DatabaseManager;
 public class MainActivity extends AppCompatActivity {
 
     // global Hero
-    public Hero hero = new Hero("HERO");
+    public Hero hero;
 
     // Return
     static public int MAIN_RETURN_CODE = 1;
@@ -58,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
         DatabaseManager.initializeInstance(dbHandler);
         // Inserts value to database if database is empty
         InsertDataValues.createDatabaseValues();
+
+        if (HeroRepo.getAllHeros().size() == 0){
+            hero = new Hero("HERO");
+            HeroRepo.addHero(hero);
+        }
+        else {
+            hero = HeroRepo.getHeroByName("HERO");
+        }
     }
 
     private void checkPermissions() {

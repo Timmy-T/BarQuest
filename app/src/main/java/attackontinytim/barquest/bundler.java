@@ -20,11 +20,6 @@ public class bundler {
      * @param hero A Hero object the be serialized into a bundle. This hero must also have a weapon
      */
     public static Bundle generateBundle(Hero hero) {
-        int temp;
-        if (!hero.getCurrentQuest().getCanTurnInEarly())
-            temp = 0;
-        else
-            temp = 1;
 
         Bundle bundle = new Bundle();
 
@@ -46,11 +41,20 @@ public class bundler {
         bundle.putInt("weaponCrit", hero.getActive().getCriticalRate());
         bundle.putDouble("weaponValue", hero.getActive().getValue());
 
-        bundle.putInt("questID", hero.getCurrentQuest().getId());
-        bundle.putInt("currentCompleted", hero.getCurrentQuest().getCurrentCompleted());
-        bundle.putInt("completionGoal", hero.getCurrentQuest().getCompletionGoal());
-        bundle.putInt("canTurnInEarly", temp);
+        // This checks for a quest and jumps if a quest is inactive
+        try {
+            int temp;
+            if (!hero.getCurrentQuest().getCanTurnInEarly())
+                temp = 0;
+            else
+                temp = 1;
 
+            bundle.putInt("questID", hero.getCurrentQuest().getId());
+            bundle.putInt("currentCompleted", hero.getCurrentQuest().getCurrentCompleted());
+            bundle.putInt("completionGoal", hero.getCurrentQuest().getCompletionGoal());
+            bundle.putInt("canTurnInEarly", temp);
+        }
+        catch (Exception ex) {}
         return bundle;
     }
 
@@ -84,21 +88,24 @@ public class bundler {
         double weaponValue = bundle.getDouble("weaponValue");
 
         Weapon active = new Weapon(weaponType, weaponAttack, weaponCrit, weaponName, weaponValue, weaponWeight);
-
-        int questID = bundle.getInt("questID");
-        int currentCompleted = bundle.getInt("currentCompleted");
-        int completionGoal = bundle.getInt("completionGoal");
-        int temp = bundle.getInt("canTurnInEarly");
-
-        if (temp == 0)
-            earlyValue = false;
-        else
-            earlyValue = true;
-
-        Quest heroQuest = new Quest(questID, currentCompleted, completionGoal, earlyValue);
-
         hero.setActive(active);
-        hero.setCurrentQuest(heroQuest);
+
+        // If no quest values were given
+        try {
+            int questID = bundle.getInt("questID");
+            int currentCompleted = bundle.getInt("currentCompleted");
+            int completionGoal = bundle.getInt("completionGoal");
+            int temp = bundle.getInt("canTurnInEarly");
+
+            if (temp == 0)
+                earlyValue = false;
+            else
+                earlyValue = true;
+
+            Quest heroQuest = new Quest(questID, currentCompleted, completionGoal, earlyValue);
+
+            hero.setCurrentQuest(heroQuest);
+        } catch (Exception ex){}
 
         return hero;
     }

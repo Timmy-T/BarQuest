@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import org.w3c.dom.Text;
 
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.Weapon;
 
 public class LevelUpActivity extends AppCompatActivity {
@@ -242,6 +243,8 @@ public class LevelUpActivity extends AppCompatActivity {
 	
 	// This is the act of ending the activity
     private void end(){
+        HeroRepo.updateHero(hero);
+        
         Bundle bundle = bundler.generateBundle(hero);
 
         setResult(RESULT_OK,getIntent().putExtras(bundle));
