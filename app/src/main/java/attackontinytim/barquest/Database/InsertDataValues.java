@@ -1,5 +1,7 @@
 package attackontinytim.barquest.Database;
 
+import attackontinytim.barquest.Hero;
+
 /**
  * Created by Tim Buesking on 4/17/2017.
  */
@@ -54,5 +56,18 @@ public class InsertDataValues {
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Downloaded RAM", 45));
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Max Potion", 45));
         }
+    }
+
+    /**
+     * Inserts a hero into the hero table
+     * Gives the hero the default weapon in the inventory
+     * Gives the hero three virus scan pots
+     */
+    public static void initializeHeroValues(){
+        HeroRepo.addHero(new Hero("HERO"));
+        InventoryRepo.addItemToInventory(HeroRepo.getHeroByName("HERO").getActive());
+        InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
+        InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
+        InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
     }
 }

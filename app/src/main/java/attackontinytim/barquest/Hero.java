@@ -42,9 +42,9 @@ public class Hero implements Parcelable {
     public Hero(String name) {
         this.id = 0;
         this.name = name;
-        this.HP = 20;
+        this.HP = 100;
         this.XP = 0 ;
-        this.money = 0;
+        this.money = 10;
         this.AP = 10;
         this.level = 1;
         this.speed = 5;
@@ -271,6 +271,7 @@ public class Hero implements Parcelable {
         this.attack = cursor.getInt(7);
         this.money = cursor.getDouble(8);
         this.active = WeaponRepo.getItemByName(cursor.getString(9));
+        this.AP = cursor.getInt(10);
     }
 
     public static final Parcelable.Creator<Hero> CREATOR = new Parcelable.Creator<Hero>() {
