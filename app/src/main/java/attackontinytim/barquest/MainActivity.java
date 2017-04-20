@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static Button shop;
     private static Button levelUp;
     private static Button quest;
+    private static Button consumables;
 
     // DB Handler object for all database calls
     private static DBHandler dbHandler;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         shop = (Button)findViewById(R.id.shopButton);
         levelUp = (Button)findViewById(R.id.levelUpButton);
         quest = (Button)findViewById(R.id.questButton);
+        consumables = (Button)findViewById(R.id.consumableButton);
 
         battle.setOnClickListener(
                 new View.OnClickListener() {
@@ -164,6 +166,16 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.QuestActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+        consumables.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
