@@ -25,7 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
         // TODO: Handle this better, this is for ensuring the Hero and inventory aren't wiped
         // When the databases are updated
         try {
-            db.execSQL(InventoryRepo.createTable());
+            db.execSQL(HeroRepo.createTable());
         } catch (Exception ex) {
         }
 
