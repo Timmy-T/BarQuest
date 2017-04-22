@@ -74,7 +74,6 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         LvlStat.setText(String.valueOf(battle.hero.getLevel()));
         TotalHPStat.setText(String.valueOf(hero.getHP()));
         CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
-        HeroHPBar.setVisibility(View.VISIBLE);
         HeroHPBar.setMax(battle.hero.getHP());
         HeroHPBar.setProgress(battle.hero.getHP());
 

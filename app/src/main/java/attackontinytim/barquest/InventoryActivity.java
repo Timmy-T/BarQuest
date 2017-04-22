@@ -1,11 +1,22 @@
 package attackontinytim.barquest;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
+import attackontinytim.barquest.Database.InventoryRepo;
 
 public class InventoryActivity extends AppCompatActivity {
 
@@ -20,6 +31,29 @@ public class InventoryActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         hero = bundler.unbundleHero(bundle);
+
+        TextView currWeapon = (TextView) findViewById(R.id.currWeaponName);
+        TextView currWeaponType = (TextView) findViewById(R.id.currWeaponType);
+        TextView currWeaponAtk = (TextView) findViewById(R.id.currWeaponAtk);
+        TextView currWeaponStock = (TextView) findViewById(R.id.currWeaponStock);
+
+        currWeapon.setText(hero.getActive().getName());
+        currWeaponType.setText(hero.getActive().getAttackType());
+        currWeaponAtk.setText(String.valueOf(hero.getActive().getAttack()));
+        currWeaponStock.setText(String.valueOf(InventoryRepo.getItemQuantity(hero.getActive())));
+
+        final ListView weaponList = (ListView) findViewById(R.id.WeaponRepo);
+        final ArrayList<String> list = new ArrayList<String>();
+
+        List<Weapon> wList = InventoryRepo.getAllWeapons();
+        for (int i = 0; i < wList.size(); i++) {
+            list.add(wList.get(i).getName());
+        }
+
+        ArrayAdapter<String> itemsAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+
+        weaponList.setAdapter(itemsAdapter);
     }
 
 	// This is called when the activity is ended via result

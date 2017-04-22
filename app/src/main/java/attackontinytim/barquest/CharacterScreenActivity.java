@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.R.layout;
 
@@ -24,6 +25,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
 
         // Hook up UI variables to backend variables
         TextView Name = (TextView) findViewById(R.id.CharName);
+        ProgressBar ExpBar = (ProgressBar) findViewById(R.id.ExpBar);
         TextView Exp = (TextView) findViewById(R.id.expstat);
         TextView Money = (TextView) findViewById(R.id.moneystat);
         TextView LvlStat = (TextView) findViewById(R.id.lvlstat);
@@ -33,6 +35,8 @@ public class CharacterScreenActivity extends AppCompatActivity {
         TextView SpdStat = (TextView) findViewById(R.id.spdstat);
 
         Name.setText(String.valueOf(hero.getName()));
+        ExpBar.setMax(100);
+        ExpBar.setProgress(hero.getXP());
         Exp.setText(String.valueOf(hero.getXP()));
         Money.setText(String.valueOf(hero.getMoney()));
         LvlStat.setText(String.valueOf(hero.getLevel()));
@@ -40,8 +44,8 @@ public class CharacterScreenActivity extends AppCompatActivity {
         AtkStat.setText(String.valueOf(hero.getAttack()));
         DefStat.setText(String.valueOf(hero.getDefense()));
         SpdStat.setText(String.valueOf(hero.getSpeed()));
-
     }
+
 
     // This is called when the activity is ended via result
     @Override
