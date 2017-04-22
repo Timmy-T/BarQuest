@@ -3,13 +3,20 @@ package attackontinytim.barquest;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import attackontinytim.barquest.Database.ConsumableItem;
 import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
+
+import static attackontinytim.barquest.R.styleable.View;
 
 public class QuestActivity extends AppCompatActivity {
 
@@ -18,7 +25,7 @@ public class QuestActivity extends AppCompatActivity {
     public void turnInQuest() {
         Quest quest = hero.getCurrentQuest();
 
-        if (quest.getGoal() >= quest.getProgress() && quest.isCompleted() == false) {
+        if (quest.getGoal() <= quest.getProgress() && quest.isCompleted() == false) {
             quest.setCompleted(true);
 
             if (quest.getItemName() != "") {
@@ -38,7 +45,7 @@ public class QuestActivity extends AppCompatActivity {
             hero.setMoney(hero.getMoney() + quest.getMoney());
 
             QuestRepo.updateQuest(quest);
-            hero.setCurrentQuest(null);
+            HeroRepo.updateHero(hero);
         }
     }
 
@@ -50,6 +57,21 @@ public class QuestActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
+
+        Quest quest = hero.getCurrentQuest();
+
+        ((TextView) findViewById(R.id.Title)).setText(quest.getName());
+        ((TextView) findViewById(R.id.Description)).setText(quest.getDescription());
+        ((TextView) findViewById(R.id.Complete)).setText(String.valueOf(quest.isCompleted()));
+        ((TextView) findViewById(R.id.QuestTotal)).setText(String.valueOf(quest.getGoal()));
+        ((TextView) findViewById(R.id.Progress)).setText(String.valueOf(quest.getProgress()));
+
+        findViewById(R.id.submitQuest).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                turnInQuest();
+                // Do something in response to button click
+            }
+        });
     }
 	
 	// This is called when the activity is ended via result
