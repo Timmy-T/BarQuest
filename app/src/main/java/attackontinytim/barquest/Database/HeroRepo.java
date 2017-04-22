@@ -29,6 +29,7 @@ public class HeroRepo {
     private static final String KEY_MONEY = "Money";
     private static final String KEY_ACTIVE = "Active";
     private static final String KEY_AP = "AP";
+    private static final String KEY_QUESTID = "QuestID";
 
     public static String getTableName() {
         return TABLE_HERO;
@@ -47,7 +48,8 @@ public class HeroRepo {
                 + KEY_ATTACK + " INT,"
                 + KEY_MONEY + " DOUBLE,"
                 + KEY_ACTIVE + " TEXT,"
-                + KEY_AP + " INT)";
+                + KEY_AP + " INT,"
+                + KEY_QUESTID + " INT)";
         }
 
 
@@ -70,6 +72,7 @@ public class HeroRepo {
         values.put(KEY_MONEY, hero.getMoney());
         values.put(KEY_ACTIVE, hero.getActive().getName());
         values.put(KEY_AP, hero.getAP());
+        values.put(KEY_QUESTID, hero.getCurrentQuest().getId());
 
         // Inserting Row
 
@@ -95,7 +98,7 @@ public class HeroRepo {
                         KEY_ATTACK,
                         KEY_MONEY,
                         KEY_ACTIVE,
-                        KEY_AP}, KEY_NAME + "=?",
+                        KEY_AP, KEY_QUESTID}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
 
         if (cursor != null)
@@ -127,7 +130,7 @@ public class HeroRepo {
                         KEY_ATTACK,
                         KEY_MONEY,
                         KEY_ACTIVE,
-                        KEY_AP}, KEY_ID + "=?",
+                        KEY_AP, KEY_QUESTID}, KEY_ID + "=?",
                 new String[] { String.valueOf(Id) }, null, null, null, null);
 
         if (cursor != null)
@@ -189,7 +192,7 @@ public class HeroRepo {
         values.put(KEY_MONEY, hero.getMoney());
         values.put(KEY_ACTIVE, hero.getActive().getName());
         values.put(KEY_AP, hero.getAP());
-
+        values.put(KEY_QUESTID, hero.getCurrentQuest().getId());
         // updating row
         int result = db.update(TABLE_HERO, values, KEY_ID + " = ?",
                 new String[]{String.valueOf(hero.getId())});

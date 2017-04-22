@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
         InsertDataValues.createDatabaseValues();
 
         if (HeroRepo.getAllHeros().size() == 0){
-            hero = new Hero("HERO");
-            HeroRepo.addHero(hero);
+            InsertDataValues.initializeHeroValues();
         }
         else {
             hero = HeroRepo.getHeroByName("HERO");

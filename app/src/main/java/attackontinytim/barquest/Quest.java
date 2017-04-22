@@ -1,55 +1,75 @@
 package attackontinytim.barquest;
 
+import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
 import java.util.Random;
 
-public class Quest implements Parcelable {
+public class Quest{
     
     /* ********* */
     /* VARIABLES */
     /* ********* */
     
     /** Common variables for all Quest objects */
-    private int id;
-    private int currentCompleted;
-    private int completionGoal;
-    private boolean canTurnInEarly;
+    private int id; //  Quest ID
+    private String name; // Name of the quest
+    private String description; // Text description of the quest
+    private int goal; // Total number of monsters to slay
+    private int progress; // Number of monsters slain for the quest
+    private boolean completed; // Boolean indicating if the quest has been completed
+    private int XP; // XP amount to give as a reward can be 0
+    private double Money; // Money to give as a reward can be 0
+    private String itemName; // Name of the item the give as a reward, can be an empty string
+    private String QuestType; // Type of quest can be by Rarity or Monster
+    private String QuestTarget; // Target is the targeted rarity like Common, or a specific monster name
 
      /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
-    
+
     // Default constructor
     public Quest() {
         this.id = 0;
-        this.currentCompleted = 0;
-        this.completionGoal = 0;
-        this.canTurnInEarly = true;
-    }
-    
-    // Construct a Quest object with the provided id, random goal amount
-    public Quest(int newID) {
-        this.id = newID;
-        this.currentCompleted = 0;
-        this.completionGoal = 3 + (int)(Math.random() * ((10 - 3) + 1));
-        this.canTurnInEarly = true;
-    }
-
-    // Construct a Quest object with the provided id, goal amount, and turnInEarly-able
-    public Quest(int newID, int completionGoal, boolean canTurnInEarly) {
-        this.id = newID;
-        this.currentCompleted = 0;
-        this.completionGoal = completionGoal;
-        this.canTurnInEarly = canTurnInEarly;
+        this.name = "Default";
+        this.description = "Default Quest";
+        this.goal = 0;
+        this.progress = 0;
+        this.completed = true;
+        this.XP = 0;
+        this.Money = 0;
+        this.itemName = "";
+        this.QuestType = "Rarity";
+        this.QuestTarget = "Common";
     }
 
-    // Construct a Quest from all components
-    public Quest(int id, int currentCompleted, int completionGoal, boolean canTurnInEarly) {
+    public Quest(int id, String name, String description, int goal, int progress, boolean completed, int XP, double money, String itemName, String questType, String questTarget) {
         this.id = id;
-        this.currentCompleted = currentCompleted;
-        this.completionGoal = completionGoal;
-        this.canTurnInEarly = canTurnInEarly;
+        this.name = name;
+        this.description = description;
+        this.goal = goal;
+        this.progress = progress;
+        this.completed = completed;
+        this.XP = XP;
+        this.Money = money;
+        this.itemName = itemName;
+        this.QuestType = questType;
+        this.QuestTarget = questTarget;
+    }
+
+
+    public Quest(Cursor cursor) {
+        this.id = cursor.getInt(0);
+        this.name = cursor.getString(1);
+        this.description = cursor.getString(2);
+        this.goal = cursor.getInt(3);
+        this.progress = cursor.getInt(4);
+        this.completed = cursor.getInt(5) > 0; // Check for boolean true or false
+        this.XP = cursor.getInt(6);
+        this.Money = cursor.getInt(7);
+        this.itemName = cursor.getString(8);
+        this.QuestType = cursor.getString(9);
+        this.QuestTarget = cursor.getString(10);
     }
    
     
@@ -60,26 +80,96 @@ public class Quest implements Parcelable {
     /* GET-METHODS */
     /* *********** */
 
+
     public int getId() {
         return id;
     }
-    public int getCurrentCompleted()  {
-        return currentCompleted;
-    }
-    public int getCompletionGoal()  {
-        return completionGoal;
-    }
-    public boolean getCanTurnInEarly() { return canTurnInEarly; }
 
     public void setId(int id) {
         this.id = id;
     }
-    public void setCurrentCompleted(int currentCompleted) {this.currentCompleted = currentCompleted;}
-    public void setCompletionGoal(int completionGoal) {
-        this.completionGoal = completionGoal;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public void setCanTurnInEarly(boolean canTurnInEarly) { this.canTurnInEarly = canTurnInEarly; }
-    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public int getXP() {
+        return XP;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
+    }
+
+    public double getMoney() {
+        return Money;
+    }
+
+    public void setMoney(double money) {
+        Money = money;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getQuestType() {
+        return QuestType;
+    }
+
+    public void setQuestType(String questType) {
+        QuestType = questType;
+    }
+
+    public String getQuestTarget() {
+        return QuestTarget;
+    }
+
+    public void setQuestTarget(String questTarget) {
+        QuestTarget = questTarget;
+    }
+    public String getName() {
+        return name;
+    }
+
+
+
     /* ************* */
     /* MISC. METHODS */
     /* ************* */
@@ -87,7 +177,10 @@ public class Quest implements Parcelable {
 
     // Framework Methods
     /////////////////////
-
+/*
+    public static Creator<Quest> getCREATOR() {
+        return CREATOR;
+    }
     // Parcel Constructor
     public Quest(Parcel in) {
         int temp;
@@ -133,5 +226,5 @@ public class Quest implements Parcelable {
         public Quest[] newArray(int size) {
             return new Quest[size];
         }
-    };
+    };*/
 }

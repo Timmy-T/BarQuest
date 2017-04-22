@@ -1,6 +1,7 @@
 package attackontinytim.barquest.Database;
 
 import attackontinytim.barquest.Hero;
+import attackontinytim.barquest.Quest;
 
 /**
  * Created by Tim Buesking on 4/17/2017.
@@ -64,10 +65,18 @@ public class InsertDataValues {
      * Gives the hero three virus scan pots
      */
     public static void initializeHeroValues(){
-        HeroRepo.addHero(new Hero("HERO"));
+        QuestRepo.addQuest(new Quest(1, "Begin", "Welcome to a mystical land of mystery, code and danger", 1, 0, false, 10, 10, "Swiss Army C", "Rarity", "Common"));
+        QuestRepo.addQuest(new Quest(2, "Master Slayer", "Slay 5 viruses", 5, 0, false, 20, 20, "", "Type", "Virus"));
+
+        Hero hero = new Hero("HERO");
+        hero.setCurrentQuest(QuestRepo.getQuestByID(1));
+        HeroRepo.addHero(hero);
+
         InventoryRepo.addItemToInventory(HeroRepo.getHeroByName("HERO").getActive());
         InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
         InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
         InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
+
+
     }
 }

@@ -4,30 +4,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 
+import attackontinytim.barquest.Database.ConsumableItem;
+import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.InventoryRepo;
+import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
 
 public class QuestActivity extends AppCompatActivity {
 
     private Hero hero;
 
     public void turnInQuest() {
-        int get = hero.getCurrentQuest().getCurrentCompleted();
-        int goal = hero.getCurrentQuest().getCompletionGoal();
+        Quest quest = hero.getCurrentQuest();
 
-        if ((get != 0) && ((hero.getCurrentQuest().getCanTurnInEarly()) || (get == goal)))
-        {
-            // Default Quest is empty
-            Quest newQuest = new Quest();
-            // Money Calculation
-            double moneyGet = 0;
-            if (get == goal)
-                moneyGet = moneyGet + 1000;
-            moneyGet = moneyGet + 500*(get/goal);
-            // Add money to the heroes money bag
-            moneyGet = moneyGet + hero.getMoney();
-            hero.setMoney(moneyGet);
-            // Clear quest
-            hero.setCurrentQuest(newQuest);
+        if (quest.getGoal() >= quest.getProgress() && quest.isCompleted() == false) {
+            quest.setCompleted(true);
+
+            if (quest.getItemName() != "") {
+                // Try to see if the reward is a weapon
+                Weapon wep = WeaponRepo.getItemByName(quest.getItemName());
+                if (wep != null) {
+                    InventoryRepo.addItemToInventory(wep);
+                } else {
+                    ConsumableItem con = ConsumableRepo.getConsumableByName(quest.getItemName());
+                    if (con != null) {
+                        InventoryRepo.addItemToInventory(con);
+                    }
+                }
+            }
+
+            hero.inc_experience(quest.getXP());
+            hero.setMoney(hero.getMoney() + quest.getMoney());
+
+            QuestRepo.updateQuest(quest);
+            hero.setCurrentQuest(null);
         }
     }
 
