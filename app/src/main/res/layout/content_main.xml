@@ -64,4 +64,20 @@
         android:id="@+id/questButton"
         android:layout_below="@+id/shopButton"/>
 
+
+    <Button
+        android:text="Consumables"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumableButton"
+        android:layout_below="@+id/questButton"/>
+
+    <Button
+        android:text="Reset Character"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CharReset"
+        android:layout_below="@+id/questButton"/>
+
+
 </RelativeLayout>

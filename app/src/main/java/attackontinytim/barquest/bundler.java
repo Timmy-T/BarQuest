@@ -2,6 +2,7 @@ package attackontinytim.barquest;
 
 import android.os.Bundle;
 
+import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Hero;
 import attackontinytim.barquest.Hero;
@@ -43,16 +44,7 @@ public class bundler {
 
         // This checks for a quest and jumps if a quest is inactive
         try {
-            int temp;
-            if (!hero.getCurrentQuest().getCanTurnInEarly())
-                temp = 0;
-            else
-                temp = 1;
-
-            bundle.putInt("questID", hero.getCurrentQuest().getId());
-            bundle.putInt("currentCompleted", hero.getCurrentQuest().getCurrentCompleted());
-            bundle.putInt("completionGoal", hero.getCurrentQuest().getCompletionGoal());
-            bundle.putInt("canTurnInEarly", temp);
+         bundle.putInt("questID", hero.getCurrentQuest().getId());
         }
         catch (Exception ex) {}
         return bundle;
@@ -93,16 +85,8 @@ public class bundler {
         // If no quest values were given
         try {
             int questID = bundle.getInt("questID");
-            int currentCompleted = bundle.getInt("currentCompleted");
-            int completionGoal = bundle.getInt("completionGoal");
-            int temp = bundle.getInt("canTurnInEarly");
 
-            if (temp == 0)
-                earlyValue = false;
-            else
-                earlyValue = true;
-
-            Quest heroQuest = new Quest(questID, currentCompleted, completionGoal, earlyValue);
+            Quest heroQuest = QuestRepo.getQuestByID(questID);
 
             hero.setCurrentQuest(heroQuest);
         } catch (Exception ex){}

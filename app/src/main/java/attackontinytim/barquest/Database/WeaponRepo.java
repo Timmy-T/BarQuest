@@ -72,15 +72,19 @@ public class WeaponRepo {
                         KEY_WEIGHT}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
 
-        if (cursor != null)
-            cursor.moveToFirst();
+        try {
+            if (cursor != null)
+                cursor.moveToFirst();
 
-        Weapon contact = new Weapon(cursor);
-        cursor.close();
-
-        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
-        // return item
-        return contact;
+            Weapon contact = new Weapon(cursor);
+            cursor.close();
+            // return item
+            return contact;
+        }
+        catch (Exception ex){return null;}
+        finally {
+            DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+        }
     }
 
     /**

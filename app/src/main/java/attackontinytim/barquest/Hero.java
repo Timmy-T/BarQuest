@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
 
@@ -42,9 +43,9 @@ public class Hero implements Parcelable {
     public Hero(String name) {
         this.id = 0;
         this.name = name;
-        this.HP = 20;
+        this.HP = 100;
         this.XP = 0 ;
-        this.money = 0;
+        this.money = 10;
         this.AP = 10;
         this.level = 1;
         this.speed = 5;
@@ -52,7 +53,7 @@ public class Hero implements Parcelable {
         this.attack = 5;
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
-        this.currentQuest = new Quest(42);
+        this.currentQuest = new Quest();
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
@@ -256,7 +257,7 @@ public class Hero implements Parcelable {
         dest.writeInt(this.getAttack());
         dest.writeDouble(this.getMoney());
         dest.writeParcelable(this.getActive(), flags);
-        dest.writeParcelable(this.getCurrentQuest(), flags);
+        //dest.writeParcelable(this.getCurrentQuest(), flags);
     }
 
     public Hero(Cursor cursor)
@@ -271,6 +272,9 @@ public class Hero implements Parcelable {
         this.attack = cursor.getInt(7);
         this.money = cursor.getDouble(8);
         this.active = WeaponRepo.getItemByName(cursor.getString(9));
+        this.AP = cursor.getInt(10);
+        this.currentQuest = QuestRepo.getQuestByID(cursor.getInt(11));
+
     }
 
     public static final Parcelable.Creator<Hero> CREATOR = new Parcelable.Creator<Hero>() {

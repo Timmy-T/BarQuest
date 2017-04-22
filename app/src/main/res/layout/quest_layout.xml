@@ -6,51 +6,132 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorAccent"
-            android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
             android:weightSum="1">
 
             <TextView
-                android:text="Quests"
                 android:layout_width="354dp"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="30sp"
+                android:layout_weight="0.10"
                 android:paddingTop="5dp"
+                android:text="Quests"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:layout_weight="0.10" />
+                android:textSize="30sp" />
 
         </android.support.v7.widget.Toolbar>
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="109dp">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Title" />
+
+                <TextView
+                    android:id="@+id/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Description" />
+
+                <TextView
+                    android:id="@+id/Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Completed?" />
+
+                <TextView
+                    android:id="@+id/Complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Total" />
+
+                <TextView
+                    android:id="@+id/QuestTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Progress" />
+
+                <TextView
+                    android:id="@+id/Progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableRow>
         </TableLayout>
 
+        <Button
+            android:id="@+id/submitQuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Quest" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:paddingTop="5dp"
+            android:text="All Quests"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
+
+        <ListView
+            android:id="@+id/questList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:drawSelectorOnTop="false" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

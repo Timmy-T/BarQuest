@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private static Button shop;
     private static Button levelUp;
     private static Button quest;
+    private static Button consumables;
+    private static Button reset;
 
     // DB Handler object for all database calls
     private static DBHandler dbHandler;
@@ -61,32 +63,30 @@ public class MainActivity extends AppCompatActivity {
         InsertDataValues.createDatabaseValues();
 
         if (HeroRepo.getAllHeros().size() == 0){
-            hero = new Hero("HERO");
-            HeroRepo.addHero(hero);
+            InsertDataValues.initializeHeroValues();
         }
         else {
             hero = HeroRepo.getHeroByName("HERO");
-        }
+         }
     }
 
     private void checkPermissions() {
-// Here, thisActivity is the current activity
+        // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-            }
-
+        }
 
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
 
-    if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this,
-        new String[]{Manifest.permission.CAMERA}, 0);
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+            new String[]{Manifest.permission.CAMERA}, 0);
         }
-}
+    }
 
     // THIS is disgusting
     public void onClickButtonListener(){
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         shop = (Button)findViewById(R.id.shopButton);
         levelUp = (Button)findViewById(R.id.levelUpButton);
         quest = (Button)findViewById(R.id.questButton);
+        consumables = (Button)findViewById(R.id.consumableButton);
+        reset = (Button)findViewById(R.id.CharReset);
 
         battle.setOnClickListener(
                 new View.OnClickListener() {
@@ -167,6 +169,25 @@ public class MainActivity extends AppCompatActivity {
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+        consumables.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+
+        reset.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        dbHandler.resetData();
+                        hero = HeroRepo.getHeroByName("HERO");
                     }
                 }
         );

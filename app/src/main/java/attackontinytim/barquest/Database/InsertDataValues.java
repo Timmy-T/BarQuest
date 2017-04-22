@@ -1,5 +1,8 @@
 package attackontinytim.barquest.Database;
 
+import attackontinytim.barquest.Hero;
+import attackontinytim.barquest.Quest;
+
 /**
  * Created by Tim Buesking on 4/17/2017.
  */
@@ -53,6 +56,36 @@ public class InsertDataValues {
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 20, "Malwarebytes", 20));
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Downloaded RAM", 45));
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Max Potion", 45));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 10, "Debug", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 10, "Virus Shield", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 10, "Coffee", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 25, "All Out Attack", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 25, "All Out Defense", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 25, "Dodgey!", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Attack Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Defense Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Speed Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 100, "ONE PAAAAANCH", 500 ));
         }
+    }
+    /**
+     * Inserts a hero into the hero table
+     * Gives the hero the default weapon in the inventory
+     * Gives the hero three virus scan pots
+     */
+    public static void initializeHeroValues(){
+        QuestRepo.addQuest(new Quest(1, "Begin", "Welcome to a mystical land of mystery, code and danger", 1, 0, false, 10, 10, "Swiss Army C", "Rarity", "Common"));
+        QuestRepo.addQuest(new Quest(2, "Master Slayer", "Slay 5 viruses", 5, 0, false, 20, 20, "", "Type", "Virus"));
+        QuestRepo.addQuest(new Quest(3, "Overcoming Your Fears", "Defeat Crippling Anxiety", 1, 0, false, 100, 100, "", "Type", "Crippling Anxiety"));
+        QuestRepo.addQuest(new Quest(4, "Slay a boss", "You must face the most fearsome creature this land has to offer, a boss monster.", 1,0, false, 200, 200, "Solid State Dagger", "Rarity", "Boss"));
+
+        Hero hero = new Hero("HERO");
+        hero.setCurrentQuest(QuestRepo.getQuestByID(1));
+        HeroRepo.addHero(hero);
+
+        InventoryRepo.addItemToInventory(HeroRepo.getHeroByName("HERO").getActive());
+        InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
+        InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
+        InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
     }
 }

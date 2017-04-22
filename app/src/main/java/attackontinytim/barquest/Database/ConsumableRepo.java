@@ -64,16 +64,19 @@ public class ConsumableRepo {
                         KEY_VALUE}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
 
-        if (cursor != null)
-            cursor.moveToFirst();
+        try {
+            if (cursor != null)
+                cursor.moveToFirst();
 
-        ConsumableItem contact = new ConsumableItem(cursor);
-        cursor.close();
-
-        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
-
-        // return consumable
-        return contact;
+            ConsumableItem con = new ConsumableItem(cursor);
+            cursor.close();
+            // return item
+            return con;
+        }
+        catch (Exception ex){return null;}
+        finally {
+            DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+        }
     }
 
     /**
