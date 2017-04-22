@@ -37,40 +37,78 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Title" />
-                <TextView android:id="@+id/Title"/>
+
+                <TextView
+                    android:id="@+id/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </TableRow>
 
-            <TableRow>
-                <TextView android:text="Description"/>
-                <TextView android:id="@+id/Description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Description" />
+
+                <TextView
+                    android:id="@+id/Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView android:text="Completed?" />
-                <TextView android:id="@+id/Complete"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Completed?" />
+
+                <TextView
+                    android:id="@+id/Complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView android:text="Total" />
-                <TextView android:id="@+id/QuestTotal"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Total" />
+
+                <TextView
+                    android:id="@+id/QuestTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <TextView android:text="Progress" />
-                <TextView android:id="@+id/Progress"/>
-            </TableRow>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Progress" />
+
+                <TextView
+                    android:id="@+id/Progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableRow>
         </TableLayout>
 
         <Button
@@ -79,27 +117,21 @@
             android:layout_height="wrap_content"
             android:text="Submit Quest" />
 
-        <TableLayout
+        <TextView
+            android:id="@+id/textView9"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="42dp"
+            android:paddingTop="5dp"
+            android:text="All Quests"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
-
+        <ListView
+            android:id="@+id/questList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:drawSelectorOnTop="false" />
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

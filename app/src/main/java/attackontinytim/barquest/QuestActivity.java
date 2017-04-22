@@ -4,9 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import attackontinytim.barquest.Database.ConsumableItem;
 import attackontinytim.barquest.Database.ConsumableRepo;
@@ -72,6 +78,21 @@ public class QuestActivity extends AppCompatActivity {
                 // Do something in response to button click
             }
         });
+
+
+        // TODO: Make Quests clickable to expand and show more values
+        final ListView questView = (ListView) findViewById(R.id.questList);
+        final ArrayList<String> list = new ArrayList<String>();
+
+        List<Quest> qList = QuestRepo.getAllQuest();
+        for (int i = 0; i < qList.size(); i++) {
+            list.add(qList.get(i).getName());
+        }
+
+        ArrayAdapter<String> itemsAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+
+        questView.setAdapter(itemsAdapter);
     }
 	
 	// This is called when the activity is ended via result
