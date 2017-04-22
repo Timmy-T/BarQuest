@@ -55,6 +55,16 @@ public class InsertDataValues {
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 20, "Malwarebytes", 20));
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Downloaded RAM", 45));
             ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Max Potion", 45));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 10, "Debug", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 10, "Virus Shield", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 10, "Coffee", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 25, "All Out Attack", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 25, "All Out Defense", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 25, "Dodgey!", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Attack Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Defense Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Speed Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 100, "ONE PAAAAANCH", 500 ));
         }
     }
 
