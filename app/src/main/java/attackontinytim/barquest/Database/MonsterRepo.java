@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Tim Buesking on 4/17/2017.
@@ -208,6 +209,62 @@ public class MonsterRepo {
 
         return result;
     }
+
+
+    /**
+     *  Returns a List of all monsters in the monster table
+     * @return List containing all monsters
+     */
+    public static List<Monster> getMonstersByRarity(String rarity) {
+
+        List<Monster> monsterList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + TABLE_MONSTERS +" WHERE " + KEY_RARITY + " = '" + rarity + "'";
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Monster monster = new Monster(cursor);
+                // Adding contact to list
+                monsterList.add(monster);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+
+        // return contact list
+        return monsterList;
+    }
+
+
+    public static Monster getMonsterFromHash(int hash){
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt(100) + 1;
+        List<Monster> mon;
+
+        if (randomNum <= 75){
+            mon = MonsterRepo.getMonstersByRarity("Common");
+        }
+        else if ( randomNum <= 90){
+            mon = MonsterRepo.getMonstersByRarity("Uncommon");
+        }
+        else if ( randomNum <= 99){
+            mon = MonsterRepo.getMonstersByRarity("Rare");
+        }
+        // Random number is equal to or greater than 100 Defaults to boss
+        else {
+            mon = MonsterRepo.getMonstersByRarity("Boss");
+        }
+
+        int numOfMonsters = mon.size();
+
+        return  mon.get(hash%numOfMonsters);
+
+    }
+
 
     /**
      * Deletes a monster record from the database

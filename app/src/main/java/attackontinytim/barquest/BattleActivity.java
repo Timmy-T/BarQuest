@@ -50,11 +50,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         // enemy = new Monster(/*some sort of Cursor*/);
 
         try{
-            int monsterHash = bundle.getInt("MonsterHash");
-            List<Monster> mon = MonsterRepo.getAllMonsters();
-            int numOfMonsters = mon.size();
-
-            enemy = mon.get(monsterHash%numOfMonsters);
+            enemy = MonsterRepo.getMonsterFromHash(bundle.getInt("MonsterHash"));
         }
         catch (Exception e){
             Log.d("HERE", e.getMessage());

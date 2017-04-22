@@ -76,6 +76,8 @@ public class InsertDataValues {
     public static void initializeHeroValues(){
         QuestRepo.addQuest(new Quest(1, "Begin", "Welcome to a mystical land of mystery, code and danger", 1, 0, false, 10, 10, "Swiss Army C", "Rarity", "Common"));
         QuestRepo.addQuest(new Quest(2, "Master Slayer", "Slay 5 viruses", 5, 0, false, 20, 20, "", "Type", "Virus"));
+        QuestRepo.addQuest(new Quest(3, "Overcoming Your Fears", "Defeat Crippling Anxiety", 1, 0, false, 100, 100, "", "Type", "Crippling Anxiety"));
+        QuestRepo.addQuest(new Quest(4, "Slay a boss", "You must face the most fearsome creature this land has to offer, a boss monster.", 1,0, false, 200, 200, "Solid State Dagger", "Rarity", "Boss"));
 
         Hero hero = new Hero("HERO");
         hero.setCurrentQuest(QuestRepo.getQuestByID(1));
