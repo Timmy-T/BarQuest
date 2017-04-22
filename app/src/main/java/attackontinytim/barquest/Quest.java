@@ -5,6 +5,9 @@ import android.os.Parcelable;
 import android.os.Parcel;
 import java.util.Random;
 
+import attackontinytim.barquest.Database.Monster;
+import attackontinytim.barquest.Database.QuestRepo;
+
 public class Quest{
     
     /* ********* */
@@ -72,10 +75,7 @@ public class Quest{
         this.QuestTarget = cursor.getString(10);
     }
    
-    
-    
-    
-    
+
     /* *********** */
     /* GET-METHODS */
     /* *********** */
@@ -168,6 +168,25 @@ public class Quest{
         return name;
     }
 
+    /**
+     * Takes a monster after completing a battle and updates quest progress based on the monster
+     * Currently checks for the monster rarity and the monster name
+     * @param mon Monster that was killed
+     */
+    public void updateQuestProgress(Monster mon){
+        if (this.getQuestType() == "Rarity"){
+            if (this.getQuestTarget() == mon.getRarity()){
+                this.setProgress( this.getProgress() + 1 );
+            }
+        }
+        else if (this.getQuestType() == "Monster"){
+            if (this.getQuestTarget() == mon.getName()){
+                this.setProgress( this.getProgress() + 1 );
+            }
+        }
+
+        QuestRepo.updateQuest(this);
+    }
 
 
     /* ************* */
