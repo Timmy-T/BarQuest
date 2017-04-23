@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import attackontinytim.barquest.Database.ConsumableItem;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
@@ -42,18 +43,32 @@ public class InventoryActivity extends AppCompatActivity {
         currWeaponAtk.setText(String.valueOf(hero.getActive().getAttack()));
         currWeaponStock.setText(String.valueOf(InventoryRepo.getItemQuantity(hero.getActive())));
 
+        // populate weapons list
         final ListView weaponList = (ListView) findViewById(R.id.WeaponRepo);
-        final ArrayList<String> list = new ArrayList<String>();
+        final ArrayList<String> list1 = new ArrayList<String>();
 
         List<Weapon> wList = InventoryRepo.getAllWeapons();
         for (int i = 0; i < wList.size(); i++) {
-            list.add(wList.get(i).getName());
+            list1.add(wList.get(i).getName());
         }
 
         ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list1);
 
         weaponList.setAdapter(itemsAdapter);
+
+        // populate consumable items list
+        final ListView itemsList = (ListView) findViewById(R.id.ItemsRepo);
+        final ArrayList<String> list2 = new ArrayList<String>();
+
+        List<ConsumableItem> iList = InventoryRepo.getAllConsumables();
+        for (int i = 0; i < iList.size(); i++) {
+            list2.add(iList.get(i).getName());
+        }
+
+        itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list2);
+
+        itemsList.setAdapter(itemsAdapter);
     }
 
 	// This is called when the activity is ended via result
