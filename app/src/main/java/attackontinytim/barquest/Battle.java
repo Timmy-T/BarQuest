@@ -15,13 +15,12 @@ public class Battle {
 
     public Hero hero;
     public Monster enemy;
-
     protected Hero battleHero;
     protected Monster battleEnemy;
 
     private double wep_triangle;
 
-    /** Battle Formula Modifiers - more to come? */
+    /** Battle Formula Modifiers*/
     private static final double CH_DEF = 2;
     private static final double MON_DEF  = 2;
     private static final int CRIT_MULT = 2;
@@ -36,8 +35,11 @@ public class Battle {
         // name, attack, weight, crit, type
         Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
 
+        // test quest
+        Quest testQuest = new Quest();
+
         // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.hero = new Hero(0, "testPlayer", 20, 0, 1, 5, 5,5, 0, testWeapon, 10);
+        this.hero = new Hero(0, "testPlayer", 100, 0, 1, 5, 5,5, 0, testWeapon, 100, testQuest);
 
         // String name, int level, int hitPoints, int attack, int defense, int speed, String type
         this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
@@ -222,6 +224,19 @@ public class Battle {
         }
         return success;
     }
+    
+    protected boolean hasEnded() {
+        boolean ended = false;
+        
+        if (this.battleHero.getHP() <= 0){
+            ended = true;
+        }
+        
+        else if (this.battleEnemy.getHP() <= 0){
+            ended = true;
+            this.hero.inc_experience(this.battleEnemy.getXP());
+        }
+        
+        return ended;
+    }
 }
-//TODO: function to check if battle has ended and give exp accordingly
-
