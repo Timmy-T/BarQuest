@@ -58,9 +58,9 @@ public class ConsumableRepo {
     public static ConsumableItem getConsumableByName(String name) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.query(TABLE_CONSUMABLE, new String[] {
-                        KEY_NAME ,
                         KEY_EFFECT ,
                         KEY_EFFECTSTRENGTH ,
+                        KEY_NAME,
                         KEY_VALUE}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
 
