@@ -13,11 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import junit.framework.Test;
 
+import attackontinytim.barquest.Database.DBHandler;
+import attackontinytim.barquest.Database.HeroRepo;
+import attackontinytim.barquest.Database.InsertDataValues;
+import attackontinytim.barquest.Database.Testing;
+import attackontinytim.barquest.Database.DatabaseManager;
 public class MainActivity extends AppCompatActivity {
 
     // global Hero
-    public Hero hero = new Hero("HERO");
+    public Hero hero;
 
     // Return
     static public int MAIN_RETURN_CODE = 1;
@@ -30,7 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private static Button inventory;
     private static Button shop;
     private static Button levelUp;
-	
+    private static Button quest;
+    private static Button consumables;
+    private static Button reset;
+
+    // DB Handler object for all database calls
+    private static DBHandler dbHandler;
+
 	// This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,28 +53,40 @@ public class MainActivity extends AppCompatActivity {
 
         onClickButtonListener();
 
+        // Checks for permissions to save and read from storage
         checkPermissions();
 
+        // Loads database handler
+        dbHandler = new DBHandler(this.getApplicationContext());
+        DatabaseManager.initializeInstance(dbHandler);
+        // Inserts value to database if database is empty
+        InsertDataValues.createDatabaseValues();
+
+        if (HeroRepo.getAllHeros().size() == 0){
+            InsertDataValues.initializeHeroValues();
+        }
+        else {
+            hero = HeroRepo.getHeroByName("HERO");
+         }
     }
 
     private void checkPermissions() {
-// Here, thisActivity is the current activity
+        // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-            }
-
+        }
 
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         }
 
-    if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this,
-        new String[]{Manifest.permission.CAMERA}, 0);
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+            new String[]{Manifest.permission.CAMERA}, 0);
         }
-}
+    }
 
     // THIS is disgusting
     public void onClickButtonListener(){
@@ -72,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         inventory = (Button)findViewById(R.id.inventoryButton);
         shop = (Button)findViewById(R.id.shopButton);
         levelUp = (Button)findViewById(R.id.levelUpButton);
+        quest = (Button)findViewById(R.id.questButton);
+        consumables = (Button)findViewById(R.id.consumableButton);
+        reset = (Button)findViewById(R.id.CharReset);
 
         battle.setOnClickListener(
                 new View.OnClickListener() {
@@ -132,6 +159,35 @@ public class MainActivity extends AppCompatActivity {
 
                         intent.putExtras(bundle);
                         startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+        quest.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.QuestActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+        consumables.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
+                        Bundle bundle = bundler.generateBundle(hero);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                    }
+                }
+        );
+
+        reset.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        dbHandler.resetData();
+                        hero = HeroRepo.getHeroByName("HERO");
                     }
                 }
         );

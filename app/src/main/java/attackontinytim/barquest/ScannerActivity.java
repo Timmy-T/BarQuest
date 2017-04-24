@@ -13,6 +13,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 import attackontinytim.barquest.Database.Weapon;
 
+import static attackontinytim.barquest.MainActivity.MAIN_RETURN_CODE;
+
 public class ScannerActivity extends AppCompatActivity {
 
     public Hero hero;
@@ -42,13 +44,15 @@ public class ScannerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
-            if(result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                Log.d("HERE", result.getContents());
-                TextView scanResult = (TextView) findViewById(R.id.scannerID);
-                scanResult.setText(result.getContents());
+            if(result.getContents() != null) {
+                int numberValue = scannerHash(result.getContents());
+
+                Bundle bundle = bundler.generateBundle(hero);
+                bundle.putInt("MonsterHash", numberValue);
+
+                Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
+                intent.putExtras(bundle);
+                startActivityForResult(intent,  MAIN_RETURN_CODE);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
@@ -71,5 +75,25 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     public void ScannerActivity(View view) {
+    }
+
+    /**
+     * Turns the value scanned into an integer value
+     * @param value Ascii string
+     * @return integer value that is either the number scanned or an ascii string converted to
+     * numbers
+     */
+    private int scannerHash(String value){
+        try{
+            int number = Integer.parseInt(value);
+            return number;
+        }
+        catch (NumberFormatException e){
+            int number = 0;
+            for(int i = 0; i < value.length(); i++){
+                number += (int)value.charAt(i);
+            }
+            return number;
+        }
     }
 }

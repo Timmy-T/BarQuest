@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.R.layout;
 
@@ -13,7 +14,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
 
     public Hero hero;
 
-	// This is called when the activity is created
+    // This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
 
         // Hook up UI variables to backend variables
         TextView Name = (TextView) findViewById(R.id.CharName);
+        ProgressBar ExpBar = (ProgressBar) findViewById(R.id.ExpBar);
         TextView Exp = (TextView) findViewById(R.id.expstat);
         TextView Money = (TextView) findViewById(R.id.moneystat);
         TextView LvlStat = (TextView) findViewById(R.id.lvlstat);
@@ -33,6 +35,8 @@ public class CharacterScreenActivity extends AppCompatActivity {
         TextView SpdStat = (TextView) findViewById(R.id.spdstat);
 
         Name.setText(String.valueOf(hero.getName()));
+        ExpBar.setMax(100);
+        ExpBar.setProgress(hero.getXP());
         Exp.setText(String.valueOf(hero.getXP()));
         Money.setText(String.valueOf(hero.getMoney()));
         LvlStat.setText(String.valueOf(hero.getLevel()));
@@ -40,29 +44,29 @@ public class CharacterScreenActivity extends AppCompatActivity {
         AtkStat.setText(String.valueOf(hero.getAttack()));
         DefStat.setText(String.valueOf(hero.getDefense()));
         SpdStat.setText(String.valueOf(hero.getSpeed()));
-
     }
-	
-	// This is called when the activity is ended via result
+
+
+    // This is called when the activity is ended via result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
                 default:
-					// it ends the acitivity
+                    // it ends the acitivity
                     end();
             }
         }
     }
-	
-	// What is done when hardware back button is pressed
+
+    // What is done when hardware back button is pressed
     @Override
     public void onBackPressed() {
-		// it ends the acitivity
+        // it ends the acitivity
         end();
     }
 
-	// This is the act of ending the activity
+    // This is the act of ending the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
 
@@ -71,5 +75,5 @@ public class CharacterScreenActivity extends AppCompatActivity {
     }
 
 
-    
+
 }

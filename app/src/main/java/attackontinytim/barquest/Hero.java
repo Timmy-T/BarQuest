@@ -1,9 +1,12 @@
 package attackontinytim.barquest;
 
+import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
 
 public class Hero implements Parcelable {
 
@@ -27,6 +30,7 @@ public class Hero implements Parcelable {
     private double money;
     private int AP;
     private Weapon active;
+    private Quest currentQuest;
 
      /* ************ */
     /* CONSTRUCTORS */
@@ -39,9 +43,9 @@ public class Hero implements Parcelable {
     public Hero(String name) {
         this.id = 0;
         this.name = name;
-        this.HP = 20;
+        this.HP = 100;
         this.XP = 0 ;
-        this.money = 0;
+        this.money = 10;
         this.AP = 10;
         this.level = 1;
         this.speed = 5;
@@ -49,10 +53,11 @@ public class Hero implements Parcelable {
         this.attack = 5;
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
+        this.currentQuest = new Quest();
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
-    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP) {
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP, Quest currentQuest) {
         this.id = id;
         this.name = name;
         this.HP = HP;
@@ -66,6 +71,7 @@ public class Hero implements Parcelable {
 
         // Default cuz reasons
         this.active = active;
+        this.currentQuest = currentQuest;
     }
 
     /** Copy Constructor makes a deep copy of the hero */
@@ -81,7 +87,8 @@ public class Hero implements Parcelable {
                 this.getAttack(),
                 this.getMoney(),
                 this.getActive(),
-                this.getAP());
+                this.getAP(),
+                this.getCurrentQuest());
     }
 
 
@@ -168,9 +175,13 @@ public class Hero implements Parcelable {
     public Weapon getActive() {
         return active;
     }
+    public Quest getCurrentQuest() {return currentQuest; }
 
     public void setActive(Weapon active) {
         this.active = active;
+    }
+    public void setCurrentQuest(Quest currentQuest) {
+        this.currentQuest = currentQuest;
     }
 
     public static Creator<Hero> getCREATOR() {
@@ -223,6 +234,7 @@ public class Hero implements Parcelable {
         this.attack = in.readInt();
         this.money = in.readDouble();
         this.active = in.readParcelable(Weapon.class.getClassLoader());
+        this.currentQuest =  in.readParcelable(Quest.class.getClassLoader());
     }
 
     @Override
@@ -245,6 +257,24 @@ public class Hero implements Parcelable {
         dest.writeInt(this.getAttack());
         dest.writeDouble(this.getMoney());
         dest.writeParcelable(this.getActive(), flags);
+        //dest.writeParcelable(this.getCurrentQuest(), flags);
+    }
+
+    public Hero(Cursor cursor)
+    {
+        this.id = cursor.getInt(0);
+        this.name = cursor.getString(1);
+        this.HP = cursor.getInt(2);
+        this.XP = cursor.getInt(3);
+        this.level = cursor.getInt(4);
+        this.speed = cursor.getInt(5);
+        this.defense = cursor.getInt(6);
+        this.attack = cursor.getInt(7);
+        this.money = cursor.getDouble(8);
+        this.active = WeaponRepo.getItemByName(cursor.getString(9));
+        this.AP = cursor.getInt(10);
+        this.currentQuest = QuestRepo.getQuestByID(cursor.getInt(11));
+
     }
 
     public static final Parcelable.Creator<Hero> CREATOR = new Parcelable.Creator<Hero>() {

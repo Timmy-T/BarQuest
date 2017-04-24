@@ -148,7 +148,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     end();
                                 }
                             }
-                        }, 2000); //wait 1.5s
+                        }, 1000); //wait 1.5s
                     }
                 }
         );
@@ -180,6 +180,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         setResult(RESULT_OK,getIntent().putExtras(bundle));
                         if (battle.calc_flee()){
                             end();
+                            //TODO: add some kind of pause+"flee was successful/failed" output
                         }
                     }
                 }

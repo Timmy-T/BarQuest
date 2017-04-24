@@ -19,16 +19,39 @@
         android:rowCount="4"
         android:layout_alignParentTop="true">
 
-        <TextView
+        <TableLayout
             android:id="@+id/battleDescription"
-            android:text="Description of what's happening here."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_columnSpan="3"
+            android:visibility="invisible"
+            android:textAlignment="center"
             android:paddingBottom="20dp"
             android:paddingTop="10dp"
             android:layout_row="0"
-            android:layout_column="0"/>
+            android:layout_column="0">
+            <TableRow>
+                <TextView
+                    android:id="@+id/attackerText"
+                    android:textSize="15dp"/>
+                <TextView
+                    android:text=" attacks "
+                    android:textSize="15dp"/>
+                <TextView
+                    android:id="@+id/defenderText"
+                    android:textSize="15dp"/>
+                <TextView
+                    android:text=" for "
+                    android:textSize="15dp"/>
+                <TextView
+                    android:id="@+id/damageText"
+                    android:textSize="15dp"/>
+                <TextView
+                    android:text=" damage! "
+                    android:textSize="15dp"/>
+            </TableRow>
+
+        </TableLayout>
 
         <ImageView
             android:id="@+id/heroPic"
@@ -47,6 +70,7 @@
             android:layout_height="300dp"
             android:layout_column="1"
             android:layout_columnWeight="1"
+            android:visibility="invisible"
             android:layout_gravity="center|bottom"
             android:layout_row="1"
             android:scaleType="fitEnd"

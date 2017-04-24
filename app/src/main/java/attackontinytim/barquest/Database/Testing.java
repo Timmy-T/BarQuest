@@ -18,35 +18,10 @@ public class Testing extends AppCompatActivity {
 
     }
 
-    /**
-     * Adds dummy records to the database if none are present
-     * @param activity The calling activity
-     */
-    public void addRecords(MainActivity activity){
-
-        DBHandler monsterDB = new DBHandler(activity);
-        if (monsterDB.getMonsterCount() == 0) {
-            monsterDB.addMonster(new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5));
-            monsterDB.addMonster(new Monster(2,"Tim", 50, 10, "Long", 5.0, 1, "Rare", 15, 15, 15));
-            monsterDB.addMonster(new Monster(3,"MatLab", 200, 100, "Mid", 5.0, 1, "Uncommon", 50, 5, 25));
-            monsterDB.addMonster(new Monster(4,"Jimbo", 10000, 5000, "Mid", 5.0, 1, "Common", 45, 55, 35));
-        }
-
-        DBHandlerItems itemDB = new DBHandlerItems(activity);
-        if (itemDB.getItemCount() == 0){
-            itemDB.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-            itemDB.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-            itemDB.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
-        }
-    }
-
-
     public void testMonster(MainActivity activity){
 
-        DBHandler db = new DBHandler(activity);
-
         Log.d("Checking data: ", "Fetching Monster List");
-        List<Monster> oldMonsters = db.getAllMonsters();
+        List<Monster> oldMonsters = MonsterRepo.getAllMonsters();
 
         for (Monster monster : oldMonsters) {
             String log = "Name: " + monster.getName() + " ,HP: " + monster.getHP() + " ,XP: " + monster.getXP();
@@ -56,14 +31,14 @@ public class Testing extends AppCompatActivity {
 
         // Inserting rows
         Log.d("Insert: ", "Inserting ..");
-        db.addMonster(new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5));
-        db.addMonster(new Monster(2,"Tim", 50, 10, "Long", 5.0, 1, "Rare", 15, 15, 15));
-        db.addMonster(new Monster(3,"MatLab", 200, 100, "Mid", 5.0, 1, "Uncommon", 50, 5, 25));
-        db.addMonster(new Monster(4,"Jimbo", 10000, 5000, "Mid", 5.0, 1, "Common", 45, 55, 35));
+        //MonsterRepo.addMonster(new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5));
+        //MonsterRepo.addMonster(new Monster(2,"Tim", 50, 10, "Long", 5.0, 1, "Rare", 15, 15, 15));
+        //MonsterRepo.addMonster(new Monster(3,"MatLab", 200, 100, "Mid", 5.0, 1, "Uncommon", 50, 5, 25));
+        //MonsterRepo.addMonster(new Monster(4,"Jimbo", 10000, 5000, "Mid", 5.0, 1, "Common", 45, 55, 35));
 
         // Reading all monsters
         Log.d("Reading: ", "Reading all shops..");
-        List<Monster> monsters = db.getAllMonsters();
+        List<Monster> monsters = MonsterRepo.getAllMonsters();
 
         for (Monster monster : monsters) {
             String log = "Name: " + monster.getName() + " ,HP: " + monster.getHP() + " ,XP: " + monster.getXP();
@@ -76,13 +51,13 @@ public class Testing extends AppCompatActivity {
         // Changing its name
         myMon.setName("TY");
         // Changing its ID
-        myMon.setId(5);
+        myMon.setId(9999);
         // Adding to monster table
-        db.addMonster(myMon);
-        Monster addedMon = db.getMonsterByName("TY");
+        MonsterRepo.addMonster(myMon);
+        Monster addedMon = MonsterRepo.getMonsterByName("TY");
 
         Log.d("Checking data: ", "Fetching Updated Monster List");
-        monsters = db.getAllMonsters();
+        monsters = MonsterRepo.getAllMonsters();
 
         for (Monster monster : monsters) {
             String log = "Name: " + monster.getName() + " ,HP: " + monster.getHP() + " ,XP: " + monster.getXP();
@@ -92,10 +67,10 @@ public class Testing extends AppCompatActivity {
 
 
         Log.d("Deleting Data: ", "Kill it");
-        db.deleteMonster(addedMon);
+        MonsterRepo.deleteMonster(addedMon);
 
         Log.d("Checking data: ", "Fetching Monster List");
-        monsters = db.getAllMonsters();
+        monsters = MonsterRepo.getAllMonsters();
 
         for (Monster monster : monsters) {
             String log = "Name: " + monster.getName() + " ,HP: " + monster.getHP() + " ,XP: " + monster.getXP();
@@ -107,17 +82,15 @@ public class Testing extends AppCompatActivity {
 
     public void testItems(MainActivity activity){
 
-        DBHandlerItems db = new DBHandlerItems(activity);
-
         // Inserting rows
         Log.d("Insert: ", "Inserting ..");
-        db.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
-        db.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
-        db.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
+        //WeaponRepo.addItem(new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5));
+        //WeaponRepo.addItem(new Weapon("Mid", 190,95,"Sword of a Thousand Truths", 9999, 0.1));
+        //WeaponRepo.addItem(new Weapon("Long", 55,3,"David Bowie", 10, 2.5));
 
         // Reading all weapons
         Log.d("Reading: ", "Reading all weapons..");
-        List<Weapon> weapons = db.getAllItems();
+        List<Weapon> weapons = WeaponRepo.getAllItems();
 
         for (Weapon weapon : weapons) {
             String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
@@ -130,11 +103,11 @@ public class Testing extends AppCompatActivity {
         // Changing its name
         myWeapon.setName("Dev's Sword");
         // Adding to item table
-        db.addItem(myWeapon);
-        Weapon addedWeapon = db.getItemByName("Dev's Sword");
+        WeaponRepo.addItem(myWeapon);
+        Weapon addedWeapon = WeaponRepo.getItemByName("Dev's Sword");
 
         Log.d("Checking data: ", "Fetching Updated Weapon List");
-        weapons = db.getAllItems();
+        weapons = WeaponRepo.getAllItems();
 
         for (Weapon weapon : weapons) {
             String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
@@ -143,10 +116,10 @@ public class Testing extends AppCompatActivity {
         }
 
         Log.d("Deleting Data: ", "Kill it");
-        db.deleteItem(myWeapon);
+        WeaponRepo.deleteItem(myWeapon);
 
         Log.d("Checking data: ", "Fetching Updated Weapon List");
-        weapons = db.getAllItems();
+        weapons = WeaponRepo.getAllItems();
 
         for (Weapon weapon : weapons) {
             String log = "Name: " + weapon.getName() + " ,Attack Type: " + weapon.getAttackType() + ", Attack" + weapon.getAttack();
