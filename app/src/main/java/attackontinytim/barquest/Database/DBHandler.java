@@ -8,7 +8,7 @@ import attackontinytim.barquest.Hero;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 18;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -44,6 +44,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MonsterRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + ConsumableRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
+
         // Creating tables again
         onCreate(db);
     }
