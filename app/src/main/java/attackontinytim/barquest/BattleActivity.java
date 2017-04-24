@@ -96,7 +96,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-        //TODO: implement flee and item functionality
+        //TODO: implement item functionality
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
@@ -119,9 +119,13 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             damage = battle.enemy.getAttack();
                             reloadBattleScreen();
                         }
+                        
+                        if (battle.hasEnded()){
+                            end();
+                        }
 
                         //insert pause here for dramatic effect
-                        Handler handler = new Handler();
+                        final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run(){
                                 if(battle.heroPriority()) {
@@ -139,8 +143,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     damage = damage - battle.battleEnemy.getHP();
                                     reloadBattleScreen();
                                 }
+                                handler.postDelayed(new Runnable() {
+                                    public void run(){
+                                        if (battle.hasEnded()) {
+                                            end();
+                                        }
+                                    }
+                                },1000);
                             }
-                        }, 2000); //wait 1.5s
+                        }, 1000); //wait 1s
                     }
                 }
         );
@@ -170,7 +181,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         Intent intent = new Intent("attackontinytim.barquest.MainActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         setResult(RESULT_OK,getIntent().putExtras(bundle));
-                        finish();
+                        if (battle.calc_flee()){
+                            end();
+                            //TODO: add some kind of pause+"flee was successful/failed" output
+                        }
                     }
                 }
         );
