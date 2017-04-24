@@ -20,13 +20,18 @@ public class Timer implements Parcelable {
 
     // Default constructor
     public Timer() {
-
+        time = Calendar.getInstance();
+        time.add(Calendar.HOUR, -2);
     }
 
     public Timer(Calendar time) {
         this.time = time;
     }
 
+    public Timer(long input) {
+        time = Calendar.getInstance();
+        time.setTimeInMillis(input);
+    }
 
     /* *********** */
     /* GET-METHODS */
@@ -44,6 +49,8 @@ public class Timer implements Parcelable {
     public void setTime(Calendar time) {
         this.time = time;
     }
+
+    public void setTime(long input) { time.setTimeInMillis(input); }
 
     /* ************* */
     /* MISC. METHODS */
@@ -82,16 +89,17 @@ public class Timer implements Parcelable {
 
     public void writeToParcel(Parcel out, int flags) {
         out.writeLong(time.getTimeInMillis());
-        out.writeString(time.getTimeZone().getID());
+        //out.writeString(time.getTimeZone().getID());
     }
 
     private Timer(Parcel in) {
 
         long milliseconds = in.readLong();
-        String timezone_id = in.readString();
+        //String timezone_id = in.readString();
 
         //time = new GregorianCalendar(TimeZone.getTimeZone(timezone_id));
-        time = new GregorianCalendar();
+        //time = new GregorianCalendar();
+        time = Calendar.getInstance();
         time.setTimeInMillis(milliseconds);
 
     }

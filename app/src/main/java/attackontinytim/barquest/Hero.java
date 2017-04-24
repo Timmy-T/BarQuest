@@ -31,13 +31,16 @@ public class Hero implements Parcelable {
     private int AP;
     private Weapon active;
     private Quest currentQuest;
+    private Timer[] scanTimers;
 
      /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
 
     /** Obligatory default constructor */
-    public Hero(){}
+    public Hero() {
+        scanTimers = new Timer[10];
+    }
 
     /** Construct a Hero object with the provided name (fresh hero character) */
     public Hero(String name) {
@@ -54,10 +57,11 @@ public class Hero implements Parcelable {
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
         this.currentQuest = new Quest();
+        this.scanTimers = new Timer[10];
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
-    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP, Quest currentQuest) {
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP, Quest currentQuest, long[] timers) {
         this.id = id;
         this.name = name;
         this.HP = HP;
@@ -72,6 +76,37 @@ public class Hero implements Parcelable {
         // Default cuz reasons
         this.active = active;
         this.currentQuest = currentQuest;
+
+        //  Timers
+        this.scanTimers = new Timer[10];
+
+        for (int i = 0; i < 10; i++) {
+            this.scanTimers[i].setTime(timers[i]);
+        }
+    }
+
+    public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP, Quest currentQuest, Timer[] timers) {
+        this.id = id;
+        this.name = name;
+        this.HP = HP;
+        this.XP = XP;
+        this.AP = AP;
+        this.level = level;
+        this.speed = speed;
+        this.defense = defense;
+        this.attack = attack;
+        this.money = money;
+
+        // Default cuz reasons
+        this.active = active;
+        this.currentQuest = currentQuest;
+
+        //  Timers
+        this.scanTimers = new Timer[10];
+
+        for (int i = 0; i < 10; i++) {
+            this.scanTimers[i].setTime(timers[i].getTime());
+        }
     }
 
     /** Copy Constructor makes a deep copy of the hero */
@@ -88,7 +123,8 @@ public class Hero implements Parcelable {
                 this.getMoney(),
                 this.getActive(),
                 this.getAP(),
-                this.getCurrentQuest());
+                this.getCurrentQuest(),
+                this.getScanTimers());
     }
 
 
@@ -176,6 +212,7 @@ public class Hero implements Parcelable {
         return active;
     }
     public Quest getCurrentQuest() {return currentQuest; }
+    public Timer[] getScanTimers() { return scanTimers; }
 
     public void setActive(Weapon active) {
         this.active = active;
@@ -183,6 +220,7 @@ public class Hero implements Parcelable {
     public void setCurrentQuest(Quest currentQuest) {
         this.currentQuest = currentQuest;
     }
+    public void setScanTimers(Timer[] incomingTimers) { this.scanTimers = incomingTimers; }
 
     public static Creator<Hero> getCREATOR() {
         return CREATOR;
@@ -218,6 +256,22 @@ public class Hero implements Parcelable {
         }
     }
 
+    public boolean timerPress() {
+        boolean pressed = false;
+        int i = 0;
+
+        while ((!pressed) && (i < 10))
+        {
+            if (scanTimers[i].checkIfPast()) {
+                scanTimers[i].setTimer();
+                pressed = true;
+            }
+            i++;
+        }
+
+        return pressed;
+    }
+
     // Framework Methods
     /////////////////////
 
@@ -234,7 +288,13 @@ public class Hero implements Parcelable {
         this.attack = in.readInt();
         this.money = in.readDouble();
         this.active = in.readParcelable(Weapon.class.getClassLoader());
-        this.currentQuest =  in.readParcelable(Quest.class.getClassLoader());
+        //this.currentQuest =  in.readParcelable(Quest.class.getClassLoader());
+
+        this.scanTimers = new Timer[10];
+
+        for (int i = 0; i < 10; i++) {
+            this.scanTimers[i].setTime(in.readLong());
+        }
     }
 
     @Override
@@ -258,6 +318,9 @@ public class Hero implements Parcelable {
         dest.writeDouble(this.getMoney());
         dest.writeParcelable(this.getActive(), flags);
         //dest.writeParcelable(this.getCurrentQuest(), flags);
+        for (int i = 0; i < 10; i++) {
+            dest.writeDouble(this.scanTimers[i].getTime().getTimeInMillis());
+        }
     }
 
     public Hero(Cursor cursor)
