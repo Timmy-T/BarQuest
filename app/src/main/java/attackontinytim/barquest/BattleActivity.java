@@ -125,7 +125,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         }
 
                         //insert pause here for dramatic effect
-                        Handler handler = new Handler();
+                        final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run(){
                                 if(battle.heroPriority()) {
@@ -143,12 +143,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     damage = damage - battle.battleEnemy.getHP();
                                     reloadBattleScreen();
                                 }
-                                
-                                if (battle.hasEnded()){
-                                    end();
-                                }
+                                handler.postDelayed(new Runnable() {
+                                    public void run(){
+                                        if (battle.hasEnded()) {
+                                            end();
+                                        }
+                                    }
+                                },1000);
                             }
-                        }, 1000); //wait 1.5s
+                        }, 1000); //wait 1s
                     }
                 }
         );

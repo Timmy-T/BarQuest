@@ -202,7 +202,11 @@ public class Battle {
                 int damage = this.calc_dmg();
 
                 //subtract damage from monster's HP
-                this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
+                if(this.battleEnemy.getHP() - damage < 0){
+                    this.battleEnemy.setHP(0);
+                }
+                else
+                    this.battleEnemy.setHP(this.battleEnemy.getHP() - damage);
                 Log.d(TAG, "battleEnemy HP after: " + String.valueOf(this.battleEnemy.getHP()));
             }
         }
@@ -218,7 +222,11 @@ public class Battle {
             if(this.calc_hit_enemy()){
                 Log.d(TAG, "battleHero HP before: " + String.valueOf(this.battleHero.getHP()));
                 success = true;
-                this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
+                if(this.battleHero.getHP() - this.battleEnemy.getAttack() < 0){
+                    this.battleHero.setHP(0);
+                }
+                else
+                    this.battleHero.setHP(this.battleHero.getHP() - this.battleEnemy.getAttack());
                 Log.d(TAG, "battleHero HP after: " + String.valueOf(this.battleHero.getHP()));
             }
         }
