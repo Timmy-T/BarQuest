@@ -1,5 +1,9 @@
 package attackontinytim.barquest.Database;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import attackontinytim.barquest.Hero;
 import attackontinytim.barquest.Quest;
 
@@ -87,5 +91,14 @@ public class InsertDataValues {
         InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
         InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
         InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
+
+        // Creates a list of longs for the timers
+        List<Long> timerList = new ArrayList<>();
+
+        for (int i =0; i < 10; i++){
+            timerList.add(Long.valueOf(0));
+        }
+
+        TimerRepo.addTimers( timerList, "HERO");
     }
 }

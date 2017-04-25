@@ -8,7 +8,7 @@ import attackontinytim.barquest.Hero;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 19;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -36,6 +36,10 @@ public class DBHandler extends SQLiteOpenHelper {
         try {
             db.execSQL(QuestRepo.createTable());
         } catch (Exception ex) {}
+
+        try {
+            db.execSQL(TimerRepo.createTable());
+        } catch (Exception ex) {}
     }
 
     @Override
@@ -48,6 +52,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
 
+
         // Creating tables again
         onCreate(db);
     }
@@ -58,14 +63,16 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + TimerRepo.getTableName());
 
         db.execSQL(HeroRepo.createTable());
         db.execSQL(InventoryRepo.createTable());
         db.execSQL(QuestRepo.createTable());
-
-        InsertDataValues.initializeHeroValues();
+        db.execSQL(TimerRepo.createTable());
 
         DatabaseManager.getInstance().closeDatabase();
+
+        InsertDataValues.initializeHeroValues();
     }
 }
 
