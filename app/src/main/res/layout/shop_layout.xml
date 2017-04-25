@@ -77,7 +77,7 @@
         android:textSize="18sp"
         android:layout_marginTop="22dp"
         android:layout_below="@+id/Stat_pot_1_button"
-        android:layout_alignStart="@+id/escape_pot_quantity" />
+        android:layout_alignStart="@+id/stat_pot_3_quantity" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
         android:text="stat_pot_2"
         android:id="@+id/stat_pot_2_label"
         android:textSize="18sp"
-        android:layout_above="@+id/escape_pot_label"
+        android:layout_above="@+id/stat_pot_3_label"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -127,8 +127,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="escape_pot"
-        android:id="@+id/escape_pot_label"
+        android:text="stat_pot_3"
+        android:id="@+id/stat_pot_3_label"
         android:textSize="18sp"
         android:layout_marginTop="23dp"
         android:layout_below="@+id/Stat_pot_2_button"
@@ -138,17 +138,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NULL"
-        android:id="@+id/escape_pot_quantity"
+        android:id="@+id/stat_pot_3_quantity"
         android:textSize="18sp"
-        android:layout_alignTop="@+id/escape_pot_label"
+        android:layout_alignTop="@+id/stat_pot_3_label"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Purchase x 1"
-        android:id="@+id/escape_pot_button"
-        android:layout_alignBottom="@+id/escape_pot_quantity"
+        android:id="@+id/stat_pot_3_button"
+        android:layout_alignBottom="@+id/stat_pot_3_quantity"
         android:layout_alignStart="@+id/Stat_pot_2_button"
         android:textSize="21sp" />
 
@@ -159,7 +159,7 @@
         android:id="@+id/weapon_label"
         android:layout_marginTop="21dp"
         android:textSize="18sp"
-        android:layout_below="@+id/escape_pot_button"
+        android:layout_below="@+id/stat_pot_3_button"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -169,7 +169,7 @@
         android:id="@+id/weapon_quanity"
         android:textSize="18sp"
         android:layout_alignTop="@+id/weapon_label"
-        android:layout_alignStart="@+id/escape_pot_quantity" />
+        android:layout_alignStart="@+id/stat_pot_3_quantity" />
 
     <Button
         android:layout_width="wrap_content"
@@ -177,6 +177,6 @@
         android:text="Purchase x 1"
         android:id="@+id/weapon_button"
         android:layout_alignBottom="@+id/weapon_quanity"
-        android:layout_alignStart="@+id/escape_pot_button"
+        android:layout_alignStart="@+id/stat_pot_3_button"
         android:textSize="21sp" />
 </RelativeLayout>
