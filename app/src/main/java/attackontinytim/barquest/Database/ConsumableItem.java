@@ -8,21 +8,20 @@ import android.database.Cursor;
 
 public class ConsumableItem {
     public ConsumableItem(String effect, int HPeffect, int speedEffect, int defenseEffect, int attackEffect, String target, String name, double value) {
-        this.effect = effect;
         this.name = name;
+        this.effect = effect;
         this.value = value;
         this.HPeffect = HPeffect;
         this.speedEffect = speedEffect;
         this.defenseEffect = defenseEffect;
         this.attackEffect = attackEffect;
         this.target = target;
-
     }
 
     public ConsumableItem(Cursor cursor)
     {
-        this.effect = cursor.getString(0);
-        this.name=cursor.getString(1);
+        this.name=cursor.getString(0);
+        this.effect = cursor.getString(1);
         this.value=cursor.getInt(2);
         this.HPeffect = cursor.getInt(3);
         this.speedEffect = cursor.getInt(4);
@@ -95,8 +94,8 @@ public class ConsumableItem {
         this.target = target;
     }
 
-    private String effect;
     private String name;
+    private String effect;
     private double value;
     private int HPeffect;
     private int speedEffect;
