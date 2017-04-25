@@ -1,56 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shop_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="attackontinytim.barquest.ShopActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorAccent"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize"
-            android:weightSum="1">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shop"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="50sp" />
 
-            <TextView
-                android:text="Shop"
-                android:layout_width="354dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:paddingTop="5dp"
-                android:textColor="@android:color/white"
-                android:layout_weight="0.10" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item (Cost)"
+        android:id="@+id/textView3"
+        android:layout_marginTop="38dp"
+        android:textSize="21sp"
+        android:layout_below="@+id/textView2"
+        android:layout_toStartOf="@+id/textView4" />
 
-        </android.support.v7.widget.Toolbar>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity Owned"
+        android:id="@+id/textView4"
+        android:textSize="21sp"
+        android:layout_marginStart="22dp"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_alignStart="@+id/textView2" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hp_pot"
+        android:id="@+id/hp_pot_label"
+        android:layout_marginTop="55dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/hp_pot_quanitty"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/hp_pot_label"
+        android:layout_centerHorizontal="true" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/stat_pot_1_quantity"
+        android:textSize="18sp"
+        android:layout_below="@+id/HP_Pot_button"
+        android:layout_alignStart="@+id/stat_pot_2_quantity"
+        android:layout_marginTop="19dp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/stat_pot_2_quantity"
+        android:textSize="18sp"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/Stat_pot_1_button"
+        android:layout_alignStart="@+id/escape_pot_quantity" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stat_pot_1"
+        android:id="@+id/stat_pot_1_label"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/stat_pot_1_quantity"
+        android:layout_alignParentStart="true" />
 
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stat_pot_2"
+        android:id="@+id/stat_pot_2_label"
+        android:textSize="18sp"
+        android:layout_above="@+id/escape_pot_label"
+        android:layout_alignParentStart="true" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchase x 1"
+        android:id="@+id/HP_Pot_button"
+        android:textSize="21sp"
+        android:layout_alignTop="@+id/hp_pot_quanitty"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchase x 1"
+        android:id="@+id/Stat_pot_2_button"
+        android:textSize="21sp"
+        android:layout_alignTop="@+id/stat_pot_2_quantity"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchase x 1"
+        android:id="@+id/Stat_pot_1_button"
+        android:textSize="21sp"
+        android:layout_alignTop="@+id/stat_pot_1_quantity"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="escape_pot"
+        android:id="@+id/escape_pot_label"
+        android:textSize="18sp"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/Stat_pot_2_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/escape_pot_quantity"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/escape_pot_label"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchase x 1"
+        android:id="@+id/escape_pot_button"
+        android:layout_alignBottom="@+id/escape_pot_quantity"
+        android:layout_alignStart="@+id/Stat_pot_2_button"
+        android:textSize="21sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weapon_label"
+        android:id="@+id/weapon_label"
+        android:layout_marginTop="21dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/escape_pot_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/weapon_quanity"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/weapon_label"
+        android:layout_alignStart="@+id/escape_pot_quantity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchase x 1"
+        android:id="@+id/weapon_button"
+        android:layout_alignBottom="@+id/weapon_quanity"
+        android:layout_alignStart="@+id/escape_pot_button"
+        android:textSize="21sp" />
+</RelativeLayout>
