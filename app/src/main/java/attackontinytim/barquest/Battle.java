@@ -7,6 +7,7 @@ import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
 import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -215,7 +216,7 @@ public class Battle {
         }
 
         //now that the item has been consumed, remove it from the inventory
-        ConsumableRepo.deleteConsumable(item);
+        InventoryRepo.subtractItemFromInvetory(item);
 
         return;
     }
