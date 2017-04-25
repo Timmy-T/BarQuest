@@ -149,7 +149,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                             end();
                                         }
                                     }
-                                },1000);
+                                },1500);
                             }
                         }, 1000); //wait 1s
                     }
@@ -169,6 +169,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
+
                     }
                 }
         );
@@ -177,7 +178,6 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // need to reset battle()?
                         Intent intent = new Intent("attackontinytim.barquest.MainActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         setResult(RESULT_OK,getIntent().putExtras(bundle));

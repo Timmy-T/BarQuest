@@ -4,6 +4,10 @@ import android.widget.TextView;
 import android.os.Handler;
 import java.lang.Runnable;
 import android.util.Log;
+
+import attackontinytim.barquest.Database.ConsumableItem;
+import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -187,6 +191,34 @@ public class Battle {
         if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
             return true;
         return false;
+    }
+
+    /**
+     * Uses an item from the hero's inventory
+     */
+    protected void consumeItem(ConsumableItem item){
+        //assume item exists in inventory, because if it didn't we wouldn't be able to click on it
+        //from the item screen
+
+        //apply effects to the hero or the enemy
+        if (item.getTarget() == "Hero"){
+            this.battleHero.setHP(this.battleHero.getHP() + item.getHPeffect());
+            this.battleHero.setSpeed(this.battleHero.getSpeed() + item.getSpeedEffect());
+            this.battleHero.setDefense(this.battleHero.getDefense() + item.getDefenseEffect());
+            this.battleHero.setAttack(this.battleHero.getAttack() + item.getAttackEffect());
+        }
+
+        else{ //item affects monster
+            this.battleEnemy.setHP(this.battleEnemy.getHP() + item.getHPeffect());
+            this.battleEnemy.setSpeed(this.battleEnemy.getSpeed() + item.getSpeedEffect());
+            this.battleEnemy.setDefense(this.battleEnemy.getDefense() + item.getDefenseEffect());
+            this.battleEnemy.setAttack(this.battleEnemy.getAttack() + item.getAttackEffect());
+        }
+
+        //now that the item has been consumed, remove it from the inventory
+        InventoryRepo.subtractItemFromInvetory(item);
+
+        return;
     }
 
     /**And it's finally showtime
