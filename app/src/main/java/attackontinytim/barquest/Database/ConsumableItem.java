@@ -16,7 +16,6 @@ public class ConsumableItem {
         this.defenseEffect = defenseEffect;
         this.attackEffect = attackEffect;
         this.target = target;
-
     }
 
     public ConsumableItem(Cursor cursor)
