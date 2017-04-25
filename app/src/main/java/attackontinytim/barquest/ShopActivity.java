@@ -6,17 +6,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Random;
+import attackontinytim.barquest.Hero;
 
 import attackontinytim.barquest.Database.ConsumableItem;
+import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Weapon;
 
 public class ShopActivity extends AppCompatActivity {
 
     public Hero hero;
 
+    Random rand = new Random();
+
+    //3 types of hp pots
+    private  int randHP = rand.nextInt(3)+1;
+    //3 types of stat pots
+    private int randStat1 = rand.nextInt(3)+1;
+    //3 types of stat pots
+    private int randStat2 = rand.nextInt(3)+1;
+    //6 types of weapons
+    private int randWeapon = rand.nextInt(6)+1;
 
     //Buttons~
-
     private static Button HP_Pot_button;
     private static Button Stat_pot_1_button;
     private static Button Stat_pot_2_button;
@@ -25,7 +38,10 @@ public class ShopActivity extends AppCompatActivity {
 
     //Consumables
     //public static ConsumableItem getConsumableByName(String name)
+    //InventoryRepo.addItemToInventory(ConsumableRepo.getConsumableByName("Virus Scan"));
 
+    //statpot1 = ConsumableRepo.getConsumableByName("Debug");
+    //statpot1quantity = ConsumableRepo.getItemQuantity(statpot1) ;
 
     //"" stat pot1
     //"" stat pot 2
