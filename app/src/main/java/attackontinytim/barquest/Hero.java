@@ -58,6 +58,9 @@ public class Hero implements Parcelable {
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
         this.currentQuest = new Quest();
         this.scanTimers = new Timer[10];
+        for (int i = 0; i < 10; i++) {
+            this.scanTimers[i].setTime(Calendar.getInstance());
+        }
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
