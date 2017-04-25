@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -99,47 +100,54 @@ public class ShopActivity extends AppCompatActivity {
 
         //get random potions
 
-        hpList = ConsumableRepo.getConsumableByType("Heal");
-        attackList = ConsumableRepo.getConsumableByType("Attack Up");
-        defenseList = ConsumableRepo.getConsumableByType("Defense Up");
-        speedList = ConsumableRepo.getConsumableByType("speedList");
+        hpList = ConsumableRepo.getConsumableListByType("Heal");
+        attackList = ConsumableRepo.getConsumableListByType("Attack Up");
+        defenseList = ConsumableRepo.getConsumableListByType("Defense Up");
+        speedList = ConsumableRepo.getConsumableListByType("speedList");
         //private ConsumableItem[] statPotList = attackList + defenseList + speedList;
-        debuffSpeedList = ConsumableRepo.getConsumableByType("Monster Speed Debuff");
-        debuffDefenseList = ConsumableRepo.getConsumableByType("Monster Defense Debuff");
-        debuffAttackList = ConsumableRepo.getConsumableByType("Monster Attack Debuff");
+        debuffSpeedList = ConsumableRepo.getConsumableListByType("Monster Speed Debuff");
+        debuffDefenseList = ConsumableRepo.getConsumableListByType("Monster Defense Debuff");
+        debuffAttackList = ConsumableRepo.getConsumableListByType("Monster Attack Debuff");
         //debuffPotList = debuff
 
         weaponList = WeaponRepo.getAllItems();
 
+        //make a master list of all stat pots
+        statPotList.addAll(attackList);
+        statPotList.addAll(defenseList);
+        statPotList.addAll(speedList);
+        //shuffle this new master list.
+        Collections.shuffle(statPotList);
 
+        //make a master list of all debuff pots
+        debuffPotList.addAll(debuffAttackList);
+        debuffPotList.addAll(debuffDefenseList);
+        debuffPotList.addAll(debuffSpeedList);
 
-        hpPot = hpList[randHP];
-        statPot1 = statPotList[randStat1];
-        statPot2 = statPotList[randStat2];
-        statPot3 = statPotList[randStat3];
+        Collections.shuffle(debuffPotList);
 
-
+        hpPot = hpList.get(randHP);
+        statPot1 = statPotList.get(randStat1);
+        statPot2 = statPotList.get(randStat2);
+        statPot3 = debuffPotList.get(randStat3);
+        weapon = weaponList.get(randWeapon);
 
 
         //set labels to name of item + cost
-        //hp_pot_label.setText("HI");
-        //stat_pot_1_label.setText("Bye");
-        //stat_pot_2_label.setText("asdf");
-        //stat_pot_3_label.setText("WHY");
-        //weapon_label.setText("no");
+        hp_pot_label.setText(hpPot.getName() + " " + hpPot.getValue());
+        stat_pot_1_label.setText(statPot1.getName()+" "+statPot1.getValue());
+        stat_pot_2_label.setText(statPot2.getName()+" "+statPot2.getValue());
+        stat_pot_3_label.setText(statPot3.getName()+" "+statPot3.getValue());
+        weapon_label.setText(weapon.getName()+" "+weapon.getValue());
 
         //set quantities to their values
-        //    public static int getItemQuantity(ConsumableItem con) {
 
-        hp_pot_quantity.setText(String.valueOf("666"));
-        stat_pot_1_quantity.setText(String.valueOf("asdf"));
-        stat_pot_2_quantity.setText(String.valueOf("coo"));
-        stat_pot_3_quantity.setText(String.valueOf("asdff"));
-        weapon_quantity.setText(String.valueOf("asss"));
+        hp_pot_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(hpPot)));
+        stat_pot_1_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(statPot1)));
+        stat_pot_2_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(statPot2)));
+        stat_pot_3_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(statPot3)));
+        weapon_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(weapon)));
 
-
-        //joe = ConsumableRepo.getConsumableByName("coffee");
-        //InventoryRepo.getItemQuantity(joe);
     }
 
     // This is called when the activity is ended via result
