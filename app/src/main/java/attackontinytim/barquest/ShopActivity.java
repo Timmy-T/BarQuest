@@ -74,7 +74,6 @@ public class ShopActivity extends AppCompatActivity {
 
     private List<Weapon> weaponList;
 
-    private Hero player;
 
 
 
@@ -181,6 +180,7 @@ public class ShopActivity extends AppCompatActivity {
                     if(hero.getMoney() >= hpPot.getValue()){
                         hero.setMoney(hero.getMoney() - hpPot.getValue());
                         InventoryRepo.addItemToInventory(hpPot);
+                        HeroRepo.updateHero(hero);
                     }
                 }
             }
@@ -192,6 +192,7 @@ public class ShopActivity extends AppCompatActivity {
                     if(hero.getMoney() >= statPot1.getValue()){
                         hero.setMoney(hero.getMoney() - statPot1.getValue());
                         InventoryRepo.addItemToInventory(statPot1);
+                        HeroRepo.updateHero(hero);
                     }
                 }
             }
@@ -204,6 +205,7 @@ public class ShopActivity extends AppCompatActivity {
                     if(hero.getMoney() >= statPot2.getValue()){
                         hero.setMoney(hero.getMoney() - statPot2.getValue());
                         InventoryRepo.addItemToInventory(statPot2);
+                        HeroRepo.updateHero(hero);
                     }
                 }
             }
@@ -216,6 +218,7 @@ public class ShopActivity extends AppCompatActivity {
                     if(hero.getMoney() >= statPot1.getValue()){
                         hero.setMoney(hero.getMoney() - statPot1.getValue());
                         InventoryRepo.addItemToInventory(statPot1);
+                        HeroRepo.updateHero(hero);
                     }
                 }
             }
@@ -227,6 +230,7 @@ public class ShopActivity extends AppCompatActivity {
                     if(hero.getMoney() >= weapon.getValue()){
                         hero.setMoney(hero.getMoney() - weapon.getValue());
                         InventoryRepo.addItemToInventory(weapon);
+                        HeroRepo.updateHero(hero);
                     }
                 }
             }
