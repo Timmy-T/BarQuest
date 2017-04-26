@@ -174,13 +174,13 @@ public class Quest{
      * @param mon Monster that was killed
      */
     public void updateQuestProgress(Monster mon){
-        if (this.getQuestType() == "Rarity"){
-            if (this.getQuestTarget() == mon.getRarity()){
+        if (this.getQuestType().equalsIgnoreCase("Rarity")){
+            if (this.getQuestTarget().equalsIgnoreCase(mon.getRarity())){
                 this.setProgress( this.getProgress() + 1 );
             }
         }
-        else if (this.getQuestType() == "Monster"){
-            if (this.getQuestTarget() == mon.getName()){
+        else if (this.getQuestType().equalsIgnoreCase("Monster")){
+            if (this.getQuestTarget().equalsIgnoreCase(mon.getName())){
                 this.setProgress( this.getProgress() + 1 );
             }
         }

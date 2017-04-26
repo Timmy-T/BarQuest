@@ -210,6 +210,13 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     // end the activity
     private void end(){
+        // Checks to make the enemy died
+        if (this.battle.battleEnemy.getHP() <= 0) {
+            // Updates the current quest
+            this.hero.getCurrentQuest().updateQuestProgress(this.battle.battleEnemy);
+        }
+
+
         Bundle bundle = bundler.generateBundle(hero);
         setResult(RESULT_OK,getIntent().putExtras(bundle));
 
