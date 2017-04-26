@@ -1,5 +1,6 @@
 package attackontinytim.barquest;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.List;
+
+import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.MonsterRepo;
 import attackontinytim.barquest.Database.Weapon;
@@ -165,10 +168,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         // CHECK COMMENTS BELOW
                         /////////////////////////////
                         /////////////////////////////
-                        Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                        startActivityForResult(intent, 9000);
 
                     }
                 }
@@ -190,11 +193,23 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         );
     }
 
+
+
     // Completion of activity; not the same as pressing back
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
+                case (9000) : {
+                    if (resultCode == Activity.RESULT_OK) {
+                        String pot_drank_name = data.getStringExtra("Consumable");
+                        battle.consumeItem(ConsumableRepo.getConsumableByName(pot_drank_name));
+                    }
+                    break;
+                }
+
+
                 default:
                     end();
             }
