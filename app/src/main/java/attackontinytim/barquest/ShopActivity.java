@@ -14,6 +14,7 @@ import java.util.Random;
 
 import attackontinytim.barquest.Database.ConsumableItem;
 import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
@@ -29,7 +30,7 @@ public class ShopActivity extends AppCompatActivity {
     //3 types of stat pots
     private int randStat1 = rand.nextInt(3)+1;
     //3 types of stat pots
-    private int randStat2 = rand.nextInt(6)+3;
+    private int randStat2 = rand.nextInt(3)+1;
     //3 types of debuff pots
     private int randStat3 = rand.nextInt(3)+1;
     //6 types of weapons
@@ -39,11 +40,11 @@ public class ShopActivity extends AppCompatActivity {
 
 
     //Buttons~
-    private static Button HP_Pot_button;
-    private static Button Stat_pot_1_button;
-    private static Button Stat_pot_2_button;
-    private static Button Stat_pot_3_button;
-    private static Button weapon_button;
+    private Button HP_Pot_button;
+    private Button Stat_pot_1_button;
+    private Button Stat_pot_2_button;
+    private Button stat_pot_3_button;
+    private Button weapon_button;
 
     //Consumables
     //public static ConsumableItem getConsumableByName(String name)
@@ -73,6 +74,8 @@ public class ShopActivity extends AppCompatActivity {
 
     private List<Weapon> weaponList;
 
+    private Hero player;
+
 
 
     // This is called when the activity is created
@@ -92,11 +95,11 @@ public class ShopActivity extends AppCompatActivity {
         TextView stat_pot_2_label = (TextView) findViewById(R.id.stat_pot_2_label);
         TextView stat_pot_3_label = (TextView) findViewById(R.id.stat_pot_3_label);
         TextView weapon_label = (TextView) findViewById(R.id.weapon_label);
-        TextView hp_pot_quantity = (TextView) findViewById(R.id.hp_pot_quanitty);
+        TextView hp_pot_quantity = (TextView) findViewById(R.id.hp_pot_quantity);
         TextView stat_pot_1_quantity = (TextView) findViewById(R.id.stat_pot_1_quantity);
         TextView stat_pot_2_quantity = (TextView) findViewById(R.id.stat_pot_2_quantity);
         TextView stat_pot_3_quantity = (TextView) findViewById(R.id.stat_pot_3_quantity);
-        TextView weapon_quantity = (TextView) findViewById(R.id.weapon_quanity);
+        TextView weapon_quantity = (TextView) findViewById(R.id.weapon_quantity);
 
         //get random potions
 
@@ -104,28 +107,26 @@ public class ShopActivity extends AppCompatActivity {
         attackList = ConsumableRepo.getConsumableListByType("Attack Up");
         defenseList = ConsumableRepo.getConsumableListByType("Defense Up");
         speedList = ConsumableRepo.getConsumableListByType("speedList");
-        //private ConsumableItem[] statPotList = attackList + defenseList + speedList;
         debuffSpeedList = ConsumableRepo.getConsumableListByType("Monster Speed Debuff");
         debuffDefenseList = ConsumableRepo.getConsumableListByType("Monster Defense Debuff");
         debuffAttackList = ConsumableRepo.getConsumableListByType("Monster Attack Debuff");
-        //debuffPotList = debuff
-
-        weaponList = WeaponRepo.getAllItems();
+                weaponList = WeaponRepo.getAllItems();
 
         //make a master list of all stat pots
-        statPotList.addAll(attackList);
+        statPotList = attackList;
         statPotList.addAll(defenseList);
         statPotList.addAll(speedList);
         //shuffle this new master list.
         Collections.shuffle(statPotList);
 
         //make a master list of all debuff pots
-        debuffPotList.addAll(debuffAttackList);
+        debuffPotList = debuffAttackList;
         debuffPotList.addAll(debuffDefenseList);
         debuffPotList.addAll(debuffSpeedList);
-
+        //shuffle that
         Collections.shuffle(debuffPotList);
 
+        //get a random
         hpPot = hpList.get(randHP);
         statPot1 = statPotList.get(randStat1);
         statPot2 = statPotList.get(randStat2);
@@ -148,6 +149,8 @@ public class ShopActivity extends AppCompatActivity {
         stat_pot_3_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(statPot3)));
         weapon_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(weapon)));
 
+        onClickButtonListener();
+
     }
 
     // This is called when the activity is ended via result
@@ -161,6 +164,76 @@ public class ShopActivity extends AppCompatActivity {
             }
         }
     }
+
+    //THIS is beautiful
+    public void onClickButtonListener(){
+
+        HP_Pot_button = (Button)findViewById(R.id.HP_Pot_button);
+        Stat_pot_1_button = (Button)findViewById(R.id.Stat_pot_1_button);
+        Stat_pot_2_button = (Button)findViewById(R.id.Stat_pot_2_button);
+        stat_pot_3_button = (Button)findViewById(R.id.stat_pot_3_button);
+        weapon_button = (Button)findViewById(R.id.weapon_button);
+
+
+        HP_Pot_button.setOnClickListener(
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(hero.getMoney() >= hpPot.getValue()){
+                        hero.setMoney(hero.getMoney() - hpPot.getValue());
+                        InventoryRepo.addItemToInventory(hpPot);
+                    }
+                }
+            }
+        );
+
+        Stat_pot_1_button.setOnClickListener(
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(hero.getMoney() >= statPot1.getValue()){
+                        hero.setMoney(hero.getMoney() - statPot1.getValue());
+                        InventoryRepo.addItemToInventory(statPot1);
+                    }
+                }
+            }
+
+        );
+
+        Stat_pot_2_button.setOnClickListener(
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(hero.getMoney() >= statPot2.getValue()){
+                        hero.setMoney(hero.getMoney() - statPot2.getValue());
+                        InventoryRepo.addItemToInventory(statPot2);
+                    }
+                }
+            }
+
+        );
+
+        stat_pot_3_button.setOnClickListener(
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(hero.getMoney() >= statPot1.getValue()){
+                        hero.setMoney(hero.getMoney() - statPot1.getValue());
+                        InventoryRepo.addItemToInventory(statPot1);
+                    }
+                }
+            }
+        );
+
+        weapon_button.setOnClickListener(
+            new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(hero.getMoney() >= weapon.getValue()){
+                        hero.setMoney(hero.getMoney() - weapon.getValue());
+                        InventoryRepo.addItemToInventory(weapon);
+                    }
+                }
+            }
+        );
+
+    }
+
 
     // This is what is called when back is pressed
     @Override

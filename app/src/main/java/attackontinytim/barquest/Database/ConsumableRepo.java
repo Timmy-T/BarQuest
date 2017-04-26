@@ -104,7 +104,7 @@ public class ConsumableRepo {
     public static List<ConsumableItem> getConsumableListByType(String effect) {
         List<ConsumableItem> conList = new ArrayList<>();
 
-        String countQuery = "SELECT * FROM " + TABLE_CONSUMABLE + " WHERE " + KEY_EFFECT " = '" + effect +"'" ;
+        String countQuery = "SELECT * FROM " + TABLE_CONSUMABLE + " WHERE " + KEY_EFFECT + " = '" + effect +"'" ;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
 
