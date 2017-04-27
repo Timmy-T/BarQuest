@@ -265,18 +265,17 @@ public class Battle {
         return success;
     }
     
-    protected boolean hasEnded() {
-        boolean ended = false;
-        
+    protected boolean isLost(){
         if (this.battleHero.getHP() <= 0){
-            ended = true;
+            return true;
         }
-        
-        else if (this.battleEnemy.getHP() <= 0){
-            ended = true;
-            this.hero.inc_experience(this.battleEnemy.getXP());
+        return false;
+    }
+
+    protected boolean isWon(){
+        if (this.battleEnemy.getHP() <= 0){
+            return true;
         }
-        
-        return ended;
+        return false;
     }
 }
