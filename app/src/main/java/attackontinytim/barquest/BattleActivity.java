@@ -16,9 +16,15 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Collections;
+
+import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.MonsterRepo;
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
+import attackontinytim.barquest.Database.ConsumableItem;
+import attackontinytim.barquest.Database.ConsumableRepo;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
@@ -120,7 +126,53 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             reloadBattleScreen();
                         }
                         
-                        if (battle.hasEnded()){
+                        if (battle.isLost()) {
+                            /** Disable buttons for safety */
+                            attack.setClickable(false);
+                            item.setClickable(false);
+                            flee.setClickable(false);
+
+                            /** Lose money (10%) */
+                            hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
+                            end();
+                        }
+
+                        if (battle.isWon()) {
+                            /** Disable buttons for safety */
+                            attack.setClickable(false);
+                            item.setClickable(false);
+                            flee.setClickable(false);
+
+                            /** Update Quest */
+                            hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
+
+                            /** Gain Money */
+                            hero.setMoney(hero.getMoney() + 100);
+
+                            /** Loot Drop */
+                            int rand = (int)Math.random()*10;
+                            if(rand < 2) {
+                                /** Drop Random Weapon (20%) */
+                                List<Weapon> wList = WeaponRepo.getAllItems();
+                                Collections.shuffle(wList);
+                                InventoryRepo.addItemToInventory(wList.get(0));
+                            }
+                            else {
+                                /** Drop Random Consumable (80%) */
+                                List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
+                                Collections.shuffle(cList);
+                                InventoryRepo.addItemToInventory(cList.get(0));
+                            }
+
+                            /** Gain XP + Level Up */
+                            int xp = hero.getXP();
+                            hero.inc_experience(enemy.getXP());
+                            if(xp + enemy.getXP() > 100) {
+                                Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                Bundle bundle = bundler.generateBundle(hero);
+                                intent.putExtras(bundle);
+                                startActivityForResult(intent, MAIN_RETURN_CODE);
+                            }
                             end();
                         }
 
@@ -145,7 +197,53 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 }
                                 handler.postDelayed(new Runnable() {
                                     public void run(){
-                                        if (battle.hasEnded()) {
+                                        if (battle.isLost()) {
+                                            /** Disable buttons for safety */
+                                            attack.setClickable(false);
+                                            item.setClickable(false);
+                                            flee.setClickable(false);
+
+                                            /** Lose money (10%) */
+                                            hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
+                                            end();
+                                        }
+
+                                        if (battle.isWon()) {
+                                            /** Disable buttons for safety */
+                                            attack.setClickable(false);
+                                            item.setClickable(false);
+                                            flee.setClickable(false);
+
+                                            /** Update Quest */
+                                            hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
+
+                                            /** Gain Money */
+                                            hero.setMoney(hero.getMoney() + 100);
+
+                                            /** Loot Drop */
+                                            int rand = (int)Math.random()*10;
+                                            if(rand < 2) {
+                                                /** Drop Random Weapon (20%) */
+                                                List<Weapon> wList = WeaponRepo.getAllItems();
+                                                Collections.shuffle(wList);
+                                                InventoryRepo.addItemToInventory(wList.get(0));
+                                            }
+                                            else {
+                                                /** Drop Random Consumable (80%) */
+                                                List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
+                                                Collections.shuffle(cList);
+                                                InventoryRepo.addItemToInventory(cList.get(0));
+                                            }
+
+                                            /** Gain XP + Level Up */
+                                            int xp = hero.getXP();
+                                            hero.inc_experience(enemy.getXP());
+                                            if(xp + enemy.getXP() > 100) {
+                                                Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                                Bundle bundle = bundler.generateBundle(hero);
+                                                intent.putExtras(bundle);
+                                                startActivityForResult(intent, MAIN_RETURN_CODE);
+                                            }
                                             end();
                                         }
                                     }
@@ -169,7 +267,6 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
-
                     }
                 }
         );
@@ -183,8 +280,26 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         setResult(RESULT_OK,getIntent().putExtras(bundle));
                         if (battle.calc_flee()){
                             end();
-                            //TODO: add some kind of pause+"flee was successful/failed" output
                         }
+                        else{
+                            battle.enemyTurn();
+                            attacker = battle.enemy.getName();
+                            defender = battle.hero.getName();
+                            damage = battle.enemy.getAttack();
+                            reloadBattleScreen();
+                            
+                            if (battle.isLost()) {
+                                /** Disable buttons for safety */
+                                attack.setClickable(false);
+                                item.setClickable(false);
+                                flee.setClickable(false);
+
+                                /** Lose money (10%) */
+                                hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
+                                end();
+                            }
+                        }
+                        //TODO: add some kind of pause+"flee was successful/failed" output
                     }
                 }
         );
