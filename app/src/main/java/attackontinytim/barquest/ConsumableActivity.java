@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ import attackontinytim.barquest.Database.InventoryRepo;
 public class ConsumableActivity extends AppCompatActivity {
     public Hero hero;
     public ConsumableItem currPot;
+
     // This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,42 +41,33 @@ public class ConsumableActivity extends AppCompatActivity {
                 ListView.LayoutParams.WRAP_CONTENT, ListView.LayoutParams.WRAP_CONTENT);
 
 
-
         final List<ConsumableItem> iList = InventoryRepo.getAllConsumables();
 
         for (int i = 0; i < iList.size(); i++) {
             currPot = iList.get(i);
             list2.add(currPot.getName());
-
-            Button addButton =new Button(this);
-            addButton.setId(i+1);
-            addButton.setText("Use");
-            addButton.setLayoutParams(lprams);
-            addButton.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v)
-                {
-
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("Consumable", currPot.getName());
-                    setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
-                }
-
-
-            });
-
-
-
-            itemsList.addView(addButton);
         }
 
-        ArrayAdapter<String>  itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list2);
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list2);
 
         itemsList.setAdapter(itemsAdapter);
 
-    }
+
+        itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the GridView selected/clicked item text
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("Consumable", selectedItem);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
+
+            }
+        });
+
+    };
 
     // This is called when the activity is ended via result
     @Override
