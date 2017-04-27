@@ -1,8 +1,5 @@
 package attackontinytim.barquest;
 
-import android.widget.TextView;
-import android.os.Handler;
-import java.lang.Runnable;
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
@@ -201,7 +198,7 @@ public class Battle {
         //from the item screen
 
         //apply effects to the hero or the enemy
-        if (item.getTarget() == "Hero"){
+        if (item.getTarget().equalsIgnoreCase("Hero")){
             this.battleHero.setHP(this.battleHero.getHP() + item.getHPeffect());
             this.battleHero.setSpeed(this.battleHero.getSpeed() + item.getSpeedEffect());
             this.battleHero.setDefense(this.battleHero.getDefense() + item.getDefenseEffect());
@@ -264,19 +261,19 @@ public class Battle {
         }
         return success;
     }
-    
+
     protected boolean hasEnded() {
         boolean ended = false;
-        
+
         if (this.battleHero.getHP() <= 0){
             ended = true;
         }
-        
+
         else if (this.battleEnemy.getHP() <= 0){
             ended = true;
             this.hero.inc_experience(this.battleEnemy.getXP());
         }
-        
+
         return ended;
     }
 }

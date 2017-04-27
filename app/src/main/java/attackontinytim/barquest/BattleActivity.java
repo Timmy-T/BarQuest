@@ -1,7 +1,7 @@
 package attackontinytim.barquest;
 
+import android.app.Activity;
 import android.os.Handler;
-import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
+import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.MonsterRepo;
-import attackontinytim.barquest.Database.Weapon;
 
 public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
@@ -47,7 +44,6 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         Bundle bundle = getIntent().getExtras();
 
         hero = bundler.unbundleHero(bundle);
-        // enemy = new Monster(/*some sort of Cursor*/);
 
         try{
             enemy = MonsterRepo.getMonsterFromHash(bundle.getInt("MonsterHash"));
@@ -101,9 +97,6 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
-                        final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
-
                         if(battle.heroPriority()) {
                             damage = battle.battleEnemy.getHP();
                             battle.heroTurn();
@@ -119,7 +112,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             damage = battle.enemy.getAttack();
                             reloadBattleScreen();
                         }
-                        
+
                         if (battle.hasEnded()){
                             end();
                         }
@@ -159,17 +152,16 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         item.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        // temporary; need to find a way to click "back" and not go back to MainActivity
+                        // TODO: make a dialog box and a way to "go back" without resetting battle
                         /////////////////////////////
                         ////////////////////////////
                         // CHECK COMMENTS BELOW
                         /////////////////////////////
                         /////////////////////////////
-                        Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent, MAIN_RETURN_CODE);
-
+                        startActivityForResult(intent, 9000);
                     }
                 }
         );
@@ -190,11 +182,23 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         );
     }
 
+
+
     // Completion of activity; not the same as pressing back
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
+                case (9000) : {
+                    if (resultCode == Activity.RESULT_OK) {
+                        String pot_drank_name = data.getStringExtra("Consumable");
+                        battle.consumeItem(ConsumableRepo.getConsumableByName(pot_drank_name));
+                    }
+                    break;
+                }
+
+
                 default:
                     end();
             }
