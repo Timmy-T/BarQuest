@@ -3,6 +3,7 @@ package attackontinytim.barquest;
 import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
+import java.util.Calendar;
 
 import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
@@ -38,9 +39,7 @@ public class Hero implements Parcelable {
     /* ************ */
 
     /** Obligatory default constructor */
-    public Hero() {
-        scanTimers = new Timer[10];
-    }
+    public Hero() {}
 
     /** Construct a Hero object with the provided name (fresh hero character) */
     public Hero(String name) {
