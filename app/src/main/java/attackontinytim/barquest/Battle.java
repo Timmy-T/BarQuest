@@ -188,7 +188,7 @@ public class Battle {
     }
     
     protected void checkPriority(){
-        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
+        if (this.battleHero.getAtkSpd() >= this.battleEnemy.getAtkSpd())
             this.priority = true;
         else
             this.priority = false;
