@@ -23,6 +23,7 @@ public class Battle {
     protected Monster battleEnemy;
 
     private double wep_triangle;
+    private boolean priority;
 
     /** Battle Formula Modifiers*/
     private static final double CH_DEF = 2;
@@ -185,12 +186,17 @@ public class Battle {
             this.wep_triangle = 1;
         }
     }
+    
+    protected void checkPriority(){
+        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
+            this.priority = true;
+        else
+            this.priority = false;
+    }
 
     /** Returns true if Hero has attack priority; false otherwise */
     protected boolean heroPriority(){
-        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
-            return true;
-        return false;
+        return this.priority;
     }
 
     /**
