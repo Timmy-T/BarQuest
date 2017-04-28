@@ -1,5 +1,6 @@
 package attackontinytim.barquest;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
@@ -109,9 +110,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                     public void onClick(View v) {
                         final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
                         final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
-
-                        battle.checkPriority();
                         
+                        battle.checkPriority();
+
                         if(battle.heroPriority()) {
                             damage = battle.battleEnemy.getHP();
                             battle.heroTurn();
@@ -149,7 +150,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
 
                             /** Gain Money */
-                            hero.setMoney(hero.getMoney() + 100);
+                            hero.setMoney(hero.getMoney() + enemy.getMoney());
 
                             /** Loot Drop */
                             int rand = (int)Math.random()*10;
@@ -220,7 +221,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                             hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
 
                                             /** Gain Money */
-                                            hero.setMoney(hero.getMoney() + 100);
+                                            hero.setMoney(hero.getMoney() + enemy.getMoney());
 
                                             /** Loot Drop */
                                             int rand = (int)Math.random()*10;
@@ -265,10 +266,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         // CHECK COMMENTS BELOW
                         /////////////////////////////
                         /////////////////////////////
-                        Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
+                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                        startActivityForResult(intent, 9000);
                     }
                 }
         );
@@ -310,8 +311,16 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     // Completion of activity; not the same as pressing back
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
+                case (9000) : {
+                    if (resultCode == Activity.RESULT_OK) {
+                        String pot_drank_name = data.getStringExtra("Consumable");
+                        battle.consumeItem(ConsumableRepo.getConsumableByName(pot_drank_name));
+                    }
+                    break;
+                }
                 default:
                     end();
             }
