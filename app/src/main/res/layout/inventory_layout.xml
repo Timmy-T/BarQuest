@@ -47,17 +47,31 @@
                 android:textColor="@android:color/white"/>
         </android.support.v7.widget.Toolbar>
         <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="2">
-            <TableRow>
+            <TableRow
+                android:padding="10dp"
+                android:weightSum="12">
                 <TextView
-                    android:id="@+id/currWeaponName"/>
+                    android:id="@+id/currWeaponName"
+                    android:layout_weight="5"/>
                 <TextView
-                    android:id="@+id/currWeaponType"/>
+                    android:id="@+id/currWeaponType"
+                    android:layout_weight="3"/>
                 <TextView
-                    android:id="@+id/currWeaponAtk"/>
+                    android:text="Atk: "
+                    android:layout_weight="1"/>
                 <TextView
-                    android:id="@+id/currWeaponStock"/>
+                    android:id="@+id/currWeaponAtk"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:text="Stock: "
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/currWeaponStock"
+                    android:layout_weight="1"/>
             </TableRow>
         </TableLayout>
 
@@ -78,7 +92,7 @@
         <ListView
             android:id="@+id/WeaponRepo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="175dp"
             android:layout_column="0"
             android:layout_row="4">
         </ListView>
@@ -99,6 +113,8 @@
         </android.support.v7.widget.Toolbar>
         <ListView
             android:id="@+id/ItemsRepo"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
             android:layout_column="0"
             android:layout_row="6">
         </ListView>

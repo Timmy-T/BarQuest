@@ -53,23 +53,23 @@ public class InsertDataValues {
             WeaponRepo.addItem(new Weapon("Long", 55,3,"Netscan", 10, 2.5));
             WeaponRepo.addItem(new Weapon("Long", 55,3,"HDD of Destiny", 10, 2.5));
         }
-
+        //The order of effects (the first four ints) goes as follows: HP, Speed, Defense, Attack
         if(ConsumableRepo.getConsumableCount() == 0){
-            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 5, "Virus Scan", 5));
-            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 10, " Antivirus", 10));
-            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 20, "Malwarebytes", 20));
-            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Downloaded RAM", 45));
-            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, "Max Potion", 45));
-            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 10, "Debug", 25 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 10, "Virus Shield", 25 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 10, "Coffee", 25 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 25, "All Out Attack", 45 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 25, "All Out Defense", 45 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 25, "Dodgey!", 45 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Attack Down", 25 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Defense Down", 25 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Monster Debuff", -10, "Virus Speed Down", 25 ));
-            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 100, "ONE PAAAAANCH", 500 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 5, 0, 0, 0, "Hero", "Virus Scan", 5));
+            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 10, 0, 0, 0, "Hero", " Antivirus", 10));
+            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 20, 0, 0, 0, "Hero",  "Malwarebytes", 20));
+            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, 0, 0, 0, "Hero", "Downloaded RAM", 45));
+            ConsumableRepo.addConsumable(new ConsumableItem("Heal", 40, 0, 0, 0, "Hero", "Max Potion", 45));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 0, 0, 0, 10, "Hero", "Debug", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 0, 0, 10, 0, "Hero", "Virus Shield", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 0, 10, 0, 0, "Hero", "Coffee", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 0, 0, 0, 25, "Hero", "All Out Attack", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Defense Up", 0, 0, 25, 0, "Hero", "All Out Defense", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Speed Up", 0, 25, 0, 0, "Hero", "Dodgey!", 45 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Attack Debuff", 0, 0, 0, -10, "Monster", "Virus Attack Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Defense Debuff", 0, 0, -10, 0, "Monster", "Virus Defense Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Monster Speed Debuff", 0, -10, 0, 0, "Monster", "Virus Speed Down", 25 ));
+            ConsumableRepo.addConsumable(new ConsumableItem("Attack Up", 0, 0, 0, 100, "Hero", "ONE PAAAAANCH", 500 ));
         }
     }
     /**

@@ -16,8 +16,12 @@ public class ConsumableRepo {
     // Consumable Table Columns names
     private static final String KEY_NAME = "Name";
     private static final String KEY_EFFECT = "Effect";
-    private static final String KEY_EFFECTSTRENGTH = "EffectStrength";
     private static final String KEY_VALUE = "Value";
+    private static final String KEY_HPEFFECT = "HPEffect";
+    private static final String KEY_SPEEDEFFECT = "SpeedEffect";
+    private static final String KEY_DEFENSEEFFECT = "DefenseEffect";
+    private static final String KEY_ATTACKEFFECT = "AttackEffect";
+    private static final String KEY_TARGET = "Target";
 
 
     public static String getTableName(){
@@ -28,8 +32,12 @@ public class ConsumableRepo {
         return "CREATE TABLE " + TABLE_CONSUMABLE + "("
                 + KEY_NAME + " TEXT PRIMARY KEY,"
                 + KEY_EFFECT + " TEXT, "
-                + KEY_EFFECTSTRENGTH + " INT,"
-                + KEY_VALUE + " DOUBLE)";
+                + KEY_VALUE + " DOUBLE, "
+                + KEY_HPEFFECT + " INT,"
+                + KEY_SPEEDEFFECT + " INT,"
+                + KEY_DEFENSEEFFECT + " INT,"
+                + KEY_ATTACKEFFECT + " INT,"
+                + KEY_TARGET + " TEXT)";
     }
 
 
@@ -42,8 +50,12 @@ public class ConsumableRepo {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME , consumable.getName());
         values.put(KEY_EFFECT , consumable.getEffect());
-        values.put(KEY_EFFECTSTRENGTH , consumable.getEffectStrength());
         values.put(KEY_VALUE , consumable.getValue());
+        values.put(KEY_HPEFFECT , consumable.getHPeffect());
+        values.put(KEY_SPEEDEFFECT , consumable.getSpeedEffect());
+        values.put(KEY_DEFENSEEFFECT , consumable.getDefenseEffect());
+        values.put(KEY_ATTACKEFFECT , consumable.getAttackEffect());
+        values.put(KEY_TARGET , consumable.getTarget());
 
         // Inserting Row
         db.insert(TABLE_CONSUMABLE, null, values);
@@ -58,10 +70,14 @@ public class ConsumableRepo {
     public static ConsumableItem getConsumableByName(String name) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         Cursor cursor = db.query(TABLE_CONSUMABLE, new String[] {
-                        KEY_EFFECT ,
-                        KEY_EFFECTSTRENGTH ,
                         KEY_NAME,
-                        KEY_VALUE}, KEY_NAME + "=?",
+                        KEY_EFFECT ,
+                        KEY_VALUE,
+                        KEY_HPEFFECT,
+                        KEY_SPEEDEFFECT,
+                        KEY_DEFENSEEFFECT,
+                        KEY_ATTACKEFFECT,
+                        KEY_TARGET}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
 
         try {
@@ -135,8 +151,12 @@ public class ConsumableRepo {
         ContentValues values = new ContentValues();
         values.put(KEY_NAME , consumable.getName());
         values.put(KEY_EFFECT , consumable.getEffect());
-        values.put(KEY_EFFECTSTRENGTH , consumable.getEffectStrength());
         values.put(KEY_VALUE , consumable.getValue());
+        values.put(KEY_HPEFFECT , consumable.getHPeffect());
+        values.put(KEY_SPEEDEFFECT , consumable.getSpeedEffect());
+        values.put(KEY_DEFENSEEFFECT , consumable.getDefenseEffect());
+        values.put(KEY_ATTACKEFFECT , consumable.getAttackEffect());
+        values.put(KEY_TARGET , consumable.getTarget());
 
         // updating row
         int result = db.update(TABLE_CONSUMABLE, values, KEY_NAME + " = ?",

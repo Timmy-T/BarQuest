@@ -272,6 +272,7 @@ public class Hero implements Parcelable {
         while (this.getXP() >= 100) {
             this.setLevel( this.getLevel() + 1);
             this.setXP( this.getXP() - 100 );
+            this.setAP( this.getAP() + 10);
         }
     }
 

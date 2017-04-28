@@ -48,9 +48,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MonsterRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + ConsumableRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
+        /*db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());*/
 
 
         // Creating tables again
@@ -70,9 +70,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(QuestRepo.createTable());
         db.execSQL(TimerRepo.createTable());
 
-        DatabaseManager.getInstance().closeDatabase();
 
         InsertDataValues.initializeHeroValues();
+
+        DatabaseManager.getInstance().closeDatabase();
     }
 }
 

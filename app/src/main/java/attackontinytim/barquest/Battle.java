@@ -1,9 +1,10 @@
 package attackontinytim.barquest;
 
-import android.widget.TextView;
-import android.os.Handler;
-import java.lang.Runnable;
 import android.util.Log;
+
+import attackontinytim.barquest.Database.ConsumableItem;
+import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
 
@@ -153,6 +154,34 @@ public class Battle {
         return false;
     }
 
+    /**
+     * Uses an item from the hero's inventory
+     */
+    protected void consumeItem(ConsumableItem item){
+        //assume item exists in inventory, because if it didn't we wouldn't be able to click on it
+        //from the item screen
+
+        //apply effects to the hero or the enemy
+        if (item.getTarget().equalsIgnoreCase("Hero")){
+            this.battleHero.setHP(this.battleHero.getHP() + item.getHPeffect());
+            this.battleHero.setSpeed(this.battleHero.getSpeed() + item.getSpeedEffect());
+            this.battleHero.setDefense(this.battleHero.getDefense() + item.getDefenseEffect());
+            this.battleHero.setAttack(this.battleHero.getAttack() + item.getAttackEffect());
+        }
+
+        else{ //item affects monster
+            this.battleEnemy.setHP(this.battleEnemy.getHP() + item.getHPeffect());
+            this.battleEnemy.setSpeed(this.battleEnemy.getSpeed() + item.getSpeedEffect());
+            this.battleEnemy.setDefense(this.battleEnemy.getDefense() + item.getDefenseEffect());
+            this.battleEnemy.setAttack(this.battleEnemy.getAttack() + item.getAttackEffect());
+        }
+
+        //now that the item has been consumed, remove it from the inventory
+        InventoryRepo.subtractItemFromInvetory(item);
+
+        return;
+    }
+
     /**And it's finally showtime
      /**performs hero's turn in a battle
      * returns True if attack succeeds, False otherwise*/
@@ -196,19 +225,19 @@ public class Battle {
         }
         return success;
     }
-    
+
     protected boolean hasEnded() {
         boolean ended = false;
-        
+
         if (this.battleHero.getHP() <= 0){
             ended = true;
         }
-        
+
         else if (this.battleEnemy.getHP() <= 0){
             ended = true;
             this.hero.inc_experience(this.battleEnemy.getXP());
         }
-        
+
         return ended;
     }
 }
