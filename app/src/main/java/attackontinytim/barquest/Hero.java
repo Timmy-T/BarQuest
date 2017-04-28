@@ -56,10 +56,19 @@ public class Hero implements Parcelable {
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
         this.currentQuest = new Quest();
-        this.scanTimers = new Timer[10];
+
+        /*this.scanTimers = new Timer[10];
         for (int i = 0; i < 10; i++) {
             this.scanTimers[i].setTime(Calendar.getInstance());
+        }*/
+
+        Timer[] tempTimers = new Timer[10];
+
+        for (int i = 0; i < 10; i++) {
+            tempTimers[i] = new Timer();
+            tempTimers[i].setTime(Calendar.getInstance());
         }
+        this.scanTimers = tempTimers;
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
@@ -80,9 +89,13 @@ public class Hero implements Parcelable {
         this.currentQuest = currentQuest;
 
         //  Timers
-        this.scanTimers = new Timer[10];
+        /*this.scanTimers = new Timer[10];
+        for (int i = 0; i < 10; i++) {
+            this.scanTimers[i].setTime(timers[i]);
+        }*/
 
         for (int i = 0; i < 10; i++) {
+            this.scanTimers[i] = new Timer();
             this.scanTimers[i].setTime(timers[i]);
         }
     }
@@ -104,9 +117,13 @@ public class Hero implements Parcelable {
         this.currentQuest = currentQuest;
 
         //  Timers
-        this.scanTimers = new Timer[10];
+        /*this.scanTimers = new Timer[10];
 
         for (int i = 0; i < 10; i++) {
+            this.scanTimers[i].setTime(timers[i].getTime());
+        }*/
+        for (int i = 0; i < 10; i++) {
+            this.scanTimers[i] = new Timer();
             this.scanTimers[i].setTime(timers[i].getTime());
         }
     }
