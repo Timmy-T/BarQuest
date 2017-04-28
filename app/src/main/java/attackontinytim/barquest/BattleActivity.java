@@ -110,6 +110,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
                         final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
 
+                        battle.checkPriority();
+                        
                         if(battle.heroPriority()) {
                             damage = battle.battleEnemy.getHP();
                             battle.heroTurn();
