@@ -207,7 +207,7 @@ public class Battle {
         //from the item screen
 
         //apply effects to the hero or the enemy
-        if (item.getTarget() == "Hero"){
+        if (item.getTarget().equalsIgnoreCase("Hero")){
             this.battleHero.setHP(this.battleHero.getHP() + item.getHPeffect());
             this.battleHero.setSpeed(this.battleHero.getSpeed() + item.getSpeedEffect());
             this.battleHero.setDefense(this.battleHero.getDefense() + item.getDefenseEffect());
