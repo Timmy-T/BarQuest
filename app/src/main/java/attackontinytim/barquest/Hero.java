@@ -94,10 +94,12 @@ public class Hero implements Parcelable {
             this.scanTimers[i].setTime(timers[i]);
         }*/
 
+        Timer[] tempTimers = new Timer[10];
         for (int i = 0; i < 10; i++) {
-            this.scanTimers[i] = new Timer();
-            this.scanTimers[i].setTime(timers[i]);
+            tempTimers[i] = new Timer();
+            tempTimers[i].setTime(timers[i]);
         }
+        this.scanTimers = tempTimers;
     }
 
     public Hero(int id, String name, int HP, int XP, int level, int speed, int defense, int attack, double money, Weapon active, int AP, Quest currentQuest, Timer[] timers) {
@@ -122,10 +124,11 @@ public class Hero implements Parcelable {
         for (int i = 0; i < 10; i++) {
             this.scanTimers[i].setTime(timers[i].getTime());
         }*/
+        Timer[] tempTimers = new Timer[10];
         for (int i = 0; i < 10; i++) {
-            this.scanTimers[i] = new Timer();
-            this.scanTimers[i].setTime(timers[i].getTime());
+            tempTimers[i] = new Timer(timers[i]);
         }
+        this.scanTimers = tempTimers;
     }
 
     /** Copy Constructor makes a deep copy of the hero */

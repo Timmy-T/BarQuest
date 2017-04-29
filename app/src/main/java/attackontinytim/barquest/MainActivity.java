@@ -70,9 +70,12 @@ public class MainActivity extends AppCompatActivity {
         else {
             hero = HeroRepo.getHeroByName("HERO");
             List<Long> timerList = TimerRepo.getAllTimers("HERO");
-            Long[] myArray = (Long[]) timerList.toArray();
+            Long[] myArray = new Long[10];
+            myArray = timerList.toArray(myArray);
+
             Timer[] heroTimers = new Timer[10];
             for (int i = 0; i < 10; i++) {
+                heroTimers[i] = new Timer();
                 heroTimers[i].setTime(myArray[i]);
             }
             hero.setScanTimers(heroTimers);

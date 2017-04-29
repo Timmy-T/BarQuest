@@ -33,6 +33,10 @@ public class Timer implements Parcelable {
         time.setTimeInMillis(input);
     }
 
+    public Timer(Timer toBeCopied) {
+        time = toBeCopied.getTime();
+    }
+
     /* *********** */
     /* GET-METHODS */
     /* *********** */

@@ -115,6 +115,8 @@ public class bundler {
         timers[8] = new Timer(bundle.getLong("timer8"));
         timers[9] = new Timer(bundle.getLong("timer9"));
 
+        hero.setScanTimers(timers);
+
 
         return hero;
     }
