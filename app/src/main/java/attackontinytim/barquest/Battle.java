@@ -196,10 +196,14 @@ public class Battle {
     protected void consumeItem(ConsumableItem item){
         //assume item exists in inventory, because if it didn't we wouldn't be able to click on it
         //from the item screen
+        Log.d(TAG, "battleHero HP before: " + String.valueOf(this.battleHero.getHP()));
 
         //apply effects to the hero or the enemy
         if (item.getTarget().equalsIgnoreCase("Hero")){
             this.battleHero.setHP(this.battleHero.getHP() + item.getHPeffect());
+            if (battleHero.getHP() > hero.getHP()){
+                battleHero.setHP(hero.getHP()); //prevent HP overflow error
+            }
             this.battleHero.setSpeed(this.battleHero.getSpeed() + item.getSpeedEffect());
             this.battleHero.setDefense(this.battleHero.getDefense() + item.getDefenseEffect());
             this.battleHero.setAttack(this.battleHero.getAttack() + item.getAttackEffect());
@@ -207,6 +211,9 @@ public class Battle {
 
         else{ //item affects monster
             this.battleEnemy.setHP(this.battleEnemy.getHP() + item.getHPeffect());
+            if (battleEnemy.getHP() > enemy.getHP()){
+                battleEnemy.setHP(enemy.getHP());
+            }
             this.battleEnemy.setSpeed(this.battleEnemy.getSpeed() + item.getSpeedEffect());
             this.battleEnemy.setDefense(this.battleEnemy.getDefense() + item.getDefenseEffect());
             this.battleEnemy.setAttack(this.battleEnemy.getAttack() + item.getAttackEffect());
@@ -215,6 +222,7 @@ public class Battle {
         //now that the item has been consumed, remove it from the inventory
         InventoryRepo.subtractItemFromInvetory(item);
 
+        Log.d(TAG, "battleHero HP after: " + String.valueOf(this.battleHero.getHP()));
         return;
     }
 
