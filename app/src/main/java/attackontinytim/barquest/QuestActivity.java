@@ -51,8 +51,18 @@ public class QuestActivity extends AppCompatActivity {
             hero.setMoney(hero.getMoney() + quest.getMoney());
 
             QuestRepo.updateQuest(quest);
-            hero.setCurrentQuest(quest);
+
+            List<Quest> questList = QuestRepo.getAllQuest();
+            if (questList.size() < quest.getId() + 1) {
+                Quest newQuest = new Quest(QuestRepo.getQuestByID(quest.getId() + 1));
+                hero.setCurrentQuest(newQuest);
+            }
+            else {
+                hero.setCurrentQuest(quest);
+            }
+
             HeroRepo.updateHero(hero);
+            updateTextField();
         }
     }
 
@@ -65,13 +75,7 @@ public class QuestActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
 
-        Quest quest = hero.getCurrentQuest();
-
-        ((TextView) findViewById(R.id.Title)).setText(quest.getName());
-        ((TextView) findViewById(R.id.Description)).setText(quest.getDescription());
-        ((TextView) findViewById(R.id.Complete)).setText(String.valueOf(quest.isCompleted()));
-        ((TextView) findViewById(R.id.QuestTotal)).setText(String.valueOf(quest.getGoal()));
-        ((TextView) findViewById(R.id.Progress)).setText(String.valueOf(quest.getProgress()));
+        updateTextField();
 
         findViewById(R.id.submitQuest).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -114,7 +118,18 @@ public class QuestActivity extends AppCompatActivity {
 		// it ends the acitivity
         end();
     }
-	
+
+
+    private void updateTextField() {
+        Quest quest = hero.getCurrentQuest();
+
+        ((TextView) findViewById(R.id.Title)).setText(quest.getName());
+        ((TextView) findViewById(R.id.Description)).setText(quest.getDescription());
+        ((TextView) findViewById(R.id.Complete)).setText(String.valueOf(quest.isCompleted()));
+        ((TextView) findViewById(R.id.QuestTotal)).setText(String.valueOf(quest.getGoal()));
+        ((TextView) findViewById(R.id.Progress)).setText(String.valueOf(quest.getProgress()));
+    }
+
 	// This is the act of ending the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
