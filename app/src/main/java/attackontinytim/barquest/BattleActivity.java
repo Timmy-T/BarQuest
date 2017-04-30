@@ -1,7 +1,9 @@
 package attackontinytim.barquest;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -170,18 +172,40 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.MainActivity");
-                        Bundle bundle = bundler.generateBundle(hero);
-                        setResult(RESULT_OK,getIntent().putExtras(bundle));
-                        if (battle.calc_flee()){
-                            end();
-                            //TODO: add some kind of pause+"flee was successful/failed" output
-                        }
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                if (battle.calc_flee()) {
+                                    Intent intent = new Intent("attackontinytim.barquest.MainActivity");
+                                    Bundle bundle = bundler.generateBundle(hero);
+                                    setResult(RESULT_OK, getIntent().putExtras(bundle));
+
+                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    alertDialog.setMessage("You successfully fled!");
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    end();
+                                                }
+                                            });
+                                    alertDialog.show();
+                                } else {
+                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    alertDialog.setMessage("You couldn't escape!");
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                    alertDialog.show();
+                                }
+                            }
+                        }, 1000);
                     }
                 }
         );
     }
-
 
 
     // Completion of activity; not the same as pressing back
