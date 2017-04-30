@@ -192,8 +192,27 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
             switch (requestCode) {
                 case (9000) : {
                     if (resultCode == Activity.RESULT_OK) {
+                        final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
                         String pot_drank_name = data.getStringExtra("Consumable");
                         battle.consumeItem(ConsumableRepo.getConsumableByName(pot_drank_name));
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                reloadBattleScreen();
+                                CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
+                            }
+                        }, 1000); //wait 1s
+
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                battle.enemyTurn();
+                                attacker = battle.enemy.getName();
+                                defender = battle.hero.getName();
+                                damage = battle.enemy.getAttack();
+                                reloadBattleScreen();
+                            }
+                        }, 1500); //wait 1s
                     }
                     break;
                 }

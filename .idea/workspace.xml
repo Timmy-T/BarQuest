@@ -10,51 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6698c58-1572-446d-bcda-a56c43346bef" name="Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/ConsumableActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/DatabaseManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/HeroRepo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/InsertDataValues.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/InventoryRepo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/MonsterRepo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/QuestRepo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/consumable_layout.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/DBHandlerConsumable.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/ConsumableRepo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/DBHandlerItems.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/WeaponRepo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/DBHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/DBHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Testing.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Testing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/InventoryActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/InventoryActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/ScannerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/ScannerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/battle_laout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/battle_laout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/inventory_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/inventory_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/scanner_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/scanner_layout.xml" />
-    </list>
-    <list id="dab70ce6-c7fb-403b-84da-b5f0218573e7" name="Rejected commit: Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Quest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/QuestActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/quest_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Monster.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Monster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Hero.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Hero.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/LevelUpActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/LevelUpActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/bundler.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/bundler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/level_up_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/level_up_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
     </list>
+    <list id="dab70ce6-c7fb-403b-84da-b5f0218573e7" name="Rejected commit: Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;" />
     <ignored path="BarQuest.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <file path="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" ignored="false" />
-    <file path="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +38,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state />
+        </projects_view>
       </state>
     </system>
   </component>
@@ -83,60 +49,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="858">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BattleActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BattleActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="183" column="25" selection-start-line="183" selection-start-column="25" selection-end-line="183" selection-end-column="25" />
+            <state relative-caret-position="383">
+              <caret line="207" column="46" selection-start-line="207" selection-start-column="46" selection-end-line="207" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#8470#8738#0" expanded="true" />
+                <element signature="e#8737#8738#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="character_screen_layout.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3696">
-              <caret line="168" column="41" selection-start-line="168" selection-start-column="41" selection-end-line="168" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CharacterScreenActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Battle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Battle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2248">
-              <caret line="240" column="5" selection-start-line="240" selection-start-column="5" selection-end-line="240" selection-end-column="5" />
+            <state relative-caret-position="517">
+              <caret line="219" column="9" selection-start-line="219" selection-start-column="9" selection-end-line="219" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1652,7 +1583,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="C:\Users\Deborah\Documents\BarQuest" value="4471354041365" />
+        <entry key="C:\Users\Deborah\Documents\BarQuest" value="4480070978260" />
         <entry key="C:\Users\Karolein\Documents\GitHub\BarQuest" value="4461665646568" />
         <entry key="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest" value="4472616478349" />
       </map>
@@ -2059,8 +1990,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Hero.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Database/Monster.java" />
         <option value="$PROJECT_DIR$/app/app.iml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java" />
       </list>
     </option>
   </component>
@@ -2097,6 +2028,7 @@
     <panes>
       <pane id="ProjectPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2105,52 +2037,9 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BarQuest" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BarQuest" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BarQuest" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="barquest" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2479,14 +2368,14 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11804009" sideWeight="0.49626866" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292683" sideWeight="0.5042965" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292683" sideWeight="0.49570355" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21594684" sideWeight="0.20998926" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21594684" sideWeight="0.79001075" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26799557" sideWeight="0.4914071" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2494,12 +2383,12 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20461869" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2565,23 +2454,20 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="46" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2591,43 +2477,45 @@
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Enemy.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Character.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Player.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="41" selection-start-line="168" selection-start-column="41" selection-end-line="168" selection-end-column="41" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
@@ -2644,21 +2532,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="38" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="38" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
@@ -2672,23 +2557,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="46" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2698,43 +2580,45 @@
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Enemy.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Character.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Player.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
           <caret line="168" column="46" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
@@ -2751,9 +2635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2773,6 +2654,8 @@
           <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2793,6 +2676,8 @@
           <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2813,6 +2698,8 @@
           <caret line="93" column="45" selection-start-line="93" selection-start-column="45" selection-end-line="93" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2833,6 +2720,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2845,24 +2734,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3696">
           <caret line="168" column="41" selection-start-line="168" selection-start-column="41" selection-end-line="168" selection-end-column="41" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="38" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="38" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
@@ -2873,13 +2762,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="46" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
@@ -2891,47 +2780,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Enemy.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Character.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Player.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3696">
-          <caret line="168" column="41" selection-start-line="168" selection-start-column="41" selection-end-line="168" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Hero.java">
@@ -2960,30 +2828,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="440">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/character_screen_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3696">
+          <caret line="168" column="41" selection-start-line="168" selection-start-column="41" selection-end-line="168" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="207" column="46" selection-start-line="207" selection-start-column="46" selection-end-line="207" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8470#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2248">
-          <caret line="240" column="5" selection-start-line="240" selection-start-column="5" selection-end-line="240" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="183" column="25" selection-start-line="183" selection-start-column="25" selection-end-line="183" selection-end-column="25" />
+        <state relative-caret-position="517">
+          <caret line="219" column="9" selection-start-line="219" selection-start-column="9" selection-end-line="219" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
