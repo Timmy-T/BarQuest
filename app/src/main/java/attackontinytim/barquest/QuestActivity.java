@@ -51,6 +51,7 @@ public class QuestActivity extends AppCompatActivity {
             hero.setMoney(hero.getMoney() + quest.getMoney());
 
             QuestRepo.updateQuest(quest);
+            hero.setCurrentQuest(quest);
             HeroRepo.updateHero(hero);
         }
     }
