@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             InsertDataValues.initializeHeroValues();
         }
         else {
+            InsertDataValues.initializeHeroValues();
             hero = HeroRepo.getHeroByName("HERO");
             List<Long> timerList = TimerRepo.getAllTimers("HERO");
             Long[] myArray = new Long[10];
