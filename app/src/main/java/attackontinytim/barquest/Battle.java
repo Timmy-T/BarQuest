@@ -34,42 +34,6 @@ public class Battle {
     /* CONSTRUCTORS */
     /* ************ */
 
-    /** Default constructor */
-    public Battle(){
-
-        // name, attack, weight, crit, type
-        Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
-
-        // test quest
-        Quest testQuest = new Quest();
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.hero = new Hero(0, "testPlayer", 100, 0, 1, 5, 5,5, 0, testWeapon, 100, testQuest);
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
-
-        // Create temp objects for stat manipulation
-        this.battleHero = this.hero.cloneHero();
-        this.battleEnemy = this.enemy.cloneMonster();
-
-        setWeaponTriangle();
-    }
-
-    // Constructor for testing
-    public Battle(Hero hero){
-        this.hero = hero;
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
-
-        // Create temp objects for stat manipulation
-        this.battleHero = this.hero.cloneHero();
-        this.battleEnemy = this.enemy.cloneMonster();
-
-        setWeaponTriangle();
-    }
-
     /** Constructs a Battle object with a Hero and Enemy Character */
     public Battle(Hero hero, Monster enemy) {
         this.hero = hero;
