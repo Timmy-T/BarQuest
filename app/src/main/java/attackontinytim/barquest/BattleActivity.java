@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Collections;
@@ -44,6 +47,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     private String attacker;
     private String defender;
     private int damage;
+    
+    private boolean aftermath;
 
     // This is what is done when the BattleActivity is created
     @Override
@@ -64,6 +69,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         }
 
         battle = new Battle(hero, enemy);
+        aftermath = false;
 
         // Hook up UI variables to backend variables for Hero
         TextView Name = (TextView) findViewById(R.id.CharName);
@@ -102,14 +108,14 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-
-        final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();
-        endDialog.setMessage("You won!");
-        endDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        end();
-                    }
+        
+        final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();		
+        endDialog.setMessage("You won!");		
+        endDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",		
+                new DialogInterface.OnClickListener() {		
+                    public void onClick(DialogInterface dialog, int which) {		
+                        end();		
+                    }		
                 });
 
         attack.setOnClickListener(
@@ -132,15 +138,17 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             handler.postDelayed(new Runnable() {
                                 public void run(){
                                     if (battle.isWon()) {
-                                        if(battle.setReward()){
-                                            Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
-                                            Bundle bundle = bundler.generateBundle(hero);
-                                            intent.putExtras(bundle);
-                                            startActivityForResult(intent, MAIN_RETURN_CODE);
+                                        if (!aftermath){
+                                            aftermath = true;
+                                            if(battle.setReward()){
+                                                Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                                Bundle bundle = bundler.generateBundle(hero);
+                                                intent.putExtras(bundle);
+                                                startActivityForResult(intent, MAIN_RETURN_CODE);
+                                            }
                                         }
-                                        battle.setReward();
                                         endDialog.show();
-               }
+                                    }
                                 }
                             },1500);
                         }
@@ -155,11 +163,12 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             handler.postDelayed(new Runnable() {
                                 public void run(){
                                     if (battle.isLost()) {
-                                        battle.setPenalty();
-
+                                        if(!aftermath){
+                                            aftermath = true;
+                                            battle.setPenalty();
+                                        }
                                         endDialog.setMessage("You lost!");
                                         endDialog.show();
-
                                     }
                                 }
                             },1500);
@@ -179,11 +188,12 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     handler.postDelayed(new Runnable() {
                                         public void run(){
                                             if (battle.isLost()) {
-                                                battle.setPenalty();
-
+                                                if (!aftermath){
+                                                    aftermath = true;
+                                                    battle.setPenalty();
+                                                }
                                                 endDialog.setMessage("You lost!");
                                                 endDialog.show();
-
                                             }
                                         }
                                     },1500);
@@ -199,14 +209,16 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     handler.postDelayed(new Runnable() {
                                         public void run(){
                                             if (battle.isWon()) {
-                                                if(battle.setReward()){
-                                                    Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
-                                                    Bundle bundle = bundler.generateBundle(hero);
-                                                    intent.putExtras(bundle);
-                                                    startActivityForResult(intent, MAIN_RETURN_CODE);
+                                                if (!aftermath){
+                                                    aftermath = true;
+                                                    if(battle.setReward()){
+                                                        Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                                        Bundle bundle = bundler.generateBundle(hero);
+                                                        intent.putExtras(bundle);
+                                                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                                                    }
                                                 }
                                                 endDialog.show();
-
                                             }
                                         }
                                     },1500);
