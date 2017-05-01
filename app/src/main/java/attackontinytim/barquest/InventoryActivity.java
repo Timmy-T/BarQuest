@@ -100,7 +100,33 @@ public class InventoryActivity extends AppCompatActivity {
 
                 AlertDialog alertDialog = new AlertDialog.Builder(InventoryActivity.this).create();
                 ConsumableItem myItem = ConsumableRepo.getConsumableByName(selectedItem);
-                String myMessage = selectedItem + "\n" + "Effect: " + myItem.getEffect();
+
+                String myMessage = selectedItem;
+
+                switch(myItem.getEffect()) {
+                    case "Heal":
+                        myMessage = selectedItem + "\n" + "Effect: Heals your HP by " + String.valueOf(myItem.getHPeffect());
+                        break;
+                    case "Attack Up":
+                        myMessage = selectedItem + "\n" + "Effect: Increases your attack by " + String.valueOf(myItem.getAttackEffect());
+                        break;
+                    case "Defense Up":
+                        myMessage = selectedItem + "\n" + "Effect: Increases your defense by " + String.valueOf(myItem.getDefenseEffect());
+                        break;
+                    case "Speed Up":
+                        myMessage = selectedItem + "\n" + "Effect: Increases your speed by " + String.valueOf(myItem.getSpeedEffect());
+                        break;
+                    case "Monster Attack Debuff":
+                        myMessage = selectedItem + "\n" + "Effect: Decreases enemy attack by " + String.valueOf(myItem.getAttackEffect());
+                        break;
+                    case "Monster Defense Debuff":
+                        myMessage = selectedItem + "\n" + "Effect: Decreases enemy defense by " + String.valueOf(myItem.getDefenseEffect());
+                        break;
+                    case "Monster Speed Debuff":
+                        myMessage = selectedItem + "\n" + "Effect: Decreases enemy speed by " + String.valueOf(myItem.getSpeedEffect());
+                        break;
+                }
+
                 alertDialog.setMessage(myMessage);
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "X",
                         new DialogInterface.OnClickListener() {
