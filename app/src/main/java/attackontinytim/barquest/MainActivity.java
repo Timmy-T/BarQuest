@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             InsertDataValues.initializeHeroValues();
         }
         else {
+            InsertDataValues.initializeHeroValues();
             hero = HeroRepo.getHeroByName("HERO");
         }
     }

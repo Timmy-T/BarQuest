@@ -28,10 +28,13 @@ public class ScannerActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
+        hero.getScannerTimeFromDB();
 
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setPrompt("Scan a barcode");
+        int scanNum = hero.getScanTimers().length;
+        String scanString = Integer.toString(scanNum);
+        integrator.setPrompt("Scan a barcode" + scanString);
         integrator.setBeepEnabled(false);
 
         integrator.setOrientationLocked(true);
