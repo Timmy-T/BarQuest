@@ -132,9 +132,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             handler.postDelayed(new Runnable() {
                                 public void run(){
                                     if (battle.isWon()) {
-                                        setReward();
+                                        if(battle.setReward()){
+                                            Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                            Bundle bundle = bundler.generateBundle(hero);
+                                            intent.putExtras(bundle);
+                                            startActivityForResult(intent, MAIN_RETURN_CODE);
+                                        }
+                                        battle.setReward();
                                         endDialog.show();
-                                    }
+               }
                                 }
                             },1500);
                         }
@@ -149,9 +155,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             handler.postDelayed(new Runnable() {
                                 public void run(){
                                     if (battle.isLost()) {
-                                        setPenalty();
+                                        battle.setPenalty();
+
                                         endDialog.setMessage("You lost!");
                                         endDialog.show();
+
                                     }
                                 }
                             },1500);
@@ -171,9 +179,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     handler.postDelayed(new Runnable() {
                                         public void run(){
                                             if (battle.isLost()) {
-                                                setPenalty();
+                                                battle.setPenalty();
+
                                                 endDialog.setMessage("You lost!");
                                                 endDialog.show();
+
                                             }
                                         }
                                     },1500);
@@ -189,8 +199,14 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     handler.postDelayed(new Runnable() {
                                         public void run(){
                                             if (battle.isWon()) {
-                                                setReward();
+                                                if(battle.setReward()){
+                                                    Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                                    Bundle bundle = bundler.generateBundle(hero);
+                                                    intent.putExtras(bundle);
+                                                    startActivityForResult(intent, MAIN_RETURN_CODE);
+                                                }
                                                 endDialog.show();
+
                                             }
                                         }
                                     },1500);
@@ -259,7 +275,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     reloadBattleScreen();
 
                                     if (battle.isLost()) {
-                                        setPenalty();
+                                        battle.setPenalty();
                                         end();
                                     }
                                 }
@@ -359,43 +375,5 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
             attackPic.setScaleX(1);
         else if(attacker == battle.enemy.getName())
             attackPic.setScaleX(-1);
-    }
-
-    protected void setPenalty(){
-        /** Lose money (10%) */
-        hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
-    }
-
-    protected void setReward(){
-        /** Update Quest */
-        hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
-
-        /** Gain Money */
-        hero.setMoney(hero.getMoney() + enemy.getMoney());
-
-        /** Loot Drop */
-        int rand = (int)(Math.random()*10);
-        if(rand < 2) {
-            /** Drop Random Weapon (20%) */
-            List<Weapon> wList = WeaponRepo.getAllItems();
-            Collections.shuffle(wList);
-            InventoryRepo.addItemToInventory(wList.get(0));
-        }
-        else {
-            /** Drop Random Consumable (80%) */
-            List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
-            Collections.shuffle(cList);
-            InventoryRepo.addItemToInventory(cList.get(0));
-        }
-
-        /** Gain XP + Level Up */
-        int xp = hero.getXP();
-        hero.inc_experience(enemy.getXP());
-        if(xp + enemy.getXP() > 100) {
-            Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
-            Bundle bundle = bundler.generateBundle(hero);
-            intent.putExtras(bundle);
-            startActivityForResult(intent, MAIN_RETURN_CODE);
-        }
     }
 }

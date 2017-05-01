@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import attackontinytim.barquest.Hero;
+import attackontinytim.barquest.Timer;
 
 public class DBHandler extends SQLiteOpenHelper {
 
