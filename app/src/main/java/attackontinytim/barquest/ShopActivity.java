@@ -148,16 +148,24 @@ public class ShopActivity extends AppCompatActivity {
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                 viewOne = inflater.inflate(R.layout.fragment_main, container, false);
 
-
                 TextView hp_pot_label = (TextView) viewOne.findViewById(R.id.hp_pot_label);
-                TextView stat_pot_1_label = (TextView) viewOne.findViewById(R.id.stat_pot_1_label);
-                TextView stat_pot_2_label = (TextView) viewOne.findViewById(R.id.stat_pot_2_label);
-                TextView stat_pot_3_label = (TextView) viewOne.findViewById(R.id.stat_pot_3_label);
-                TextView weapon_label = (TextView) viewOne.findViewById(R.id.weapon_label);
+                TextView hp_pot_value = (TextView) viewOne.findViewById(R.id.hp_pot_value);
                 TextView hp_pot_quantity = (TextView) viewOne.findViewById(R.id.hp_pot_quantity);
+
+                TextView stat_pot_1_label = (TextView) viewOne.findViewById(R.id.stat_pot_1_label);
+                TextView stat_pot_1_value = (TextView) viewOne.findViewById(R.id.stat_pot_1_value);
                 TextView stat_pot_1_quantity = (TextView) viewOne.findViewById(R.id.stat_pot_1_quantity);
+
+                TextView stat_pot_2_label = (TextView) viewOne.findViewById(R.id.stat_pot_2_label);
+                TextView stat_pot_2_value = (TextView) viewOne.findViewById(R.id.stat_pot_2_value);
                 TextView stat_pot_2_quantity = (TextView) viewOne.findViewById(R.id.stat_pot_2_quantity);
+
+                TextView stat_pot_3_label = (TextView) viewOne.findViewById(R.id.stat_pot_3_label);
+                TextView stat_pot_3_value = (TextView) viewOne.findViewById(R.id.stat_pot_3_value);
                 TextView stat_pot_3_quantity = (TextView) viewOne.findViewById(R.id.stat_pot_3_quantity);
+
+                TextView weapon_label = (TextView) viewOne.findViewById(R.id.weapon_label);
+                TextView weapon_value = (TextView) viewOne.findViewById(R.id.weapon_value);
                 TextView weapon_quantity = (TextView) viewOne.findViewById(R.id.weapon_quantity);
 
 
@@ -165,7 +173,7 @@ public class ShopActivity extends AppCompatActivity {
                 List<ConsumableItem> hpList = ConsumableRepo.getConsumableListByType("Heal");
                 List<ConsumableItem> attackList = ConsumableRepo.getConsumableListByType("Attack Up");
                 List<ConsumableItem> defenseList = ConsumableRepo.getConsumableListByType("Defense Up");
-                List<ConsumableItem> speedList = ConsumableRepo.getConsumableListByType("speedList");
+                List<ConsumableItem> speedList = ConsumableRepo.getConsumableListByType("Speed Up");
                 List<ConsumableItem> debuffSpeedList = ConsumableRepo.getConsumableListByType("Monster Speed Debuff");
                 List<ConsumableItem> debuffDefenseList = ConsumableRepo.getConsumableListByType("Monster Defense Debuff");
                 List<ConsumableItem> debuffAttackList = ConsumableRepo.getConsumableListByType("Monster Attack Debuff");
@@ -196,15 +204,21 @@ public class ShopActivity extends AppCompatActivity {
                 final Weapon weapon = weaponList.get(0);
 
 
-                //set labels to name of item + cost
-                hp_pot_label.setText(hpPot.getName() + " " + hpPot.getValue());
-                stat_pot_1_label.setText(statPot1.getName()+" "+statPot1.getValue());
-                stat_pot_2_label.setText(statPot2.getName()+" "+statPot2.getValue());
-                stat_pot_3_label.setText(statPot3.getName()+" "+statPot3.getValue());
-                weapon_label.setText(weapon.getName()+" "+weapon.getValue());
+                //set labels to name of item
+                hp_pot_label.setText(hpPot.getName());
+                stat_pot_1_label.setText(statPot1.getName());
+                stat_pot_2_label.setText(statPot2.getName());
+                stat_pot_3_label.setText(statPot3.getName());
+                weapon_label.setText(weapon.getName());
+
+                //set labels to item cost
+                hp_pot_value.setText(String.valueOf(hpPot.getValue()));
+                stat_pot_1_value.setText(String.valueOf(statPot1.getValue()));
+                stat_pot_2_value.setText(String.valueOf(statPot2.getValue()));
+                stat_pot_3_value.setText(String.valueOf(statPot3.getValue()));
+                weapon_value.setText(String.valueOf(weapon.getValue()));
 
                 //set quantities to their values
-
                 hp_pot_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(hpPot)));
                 stat_pot_1_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(statPot1)));
                 stat_pot_2_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(statPot2)));
@@ -212,8 +226,8 @@ public class ShopActivity extends AppCompatActivity {
                 weapon_quantity.setText(String.valueOf(InventoryRepo.getItemQuantity(weapon)));
 
                 Button HP_Pot_button = (Button) viewOne.findViewById(R.id.HP_Pot_button);
-                Button Stat_pot_1_button = (Button) viewOne.findViewById(R.id.Stat_pot_1_button);
-                Button Stat_pot_2_button = (Button) viewOne.findViewById(R.id.Stat_pot_2_button);
+                Button Stat_pot_1_button = (Button) viewOne.findViewById(R.id.stat_pot_1_button);
+                Button Stat_pot_2_button = (Button) viewOne.findViewById(R.id.stat_pot_2_button);
                 Button stat_pot_3_button = (Button) viewOne.findViewById(R.id.stat_pot_3_button);
                 Button weapon_button = (Button) viewOne.findViewById(R.id.weapon_button);
 
