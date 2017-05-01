@@ -104,10 +104,7 @@ public class QuestActivity extends AppCompatActivity {
         questView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //hero.setCurrentQuest(QuestRepo.getQuestByID(itemsAdapter.getItem()));
-                //hero.setCurrentQuest(QuestRepo.getQuestByID(parent.getId()));
-                //hero.setCurrentQuest(QuestRepo.getQuestByID(itemsAdapter.getItem(Integer.valueOf(parent.getId()))));
-                //hero.setCurrentQuest(QuestRepo.getQuestByID(Integer.valueOf(parent.getItemAtPosition(position).toString())));
+                hero.setCurrentQuest(QuestRepo.getQuestByName(parent.getItemAtPosition(position).toString()));
                 HeroRepo.updateHero(hero);
                 updateTextField();
             }

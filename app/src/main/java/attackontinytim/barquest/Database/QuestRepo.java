@@ -87,7 +87,7 @@ public class QuestRepo {
      */
     public static Quest getQuestByName(String questName) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        Cursor cursor = db.query(TABLE_QUESTS, new String[] {
+        Cursor cursor = db.query(TABLE_QUESTS, new String[]{
                         KEY_ID,
                         KEY_NAME,
                         KEY_DESCRIPTION,
@@ -99,10 +99,9 @@ public class QuestRepo {
                         KEY_ITEM,
                         KEY_QUESTTYPE,
                         KEY_QUESTTARGET}, KEY_NAME + "=?",
-                new String[] { String.valueOf(questName) }, null, null, null, null);
+                new String[]{String.valueOf(questName)}, null, null, null, null);
 
-        if (cursor != null)
-        {
+        if (cursor != null) {
             cursor.moveToFirst();
             Quest quest = new Quest(cursor);
             cursor.close();
@@ -110,13 +109,13 @@ public class QuestRepo {
 
             // return Quest
             return quest;
-    
-        }
-        else{
+
+        } else {
             cursor.close();
             DatabaseManager.getInstance().closeDatabase(); // Closing database connection
             return null;
         }
+    }
     /**
      * Creates a quest in the database
      * @param quest
