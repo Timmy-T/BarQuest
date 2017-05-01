@@ -19,6 +19,7 @@ import java.util.List;
 
 import attackontinytim.barquest.Database.ConsumableItem;
 import attackontinytim.barquest.Database.ConsumableRepo;
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
@@ -51,7 +52,7 @@ public class InventoryActivity extends AppCompatActivity {
         final ListView weaponList = (ListView) findViewById(R.id.WeaponRepo);
         final ArrayList<String> list1 = new ArrayList<String>();
 
-        List<Weapon> wList = InventoryRepo.getAllWeapons();
+        final List<Weapon> wList = InventoryRepo.getAllWeapons();
         for (int i = 0; i < wList.size(); i++) {
                 Weapon currItem = wList.get(i);
                 String weapName = currItem.getName();
@@ -69,11 +70,10 @@ public class InventoryActivity extends AppCompatActivity {
         weaponList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Get the GridView selected/clicked item text
-                String selectedWeapon = parent.getItemAtPosition(position).toString();
+                Weapon equipWeapon = wList.get(position);
 
-                Weapon equipWeapon = WeaponRepo.getItemByName(selectedWeapon);
                 hero.setActive(equipWeapon);
+                HeroRepo.updateHero(hero);
                 finish();
                 startActivity(getIntent());
             }
