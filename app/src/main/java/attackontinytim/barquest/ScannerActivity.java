@@ -31,7 +31,9 @@ public class ScannerActivity extends AppCompatActivity {
 
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setPrompt("Scan a barcode");
+        int scanNum = hero.getScanTimers().length;
+        String scanString = Integer.toString(scanNum);
+        integrator.setPrompt("Scan a barcode" + scanString);
         integrator.setBeepEnabled(false);
 
         integrator.setOrientationLocked(true);
