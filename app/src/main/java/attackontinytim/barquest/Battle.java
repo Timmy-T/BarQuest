@@ -1,5 +1,8 @@
 package attackontinytim.barquest;
 
+import android.widget.TextView;
+import android.os.Handler;
+import java.lang.Runnable;
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
@@ -20,6 +23,7 @@ public class Battle {
     protected Monster battleEnemy;
 
     private double wep_triangle;
+    private boolean priority;
 
     /** Battle Formula Modifiers*/
     private static final double CH_DEF = 2;
@@ -147,11 +151,16 @@ public class Battle {
         }
     }
 
+    protected void checkPriority(){
+        if (this.battleHero.getAtkSpd() >= this.battleEnemy.getAtkSpd())
+            this.priority = true;
+        else
+            this.priority = false;
+    }
+
     /** Returns true if Hero has attack priority; false otherwise */
     protected boolean heroPriority(){
-        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
-            return true;
-        return false;
+        return this.priority;
     }
 
     /**
@@ -234,18 +243,17 @@ public class Battle {
         return success;
     }
 
-    protected boolean hasEnded() {
-        boolean ended = false;
-
+    protected boolean isLost(){
         if (this.battleHero.getHP() <= 0){
-            ended = true;
+            return true;
         }
+        return false;
+    }
 
-        else if (this.battleEnemy.getHP() <= 0){
-            ended = true;
-            this.hero.inc_experience(this.battleEnemy.getXP());
+    protected boolean isWon(){
+        if (this.battleEnemy.getHP() <= 0){
+            return true;
         }
-
-        return ended;
+        return false;
     }
 }

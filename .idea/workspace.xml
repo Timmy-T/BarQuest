@@ -10,13 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6698c58-1572-446d-bcda-a56c43346bef" name="Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;">
+<<<<<<< HEAD
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+    </list>
+    <list id="dab70ce6-c7fb-403b-84da-b5f0218573e7" name="Rejected commit: Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" />
+=======
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/assets/fonts/ARCADECLASSIC.TTF" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+>>>>>>> master
     </list>
     <list id="dab70ce6-c7fb-403b-84da-b5f0218573e7" name="Rejected commit: Default" comment="Merge branch 'master' of https://github.com/Timmy-T/BarQuest into classMerge&#10;&#10;# Conflicts:&#10;#&#9;app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java&#10;" />
     <ignored path="BarQuest.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+<<<<<<< HEAD
+    <file path="$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java" ignored="false" />
+=======
+>>>>>>> master
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,11 +59,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BattleActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="307" column="43" selection-start-line="307" selection-start-column="43" selection-end-line="307" selection-end-column="43" />
+=======
       <file leaf-file-name="BattleActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/BattleActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4180">
               <caret line="207" column="5" selection-start-line="207" selection-start-column="5" selection-end-line="207" selection-end-column="5" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,8 +94,13 @@
       <file leaf-file-name="Battle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="550">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+=======
             <state relative-caret-position="4620">
               <caret line="216" column="32" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
+>>>>>>> master
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,9 +111,17 @@
       <file leaf-file-name="styles.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="5038">
+              <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+=======
             <state relative-caret-position="198">
               <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -2032,6 +2077,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
+=======
+>>>>>>> master
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2039,12 +2090,19 @@
               <option name="myItemId" value="BarQuest" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
+>>>>>>> master
       <pane id="ProjectPane" />
     </panes>
   </component>
@@ -2427,9 +2485,15 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282532" sideWeight="0.5064447" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3282532" sideWeight="0.4935553" order="7" side_tool="false" content_ui="tabs" />
+=======
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21453694" sideWeight="0.21643394" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21453694" sideWeight="0.78356606" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26799557" sideWeight="0.4914071" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> master
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2814,6 +2878,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+<<<<<<< HEAD
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+=======
+>>>>>>> master
         </state>
       </provider>
     </entry>
@@ -2857,7 +2934,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/CharacterScreenActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="550">
+=======
         <state relative-caret-position="529">
+>>>>>>> master
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
         </state>
       </provider>
@@ -2874,8 +2955,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/attackontinytim/barquest/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="5038">
+          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+=======
         <state relative-caret-position="4620">
           <caret line="216" column="32" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
+>>>>>>> master
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2884,9 +2970,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="209">
+          <caret line="307" column="43" selection-start-line="307" selection-start-column="43" selection-end-line="307" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+=======
         <state relative-caret-position="198">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
+>>>>>>> master
         </state>
       </provider>
     </entry>
