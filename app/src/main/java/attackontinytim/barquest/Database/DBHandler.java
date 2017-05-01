@@ -4,7 +4,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import attackontinytim.barquest.Hero;
-import attackontinytim.barquest.Timer;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -37,12 +36,6 @@ public class DBHandler extends SQLiteOpenHelper {
         try {
             db.execSQL(QuestRepo.createTable());
         } catch (Exception ex) {}
-
-        try {
-            db.execSQL(TimerRepo.createTable());
-        } catch (Exception ex) {}
-
-
     }
 
     @Override
@@ -51,12 +44,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MonsterRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + ConsumableRepo.getTableName());
-
-        db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + TimerRepo.getTableName());
-
         // Creating tables again
         onCreate(db);
     }
@@ -67,12 +54,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + TimerRepo.getTableName());
 
         db.execSQL(HeroRepo.createTable());
         db.execSQL(InventoryRepo.createTable());
         db.execSQL(QuestRepo.createTable());
-        db.execSQL(TimerRepo.createTable());
 
         InsertDataValues.initializeHeroValues();
 

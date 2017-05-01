@@ -2,6 +2,7 @@ package attackontinytim.barquest;
 
 import android.os.Bundle;
 
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.QuestRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Hero;
@@ -21,34 +22,10 @@ public class bundler {
      * @param hero A Hero object the be serialized into a bundle. This hero must also have a weapon
      */
     public static Bundle generateBundle(Hero hero) {
-
         Bundle bundle = new Bundle();
+        HeroRepo.updateHero(hero);
 
-        bundle.putInt("id", hero.getId());
-        bundle.putString("name", hero.getName());
-        bundle.putInt("hitPoints", hero.getHP());
-        bundle.putInt("experience", hero.getXP());
-        bundle.putInt("level", hero.getLevel());
-        bundle.putInt("speed", hero.getSpeed());
-        bundle.putInt("attack", hero.getAttack());
-        bundle.putInt("defense", hero.getDefense());
-        bundle.putDouble("money", hero.getMoney());
-        bundle.putInt("abilityPoints", hero.getAP());
-
-        bundle.putString("weaponName", hero.getActive().getName());
-        bundle.putString("weaponType", hero.getActive().getAttackType());
-        bundle.putInt("weaponAttack", hero.getActive().getAttack());
-        bundle.putDouble("weaponWeight", hero.getActive().getWeight());
-        bundle.putInt("weaponCrit", hero.getActive().getCriticalRate());
-        bundle.putDouble("weaponValue", hero.getActive().getValue());
-
-        // This checks for a quest and jumps if a quest is inactive
-        try {
-         bundle.putInt("questID", hero.getCurrentQuest().getId());
-        }
-        catch (Exception ex) {}
-
-
+        bundle.putString("heroName", hero.getName());
         return bundle;
     }
 
@@ -60,38 +37,7 @@ public class bundler {
      * @return Hero a hero object
      */
     public static Hero unbundleHero(Bundle bundle){
-        boolean earlyValue;
-
-        Hero hero = new Hero();
-        hero.setId(bundle.getInt("id"));
-        hero.setName(bundle.getString("name"));
-        hero.setLevel(bundle.getInt("level"));
-        hero.setHP(bundle.getInt("hitPoints"));
-        hero.setAttack(bundle.getInt("attack"));
-        hero.setDefense(bundle.getInt("defense"));
-        hero.setSpeed(bundle.getInt("speed"));
-        hero.setXP(bundle.getInt("experience"));
-        hero.setMoney(bundle.getInt("money"));
-        hero.setAP(bundle.getInt("abilityPoints"));
-
-        String weaponName = bundle.getString("weaponName");
-        String weaponType = bundle.getString("weaponType");
-        int weaponAttack = bundle.getInt("weaponAttack");
-        double weaponWeight = bundle.getDouble("weaponWeight");
-        int weaponCrit = bundle.getInt("weaponCrit");
-        double weaponValue = bundle.getDouble("weaponValue");
-
-        Weapon active = new Weapon(weaponType, weaponAttack, weaponCrit, weaponName, weaponValue, weaponWeight);
-        hero.setActive(active);
-
-        // If no quest values were given
-        try {
-            int questID = bundle.getInt("questID");
-
-            Quest heroQuest = QuestRepo.getQuestByID(questID);
-
-            hero.setCurrentQuest(heroQuest);
-        } catch (Exception ex){}
+        Hero hero = HeroRepo.getHeroByName(bundle.getString("heroName"));
 
         hero.getScanTimers();
         return hero;
