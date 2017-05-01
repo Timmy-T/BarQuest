@@ -8,7 +8,7 @@ import attackontinytim.barquest.Hero;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 23;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
