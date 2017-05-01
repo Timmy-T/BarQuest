@@ -13,10 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.util.Calendar;
+import java.util.List;
+
 import junit.framework.Test;
 
 import attackontinytim.barquest.Database.DBHandler;
 import attackontinytim.barquest.Database.HeroRepo;
+import attackontinytim.barquest.Database.TimerRepo;
 import attackontinytim.barquest.Database.InsertDataValues;
 import attackontinytim.barquest.Database.Testing;
 import attackontinytim.barquest.Database.DatabaseManager;
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             hero = HeroRepo.getHeroByName("HERO");
-         }
+        }
     }
 
     private void checkPermissions() {
@@ -176,6 +180,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         dbHandler.resetData();
                         hero = HeroRepo.getHeroByName("HERO");
+                        List<Long> timerList = TimerRepo.getAllTimers("HERO");
+                        Long[] myArray = new Long[10];
+                        myArray = timerList.toArray(myArray);
+
+                        Timer[] heroTimers = new Timer[10];
+                        for (int i = 0; i < 10; i++) {
+                            heroTimers[i] = new Timer();
+                            heroTimers[i].setTime(myArray[i]);
+                        }
+                        hero.setScanTimers(heroTimers);
                     }
                 }
         );

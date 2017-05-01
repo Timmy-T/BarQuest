@@ -1,5 +1,8 @@
 package attackontinytim.barquest;
 
+import android.widget.TextView;
+import android.os.Handler;
+import java.lang.Runnable;
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
@@ -20,6 +23,7 @@ public class Battle {
     protected Monster battleEnemy;
 
     private double wep_triangle;
+    private boolean priority;
 
     /** Battle Formula Modifiers*/
     private static final double CH_DEF = 2;
@@ -29,42 +33,6 @@ public class Battle {
     /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
-
-    /** Default constructor */
-    public Battle(){
-
-        // name, attack, weight, crit, type
-        Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
-
-        // test quest
-        Quest testQuest = new Quest();
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.hero = new Hero(0, "testPlayer", 100, 0, 1, 5, 5,5, 0, testWeapon, 100, testQuest);
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
-
-        // Create temp objects for stat manipulation
-        this.battleHero = this.hero.cloneHero();
-        this.battleEnemy = this.enemy.cloneMonster();
-
-        setWeaponTriangle();
-    }
-
-    // Constructor for testing
-    public Battle(Hero hero){
-        this.hero = hero;
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
-
-        // Create temp objects for stat manipulation
-        this.battleHero = this.hero.cloneHero();
-        this.battleEnemy = this.enemy.cloneMonster();
-
-        setWeaponTriangle();
-    }
 
     /** Constructs a Battle object with a Hero and Enemy Character */
     public Battle(Hero hero, Monster enemy) {
@@ -183,11 +151,16 @@ public class Battle {
         }
     }
 
+    protected void checkPriority(){
+        if (this.battleHero.getAtkSpd() >= this.battleEnemy.getAtkSpd())
+            this.priority = true;
+        else
+            this.priority = false;
+    }
+
     /** Returns true if Hero has attack priority; false otherwise */
     protected boolean heroPriority(){
-        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
-            return true;
-        return false;
+        return this.priority;
     }
 
     /**
@@ -270,18 +243,17 @@ public class Battle {
         return success;
     }
 
-    protected boolean hasEnded() {
-        boolean ended = false;
-
+    protected boolean isLost(){
         if (this.battleHero.getHP() <= 0){
-            ended = true;
+            return true;
         }
+        return false;
+    }
 
-        else if (this.battleEnemy.getHP() <= 0){
-            ended = true;
-            this.hero.inc_experience(this.battleEnemy.getXP());
+    protected boolean isWon(){
+        if (this.battleEnemy.getHP() <= 0){
+            return true;
         }
-
-        return ended;
+        return false;
     }
 }

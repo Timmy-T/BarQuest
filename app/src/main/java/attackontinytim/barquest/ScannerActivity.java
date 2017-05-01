@@ -43,7 +43,7 @@ public class ScannerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null && resultCode == RESULT_OK) {
+        if(result != null) {
             if(result.getContents() != null) {
                 int numberValue = scannerHash(result.getContents());
 
@@ -53,10 +53,9 @@ public class ScannerActivity extends AppCompatActivity {
                 Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
                 intent.putExtras(bundle);
                 startActivityForResult(intent,  MAIN_RETURN_CODE);
-                end();
             }
         } else {
-            end();
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
