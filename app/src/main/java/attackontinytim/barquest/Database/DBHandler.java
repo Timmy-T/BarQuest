@@ -41,6 +41,8 @@ public class DBHandler extends SQLiteOpenHelper {
         try {
             db.execSQL(TimerRepo.createTable());
         } catch (Exception ex) {}
+
+
     }
 
     @Override
@@ -50,7 +52,11 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + ConsumableRepo.getTableName());
 
-        resetData();
+        db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());
+        db.execSQL("DROP TABLE IF EXISTS " + TimerRepo.getTableName());
+
         // Creating tables again
         onCreate(db);
     }
