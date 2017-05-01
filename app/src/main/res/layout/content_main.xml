@@ -21,6 +21,13 @@
         style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
+        android:text="Battle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/battleButton"
+        android:layout_below="@+id/scannerButton"/>
+
+    <Button
         android:text="Character"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,29 +55,12 @@
         android:id="@+id/shopButton"
         android:layout_below="@+id/inventoryButton"/>
 
-
-    <Button
-        android:text="Battle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/battleButton"
-        android:layout_below="@+id/scannerButton"/>
-
-
     <Button
         android:text="Quests"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/questButton"
         android:layout_below="@+id/shopButton"/>
-
-
-    <Button
-        android:text="Consumables"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/consumableButton"
-        android:layout_below="@+id/questButton"/>
 
     <Button
         android:text="Reset Character"

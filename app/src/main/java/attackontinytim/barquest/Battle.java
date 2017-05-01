@@ -1,15 +1,19 @@
 package attackontinytim.barquest;
 
-import android.widget.TextView;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import java.lang.Runnable;
+import java.util.Collections;
+import java.util.List;
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
-import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
+import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
 
 public class Battle {
     /* ********* */
@@ -23,6 +27,7 @@ public class Battle {
     protected Monster battleEnemy;
 
     private double wep_triangle;
+    private boolean priority;
 
     /** Battle Formula Modifiers*/
     private static final double CH_DEF = 2;
@@ -32,42 +37,6 @@ public class Battle {
     /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
-
-    /** Default constructor */
-    public Battle(){
-
-        // name, attack, weight, crit, type
-        Weapon testWeapon = new Weapon("close", 1,1, "testWeapon", 5.0, 1);
-
-        // test quest
-        Quest testQuest = new Quest();
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, int experience, int money
-        this.hero = new Hero(0, "testPlayer", 100, 0, 1, 5, 5,5, 0, testWeapon, 100, testQuest);
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
-
-        // Create temp objects for stat manipulation
-        this.battleHero = this.hero.cloneHero();
-        this.battleEnemy = this.enemy.cloneMonster();
-
-        setWeaponTriangle();
-    }
-
-    // Constructor for testing
-    public Battle(Hero hero){
-        this.hero = hero;
-
-        // String name, int level, int hitPoints, int attack, int defense, int speed, String type
-        this.enemy = new Monster(1, "testEnemy", 20, 1, "close", 1.0, 1, "Common", 1,1,1);
-
-        // Create temp objects for stat manipulation
-        this.battleHero = this.hero.cloneHero();
-        this.battleEnemy = this.enemy.cloneMonster();
-
-        setWeaponTriangle();
-    }
 
     /** Constructs a Battle object with a Hero and Enemy Character */
     public Battle(Hero hero, Monster enemy) {
@@ -186,11 +155,16 @@ public class Battle {
         }
     }
 
+    protected void checkPriority(){
+        if (this.battleHero.getAtkSpd() >= this.battleEnemy.getAtkSpd())
+            this.priority = true;
+        else
+            this.priority = false;
+    }
+
     /** Returns true if Hero has attack priority; false otherwise */
     protected boolean heroPriority(){
-        if (this.battleHero.getAtkSpd() > this.battleEnemy.getAtkSpd())
-            return true;
-        return false;
+        return this.priority;
     }
 
     /**
@@ -199,10 +173,14 @@ public class Battle {
     protected void consumeItem(ConsumableItem item){
         //assume item exists in inventory, because if it didn't we wouldn't be able to click on it
         //from the item screen
+        Log.d(TAG, "battleHero HP before: " + String.valueOf(this.battleHero.getHP()));
 
         //apply effects to the hero or the enemy
-        if (item.getTarget() == "Hero"){
+        if (item.getTarget().equalsIgnoreCase("Hero")){
             this.battleHero.setHP(this.battleHero.getHP() + item.getHPeffect());
+            if (battleHero.getHP() > hero.getHP()){
+                battleHero.setHP(hero.getHP()); //prevent HP overflow error
+            }
             this.battleHero.setSpeed(this.battleHero.getSpeed() + item.getSpeedEffect());
             this.battleHero.setDefense(this.battleHero.getDefense() + item.getDefenseEffect());
             this.battleHero.setAttack(this.battleHero.getAttack() + item.getAttackEffect());
@@ -210,6 +188,9 @@ public class Battle {
 
         else{ //item affects monster
             this.battleEnemy.setHP(this.battleEnemy.getHP() + item.getHPeffect());
+            if (battleEnemy.getHP() > enemy.getHP()){
+                battleEnemy.setHP(enemy.getHP());
+            }
             this.battleEnemy.setSpeed(this.battleEnemy.getSpeed() + item.getSpeedEffect());
             this.battleEnemy.setDefense(this.battleEnemy.getDefense() + item.getDefenseEffect());
             this.battleEnemy.setAttack(this.battleEnemy.getAttack() + item.getAttackEffect());
@@ -218,6 +199,7 @@ public class Battle {
         //now that the item has been consumed, remove it from the inventory
         InventoryRepo.subtractItemFromInvetory(item);
 
+        Log.d(TAG, "battleHero HP after: " + String.valueOf(this.battleHero.getHP()));
         return;
     }
 
@@ -264,19 +246,58 @@ public class Battle {
         }
         return success;
     }
-    
-    protected boolean hasEnded() {
-        boolean ended = false;
-        
+
+    protected boolean isLost(){
         if (this.battleHero.getHP() <= 0){
-            ended = true;
+            return true;
         }
-        
-        else if (this.battleEnemy.getHP() <= 0){
-            ended = true;
-            this.hero.inc_experience(this.battleEnemy.getXP());
+        return false;
+    }
+
+    protected boolean isWon(){
+        if (this.battleEnemy.getHP() <= 0){
+            return true;
         }
-        
-        return ended;
+        return false;
+    }
+
+    //returns true if the hero levels up
+    protected boolean setReward(){
+        boolean leveled = false;
+
+        /** Update Quest */
+        hero.getCurrentQuest().updateQuestProgress(this.battleEnemy);
+
+        /** Gain Money */
+        hero.setMoney(hero.getMoney() + enemy.getMoney());
+
+        /** Loot Drop */
+        int rand = (int)(Math.random()*10);
+        if(rand < 2) {
+            /** Drop Random Weapon (20%) */
+            List<Weapon> wList = WeaponRepo.getAllItems();
+            Collections.shuffle(wList);
+            InventoryRepo.addItemToInventory(wList.get(0));
+        }
+        else {
+            /** Drop Random Consumable (80%) */
+            List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
+            Collections.shuffle(cList);
+            InventoryRepo.addItemToInventory(cList.get(0));
+        }
+
+        /** Gain XP + Level Up */
+        int xp = hero.getXP();
+        hero.inc_experience(enemy.getXP());
+        if(xp + enemy.getXP() > 100) {
+            leveled = true;
+        }
+
+        return leveled;
+    }
+
+    protected void setPenalty(){
+        /** Lose money (10%) */
+        hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
     }
 }
