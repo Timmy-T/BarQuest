@@ -1,8 +1,13 @@
 package attackontinytim.barquest;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.widget.TextView;
 import android.os.Handler;
 import java.lang.Runnable;
+import java.util.Collections;
+import java.util.List;
+
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
@@ -10,6 +15,7 @@ import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.Weapon;
+import attackontinytim.barquest.Database.WeaponRepo;
 
 public class Battle {
     /* ********* */
@@ -255,5 +261,45 @@ public class Battle {
             return true;
         }
         return false;
+    }
+
+    //returns true if the hero levels up
+    protected boolean setReward(){
+        boolean leveled = false;
+
+        /** Update Quest */
+        hero.getCurrentQuest().updateQuestProgress(this.battleEnemy);
+
+        /** Gain Money */
+        hero.setMoney(hero.getMoney() + enemy.getMoney());
+
+        /** Loot Drop */
+        int rand = (int)(Math.random()*10);
+        if(rand < 2) {
+            /** Drop Random Weapon (20%) */
+            List<Weapon> wList = WeaponRepo.getAllItems();
+            Collections.shuffle(wList);
+            InventoryRepo.addItemToInventory(wList.get(0));
+        }
+        else {
+            /** Drop Random Consumable (80%) */
+            List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
+            Collections.shuffle(cList);
+            InventoryRepo.addItemToInventory(cList.get(0));
+        }
+
+        /** Gain XP + Level Up */
+        int xp = hero.getXP();
+        hero.inc_experience(enemy.getXP());
+        if(xp + enemy.getXP() > 100) {
+            leveled = true;
+        }
+
+        return leveled;
+    }
+
+    protected void setPenalty(){
+        /** Lose money (10%) */
+        hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
     }
 }
