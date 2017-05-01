@@ -323,12 +323,7 @@ public class ShopActivity extends AppCompatActivity {
                             startActivity(getActivity().getIntent());
                         }
                         else {
-                            if (InventoryRepo.getItemQuantity(selectedItemWep) == 1) {
-                                if (hero.getActive() == selectedItemWep) {
-                                    //you can't sell your active item
-                                }
-
-                            } else {
+                            if ((InventoryRepo.getItemQuantity(selectedItemWep) != 1) || ! hero.getActive().getName().equalsIgnoreCase(selectedItemWep.getName())){
                                 hero.setMoney(hero.getMoney() + selectedItemWep.getValue());
                                 InventoryRepo.subtractItemFromInvetory(selectedItemWep);
                                 HeroRepo.updateHero(hero);
