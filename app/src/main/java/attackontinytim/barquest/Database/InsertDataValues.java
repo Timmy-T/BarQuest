@@ -2,6 +2,7 @@ package attackontinytim.barquest.Database;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import attackontinytim.barquest.Hero;
@@ -96,7 +97,11 @@ public class InsertDataValues {
         List<Long> timerList = new ArrayList<>();
 
         for (int i =0; i < 10; i++){
-            timerList.add(Long.valueOf(0));
+            Calendar temp = Calendar.getInstance();
+            temp.add(Calendar.HOUR, -2);
+            Long otherTemp = temp.getTimeInMillis();
+
+            timerList.add(temp.getTimeInMillis());
         }
 
         TimerRepo.addTimers( timerList, "HERO");

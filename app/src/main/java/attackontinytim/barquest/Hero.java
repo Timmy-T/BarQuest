@@ -3,9 +3,11 @@ package attackontinytim.barquest;
 import android.database.Cursor;
 import android.os.Parcelable;
 import android.os.Parcel;
-import java.util.Calendar;
+
+import java.util.List;
 
 import attackontinytim.barquest.Database.QuestRepo;
+import attackontinytim.barquest.Database.TimerRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
 
@@ -61,14 +63,8 @@ public class Hero implements Parcelable {
         for (int i = 0; i < 10; i++) {
             this.scanTimers[i].setTime(Calendar.getInstance());
         }*/
+        getScannerTimeFromDB();
 
-        Timer[] tempTimers = new Timer[10];
-
-        for (int i = 0; i < 10; i++) {
-            tempTimers[i] = new Timer();
-            tempTimers[i].setTime(Calendar.getInstance());
-        }
-        this.scanTimers = tempTimers;
     }
 
     /** Construct a Hero object with the provided stats (for testing) */
@@ -94,10 +90,16 @@ public class Hero implements Parcelable {
             this.scanTimers[i].setTime(timers[i]);
         }*/
 
+        getScannerTimeFromDB();
+
+    }
+
+    private void getScannerTimeFromDB() {
         Timer[] tempTimers = new Timer[10];
-        for (int i = 0; i < 10; i++) {
-            tempTimers[i] = new Timer();
-            tempTimers[i].setTime(timers[i]);
+
+        List<Long> timerList = TimerRepo.getAllTimers(this.name);
+        for(int i=0; i<timerList.size(); i++){
+            tempTimers[i] = new Timer(timerList.get(i));
         }
         this.scanTimers = tempTimers;
     }
@@ -124,11 +126,8 @@ public class Hero implements Parcelable {
         for (int i = 0; i < 10; i++) {
             this.scanTimers[i].setTime(timers[i].getTime());
         }*/
-        Timer[] tempTimers = new Timer[10];
-        for (int i = 0; i < 10; i++) {
-            tempTimers[i] = new Timer(timers[i]);
-        }
-        this.scanTimers = tempTimers;
+        getScannerTimeFromDB();
+
     }
 
     /** Copy Constructor makes a deep copy of the hero */
@@ -283,10 +282,14 @@ public class Hero implements Parcelable {
         boolean pressed = false;
         int i = 0;
 
+        this.getScannerTimeFromDB();
+
         while ((!pressed) && (i < 10))
         {
-            if (scanTimers[i].checkIfPast()) {
-                scanTimers[i].setTimer();
+            if (this.scanTimers[i].checkIfPast()) {
+                this.scanTimers[i].setTimer();
+                TimerRepo.updateTimer(this.scanTimers, this.name);
+
                 pressed = true;
             }
             i++;

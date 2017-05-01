@@ -48,16 +48,6 @@ public class bundler {
         }
         catch (Exception ex) {}
 
-        bundle.putLong("timer0", hero.getScanTimers()[0].getTime().getTimeInMillis());
-        bundle.putLong("timer1", hero.getScanTimers()[1].getTime().getTimeInMillis());
-        bundle.putLong("timer2", hero.getScanTimers()[2].getTime().getTimeInMillis());
-        bundle.putLong("timer3", hero.getScanTimers()[3].getTime().getTimeInMillis());
-        bundle.putLong("timer4", hero.getScanTimers()[4].getTime().getTimeInMillis());
-        bundle.putLong("timer5", hero.getScanTimers()[5].getTime().getTimeInMillis());
-        bundle.putLong("timer6", hero.getScanTimers()[6].getTime().getTimeInMillis());
-        bundle.putLong("timer7", hero.getScanTimers()[7].getTime().getTimeInMillis());
-        bundle.putLong("timer8", hero.getScanTimers()[8].getTime().getTimeInMillis());
-        bundle.putLong("timer9", hero.getScanTimers()[9].getTime().getTimeInMillis());
 
         return bundle;
     }
@@ -103,21 +93,7 @@ public class bundler {
             hero.setCurrentQuest(heroQuest);
         } catch (Exception ex){}
 
-        Timer[] timers = new Timer[10];
-        timers[0] = new Timer(bundle.getLong("timer0"));
-        timers[1] = new Timer(bundle.getLong("timer1"));
-        timers[2] = new Timer(bundle.getLong("timer2"));
-        timers[3] = new Timer(bundle.getLong("timer3"));
-        timers[4] = new Timer(bundle.getLong("timer4"));
-        timers[5] = new Timer(bundle.getLong("timer5"));
-        timers[6] = new Timer(bundle.getLong("timer6"));
-        timers[7] = new Timer(bundle.getLong("timer7"));
-        timers[8] = new Timer(bundle.getLong("timer8"));
-        timers[9] = new Timer(bundle.getLong("timer9"));
-
-        hero.setScanTimers(timers);
-
-
+        hero.getScanTimers();
         return hero;
     }
 }
