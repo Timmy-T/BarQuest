@@ -96,7 +96,7 @@ public class QuestActivity extends AppCompatActivity {
             list.add(qList.get(i).getName());
         }
 
-        ArrayAdapter<String> itemsAdapter =
+        final ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 
         questView.setAdapter(itemsAdapter);
@@ -104,7 +104,10 @@ public class QuestActivity extends AppCompatActivity {
         questView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                hero.setCurrentQuest(QuestRepo.getQuestByID(findViewById(R.id.questList).getId()));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(itemsAdapter.getItem()));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(parent.getId()));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(itemsAdapter.getItem(Integer.valueOf(parent.getId()))));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(Integer.valueOf(parent.getItemAtPosition(position).toString())));
                 HeroRepo.updateHero(hero);
                 updateTextField();
             }
