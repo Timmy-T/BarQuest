@@ -4,6 +4,7 @@ import android.os.Parcelable;
 import android.os.Parcel;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Timer implements Parcelable {
@@ -20,8 +21,8 @@ public class Timer implements Parcelable {
 
     // Default constructor
     public Timer() {
-        time = Calendar.getInstance();
-        time.add(Calendar.HOUR, -2);
+        this.time = Calendar.getInstance();
+        this.time.add(Calendar.HOUR, -2);
     }
 
     public Timer(Calendar time) {
@@ -29,12 +30,12 @@ public class Timer implements Parcelable {
     }
 
     public Timer(long input) {
-        time = Calendar.getInstance();
-        time.setTimeInMillis(input);
+        this.time = Calendar.getInstance();
+        this.time.setTimeInMillis(input);
     }
 
     public Timer(Timer toBeCopied) {
-        time = toBeCopied.getTime();
+        this.time = toBeCopied.getTime();
     }
 
     /* *********** */
@@ -43,7 +44,7 @@ public class Timer implements Parcelable {
 
 
     public Calendar getTime() {
-        return time;
+        return this.time;
     }
 
     public void setTime() {
@@ -54,7 +55,7 @@ public class Timer implements Parcelable {
         this.time = time;
     }
 
-    public void setTime(long input) { time.setTimeInMillis(input); }
+    public void setTime(long input) { this.time.setTimeInMillis(input); }
 
     /* ************* */
     /* MISC. METHODS */
@@ -62,13 +63,18 @@ public class Timer implements Parcelable {
 
     public boolean checkIfPast() {
         Calendar current = Calendar.getInstance();
-        if (time.compareTo(current) <= 0)
-            return true;
-        return false;
+
+        Date temp = this.time.getTime();
+        Date temp2 = current.getTime();
+
+        int result = temp.compareTo(temp2);
+
+        return result < 0;
+
     }
 
     public void setTimer() {
-        time.add(Calendar.HOUR, 2);
+        this.time.add(Calendar.HOUR, 2);
     }
 
     // Framework Methods
@@ -103,8 +109,8 @@ public class Timer implements Parcelable {
 
         //time = new GregorianCalendar(TimeZone.getTimeZone(timezone_id));
         //time = new GregorianCalendar();
-        time = Calendar.getInstance();
-        time.setTimeInMillis(milliseconds);
+        this.time = Calendar.getInstance();
+        this.time.setTimeInMillis(milliseconds);
 
     }
 

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 /**
  * Created by Tim Buesking on 4/24/2017.
@@ -119,6 +120,31 @@ public class TimerRepo {
         values.put(KEY_TIMER7, timers.get(7));
         values.put(KEY_TIMER8, timers.get(8));
         values.put(KEY_TIMER9, timers.get(9));
+
+        // updating row
+        int result = db.update(TABLE_TIMER, values, KEY_NAME + " = ?",
+                new String[]{heroName});
+
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+
+        return result;
+    }
+
+    public static int updateTimer(attackontinytim.barquest.Timer[] timers, String heroName){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, heroName);
+        values.put(KEY_TIMER0, timers[0].getTime().getTimeInMillis());
+        values.put(KEY_TIMER1, timers[1].getTime().getTimeInMillis());
+        values.put(KEY_TIMER2, timers[2].getTime().getTimeInMillis());
+        values.put(KEY_TIMER3, timers[3].getTime().getTimeInMillis());
+        values.put(KEY_TIMER4, timers[4].getTime().getTimeInMillis());
+        values.put(KEY_TIMER5, timers[5].getTime().getTimeInMillis());
+        values.put(KEY_TIMER6, timers[6].getTime().getTimeInMillis());
+        values.put(KEY_TIMER7, timers[7].getTime().getTimeInMillis());
+        values.put(KEY_TIMER8, timers[8].getTime().getTimeInMillis());
+        values.put(KEY_TIMER9, timers[9].getTime().getTimeInMillis());
 
         // updating row
         int result = db.update(TABLE_TIMER, values, KEY_NAME + " = ?",

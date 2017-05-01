@@ -4,11 +4,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import attackontinytim.barquest.Hero;
+import attackontinytim.barquest.Timer;
 
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 22;
     // Database Name
     private static final String DATABASE_NAME = "BarDatabase";
     // Contacts table name
@@ -48,10 +49,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + MonsterRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + WeaponRepo.getTableName());
         db.execSQL("DROP TABLE IF EXISTS " + ConsumableRepo.getTableName());
-        /*db.execSQL("DROP TABLE IF EXISTS " + HeroRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + InventoryRepo.getTableName());
-        db.execSQL("DROP TABLE IF EXISTS " + QuestRepo.getTableName());*/
-
 
         // Creating tables again
         onCreate(db);
@@ -69,7 +66,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(InventoryRepo.createTable());
         db.execSQL(QuestRepo.createTable());
         db.execSQL(TimerRepo.createTable());
-
 
         InsertDataValues.initializeHeroValues();
 
