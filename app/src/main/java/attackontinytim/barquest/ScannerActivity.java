@@ -44,7 +44,7 @@ public class ScannerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null && resultCode == RESULT_OK) {
-            if(result.getContents() != null) {
+            if((result.getContents() != null) && (hero.timerPress())) {
                 int numberValue = scannerHash(result.getContents());
 
                 Bundle bundle = bundler.generateBundle(hero);
