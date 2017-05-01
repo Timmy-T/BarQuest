@@ -281,7 +281,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 reloadBattleScreen();
                                 CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
                             }
-                        }, 1000); //wait 1s		
+                        }, 1000); //wait 1s
                         handler.postDelayed(new Runnable() {
                             public void run(){
                                 battle.enemyTurn();

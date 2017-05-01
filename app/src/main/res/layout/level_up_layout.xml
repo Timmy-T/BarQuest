@@ -30,37 +30,29 @@
             android:layout_column="0"
             android:layout_rowWeight="1"/>
 
-        <!-- Level Stat -->
-        <TextView
-            android:text="Lvl. "
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:layout_columnSpan="4"
             android:layout_row="1"
-            android:layout_column="0"/>
-        <TextView
-            android:id="@+id/currLVLstat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="20sp"
-            android:layout_row="1"
-            android:layout_column="1"/>
-        <TextView
-            android:text=" > "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_row="1"
-            android:layout_column="2"/>
-        <TextView
-            android:id="@+id/newLVLstat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textSize="20sp"
-            android:layout_row="1"
-            android:layout_column="3"/>
+            android:layout_column="0">
+            <TableRow
+                android:paddingRight="10dp">
+                <!-- Level Stat -->
+                <TextView
+                    android:text="Lvl. "
+                    android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/currLVLstat"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:text=" > "
+                    android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/newLVLstat"
+                    android:textSize="20sp"/>
+            </TableRow>
+        </TableLayout>
 
         <!-- Ability Points Stat -->
         <TextView
@@ -100,12 +92,12 @@
                     android:padding="10dip" />
                 <Button
                     android:text="+"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/addHP"/>
                 <Button
                     android:text="-"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/decHP"/>
                 <TextView
@@ -125,13 +117,13 @@
                     android:gravity="end"
                     android:padding="10dip" />
                 <Button
-                android:text="+"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/addATK"/>
+                    android:text="+"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addATK"/>
                 <Button
                     android:text="-"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/decATK"/>
                 <TextView
@@ -152,12 +144,12 @@
                     android:padding="10dip" />
                 <Button
                     android:text="+"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/addDEF"/>
                 <Button
                     android:text="-"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/decDEF"/>
                 <TextView
@@ -178,12 +170,12 @@
                     android:padding="10dip" />
                 <Button
                     android:text="+"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/addSPD"/>
                 <Button
                     android:text="-"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/decSPD"/>
                 <TextView
