@@ -80,6 +80,43 @@ public class QuestRepo {
         return quest;
     }
 
+     /**
+     * Returns a Quest object with the given name
+     * @param Id Of the quest
+     * @return Quest object
+     */
+    public static Quest getQuestByName(String questName) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor cursor = db.query(TABLE_QUESTS, new String[] {
+                        KEY_ID,
+                        KEY_NAME,
+                        KEY_DESCRIPTION,
+                        KEY_GOAL,
+                        KEY_PROGRESS,
+                        KEY_COMPLETED,
+                        KEY_XP,
+                        KEY_MONEY,
+                        KEY_ITEM,
+                        KEY_QUESTTYPE,
+                        KEY_QUESTTARGET}, KEY_NAME + "=?",
+                new String[] { String.valueOf(questName) }, null, null, null, null);
+
+        if (cursor != null)
+        {
+            cursor.moveToFirst();
+            Quest quest = new Quest(cursor);
+            cursor.close();
+            DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+
+            // return Quest
+            return quest;
+    
+        }
+        else{
+            cursor.close();
+            DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+            return null;
+        }
     /**
      * Creates a quest in the database
      * @param quest
