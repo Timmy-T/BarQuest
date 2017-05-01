@@ -1,7 +1,9 @@
 package attackontinytim.barquest;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.content.Intent;
@@ -110,7 +112,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                     public void onClick(View v) {
                         final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
                         final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
-                        
+
                         battle.checkPriority();
 
                         if(battle.heroPriority()) {
@@ -120,11 +122,16 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             defender = battle.enemy.getName();
                             damage = damage - battle.battleEnemy.getHP();
                             reloadBattleScreen();
-                            
-                            if (battle.isWon()) {
-                                setReward();
-                                end();
-                            }
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run(){
+                                    if (battle.isWon()) {
+                                        setReward();
+                                        end();
+                                    }
+                                }
+                            },1500);
                         }
                         else {
                             battle.enemyTurn();
@@ -132,11 +139,16 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             defender = battle.hero.getName();
                             damage = battle.enemy.getAttack();
                             reloadBattleScreen();
-                            
-                            if (battle.isLost()) {
-                                setPenalty();
-                                end();
-                            }
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run(){
+                                    if (battle.isLost()) {
+                                        setPenalty();
+                                        end();
+                                    }
+                                }
+                            },1500);
                         }
 
                         //insert pause here for dramatic effect
@@ -149,11 +161,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     defender = battle.hero.getName();
                                     damage = battle.enemy.getAttack();
                                     reloadBattleScreen();
-                                    
-                                    if (battle.isLost()) {
-                                        setPenalty();
-                                        end();
-                                    }
+
+                                    handler.postDelayed(new Runnable() {
+                                        public void run(){
+                                            if (battle.isLost()) {
+                                                setPenalty();
+                                                end();
+                                            }
+                                        }
+                                    },1500);
                                 }
                                 else {
                                     damage = battle.battleEnemy.getHP();
@@ -162,11 +178,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     defender = battle.enemy.getName();
                                     damage = damage - battle.battleEnemy.getHP();
                                     reloadBattleScreen();
-                                    
-                                    if (battle.isWon()) {
-                                        setReward();
-                                        end();
-                                    }
+
+                                    handler.postDelayed(new Runnable() {
+                                        public void run(){
+                                            if (battle.isWon()) {
+                                                setReward();
+                                                end();
+                                            }
+                                        }
+                                    },1500);
                                 }
                             }
                         }, 1000); //wait 1s
@@ -177,6 +197,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         item.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        // TODO: make a dialog box and a way to "go back" without resetting battle
                         // temporary; need to find a way to click "back" and not go back to MainActivity
                         /////////////////////////////
                         ////////////////////////////
@@ -195,25 +216,48 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         flee.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.MainActivity");
-                        Bundle bundle = bundler.generateBundle(hero);
-                        setResult(RESULT_OK,getIntent().putExtras(bundle));
-                        if (battle.calc_flee()){
-                            end();
-                        }
-                        else{
-                            battle.enemyTurn();
-                            attacker = battle.enemy.getName();
-                            defender = battle.hero.getName();
-                            damage = battle.enemy.getAttack();
-                            reloadBattleScreen();
-                            
-                            if (battle.isLost()) {
-                                setPenalty();
-                                end();
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                if (battle.calc_flee()) {
+                                    Intent intent = new Intent("attackontinytim.barquest.MainActivity");
+                                    Bundle bundle = bundler.generateBundle(hero);
+                                    setResult(RESULT_OK, getIntent().putExtras(bundle));
+
+                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    alertDialog.setMessage("You successfully fled!");
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    end();
+                                                }
+                                            });
+                                    alertDialog.show();
+                                }
+                                else {
+                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    alertDialog.setMessage("You couldn't escape!");
+                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                    alertDialog.show();
+
+                                    battle.enemyTurn();
+                                    attacker = battle.enemy.getName();
+                                    defender = battle.hero.getName();
+                                    damage = battle.enemy.getAttack();
+                                    reloadBattleScreen();
+
+                                    if (battle.isLost()) {
+                                        setPenalty();
+                                        end();
+                                    }
+                                }
                             }
-                        }
-                        //TODO: add some kind of pause+"flee was successful/failed" output
+                        }, 1000);
                     }
                 }
         );
@@ -221,14 +265,32 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     // Completion of activity; not the same as pressing back
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
                 case (9000) : {
                     if (resultCode == Activity.RESULT_OK) {
+                        final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
                         String pot_drank_name = data.getStringExtra("Consumable");
                         battle.consumeItem(ConsumableRepo.getConsumableByName(pot_drank_name));
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                reloadBattleScreen();
+                                CurrHPStat.setText(String.valueOf(battle.battleHero.getHP()));
+                            }
+                        }, 1000); //wait 1s		
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                battle.enemyTurn();
+                                attacker = battle.enemy.getName();
+                                defender = battle.hero.getName();
+                                damage = battle.enemy.getAttack();
+                                reloadBattleScreen();
+                            }
+                        }, 1500); //wait 1s
                     }
                     break;
                 }
@@ -291,12 +353,12 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         else if(attacker == battle.enemy.getName())
             attackPic.setScaleX(-1);
     }
-    
+
     protected void setPenalty(){
         /** Lose money (10%) */
         hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
     }
-    
+
     protected void setReward(){
         /** Update Quest */
         hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
