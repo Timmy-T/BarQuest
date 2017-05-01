@@ -13,10 +13,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.util.Calendar;
+import java.util.List;
+
 import junit.framework.Test;
 
 import attackontinytim.barquest.Database.DBHandler;
 import attackontinytim.barquest.Database.HeroRepo;
+import attackontinytim.barquest.Database.TimerRepo;
 import attackontinytim.barquest.Database.InsertDataValues;
 import attackontinytim.barquest.Database.Testing;
 import attackontinytim.barquest.Database.DatabaseManager;
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             hero = HeroRepo.getHeroByName("HERO");
-         }
+        }
     }
 
     private void checkPermissions() {
@@ -97,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         shop = (Button)findViewById(R.id.shopButton);
         levelUp = (Button)findViewById(R.id.levelUpButton);
         quest = (Button)findViewById(R.id.questButton);
-        consumables = (Button)findViewById(R.id.consumableButton);
         reset = (Button)findViewById(R.id.CharReset);
 
         battle.setOnClickListener(
@@ -172,22 +175,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-        consumables.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.ConsumableActivity");
-                        Bundle bundle = bundler.generateBundle(hero);
-                        intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
-                    }
-                }
-        );
-
         reset.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         dbHandler.resetData();
                         hero = HeroRepo.getHeroByName("HERO");
+                        List<Long> timerList = TimerRepo.getAllTimers("HERO");
+                        Long[] myArray = new Long[10];
+                        myArray = timerList.toArray(myArray);
+
+                        Timer[] heroTimers = new Timer[10];
+                        for (int i = 0; i < 10; i++) {
+                            heroTimers[i] = new Timer();
+                            heroTimers[i].setTime(myArray[i]);
+                        }
+                        hero.setScanTimers(heroTimers);
                     }
                 }
         );

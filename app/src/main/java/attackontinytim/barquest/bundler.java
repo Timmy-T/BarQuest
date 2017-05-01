@@ -47,6 +47,8 @@ public class bundler {
          bundle.putInt("questID", hero.getCurrentQuest().getId());
         }
         catch (Exception ex) {}
+
+
         return bundle;
     }
 
@@ -91,6 +93,7 @@ public class bundler {
             hero.setCurrentQuest(heroQuest);
         } catch (Exception ex){}
 
+        hero.getScanTimers();
         return hero;
     }
 }
