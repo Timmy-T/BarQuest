@@ -60,6 +60,20 @@ public class Quest{
         this.QuestTarget = questTarget;
     }
 
+    public Quest(Quest quest) {
+        this.id = quest.getId();
+        this.name = quest.getName();
+        this.description = quest.getDescription();
+        this.goal = quest.getGoal();
+        this.progress = quest.getProgress();
+        this.completed = quest.isCompleted();
+        this.XP = quest.getXP();
+        this.Money = quest.getMoney();
+        this.itemName = quest.getItemName();
+        this.QuestType = quest.getQuestType();
+        this.QuestTarget = quest.getQuestTarget();
+    }
+
 
     public Quest(Cursor cursor) {
         this.id = cursor.getInt(0);

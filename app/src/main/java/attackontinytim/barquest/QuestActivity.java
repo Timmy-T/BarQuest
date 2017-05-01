@@ -1,9 +1,11 @@
 package attackontinytim.barquest;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,7 +53,18 @@ public class QuestActivity extends AppCompatActivity {
             hero.setMoney(hero.getMoney() + quest.getMoney());
 
             QuestRepo.updateQuest(quest);
+
+            List<Quest> questList = QuestRepo.getAllQuest();
+            if (questList.size() < quest.getId() + 1) {
+                Quest newQuest = new Quest(QuestRepo.getQuestByID(quest.getId() + 1));
+                hero.setCurrentQuest(newQuest);
+            }
+            else {
+                hero.setCurrentQuest(quest);
+            }
+
             HeroRepo.updateHero(hero);
+            updateTextField();
         }
     }
 
@@ -64,13 +77,7 @@ public class QuestActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         hero = bundler.unbundleHero(bundle);
 
-        Quest quest = hero.getCurrentQuest();
-
-        ((TextView) findViewById(R.id.Title)).setText(quest.getName());
-        ((TextView) findViewById(R.id.Description)).setText(quest.getDescription());
-        ((TextView) findViewById(R.id.Complete)).setText(String.valueOf(quest.isCompleted()));
-        ((TextView) findViewById(R.id.QuestTotal)).setText(String.valueOf(quest.getGoal()));
-        ((TextView) findViewById(R.id.Progress)).setText(String.valueOf(quest.getProgress()));
+        updateTextField();
 
         findViewById(R.id.submitQuest).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -89,10 +96,23 @@ public class QuestActivity extends AppCompatActivity {
             list.add(qList.get(i).getName());
         }
 
-        ArrayAdapter<String> itemsAdapter =
+        final ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 
         questView.setAdapter(itemsAdapter);
+
+        questView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(itemsAdapter.getItem()));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(parent.getId()));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(itemsAdapter.getItem(Integer.valueOf(parent.getId()))));
+                //hero.setCurrentQuest(QuestRepo.getQuestByID(Integer.valueOf(parent.getItemAtPosition(position).toString())));
+                HeroRepo.updateHero(hero);
+                updateTextField();
+            }
+        });
+
     }
 	
 	// This is called when the activity is ended via result
@@ -113,7 +133,18 @@ public class QuestActivity extends AppCompatActivity {
 		// it ends the acitivity
         end();
     }
-	
+
+
+    private void updateTextField() {
+        Quest quest = hero.getCurrentQuest();
+
+        ((TextView) findViewById(R.id.Title)).setText(quest.getName());
+        ((TextView) findViewById(R.id.Description)).setText(quest.getDescription());
+        ((TextView) findViewById(R.id.Complete)).setText(String.valueOf(quest.isCompleted()));
+        ((TextView) findViewById(R.id.QuestTotal)).setText(String.valueOf(quest.getGoal()));
+        ((TextView) findViewById(R.id.Progress)).setText(String.valueOf(quest.getProgress()));
+    }
+
 	// This is the act of ending the activity
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
