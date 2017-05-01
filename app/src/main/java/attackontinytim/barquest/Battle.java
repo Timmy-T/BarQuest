@@ -289,7 +289,7 @@ public class Battle {
         /** Gain XP + Level Up */
         int xp = hero.getXP();
         hero.inc_experience(enemy.getXP());
-        if(xp + enemy.getXP() > 100) {
+        if(xp + enemy.getXP() >= 100) {
             leveled = true;
         }
 

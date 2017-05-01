@@ -121,6 +121,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        attack.setClickable(false);
                         final TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
                         final TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
 
@@ -225,6 +226,13 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 }
                             }
                         }, 1000); //wait 1s
+
+                        handler.postDelayed(new Runnable() {
+                            public void run(){
+                                attack.setClickable(true);
+                            }
+                        },1000);
+
                     }
                 }
         );
@@ -387,5 +395,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
             attackPic.setScaleX(1);
         else if(attacker == battle.enemy.getName())
             attackPic.setScaleX(-1);
+
+
     }
 }
