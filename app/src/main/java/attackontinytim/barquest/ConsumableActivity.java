@@ -49,7 +49,6 @@ public class ConsumableActivity extends AppCompatActivity {
 
         itemsList.setAdapter(itemsAdapter);
 
-
         itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -94,7 +94,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-        //TODO: implement item functionality
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
+        alertDialog.setMessage("You won!");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        end();
+                    }
+                });
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
@@ -116,7 +124,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         }
 
                         if (battle.hasEnded()){
-                            end();
+                            alertDialog.show();
                         }
 
                         //insert pause here for dramatic effect
@@ -141,7 +149,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 handler.postDelayed(new Runnable() {
                                     public void run(){
                                         if (battle.hasEnded()) {
-                                            end();
+                                            alertDialog.show();
                                         }
                                     }
                                 },1500);

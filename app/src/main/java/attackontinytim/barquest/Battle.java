@@ -1,5 +1,7 @@
 package attackontinytim.barquest;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
