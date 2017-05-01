@@ -72,7 +72,6 @@ public class CharacterScreenActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
                         Bundle bundle = bundler.generateBundle(hero);
-
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
@@ -96,7 +95,7 @@ public class CharacterScreenActivity extends AppCompatActivity {
                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "CANCEL",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        end();
+                                        dialog.dismiss();
                                     }
                                 });
                         alertDialog.show();

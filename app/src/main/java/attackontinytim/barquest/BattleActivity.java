@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
-import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Collections;
@@ -105,7 +102,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-        //TODO: implement item functionality
+
+        final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();
+        endDialog.setMessage("You won!");
+        endDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        end();
+                    }
+                });
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
@@ -127,9 +132,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             handler.postDelayed(new Runnable() {
                                 public void run(){
                                     if (battle.isWon()) {
-                                        setReward();
-                                        end();
-                                    }
+                                        if(battle.setReward()){
+                                            Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                            Bundle bundle = bundler.generateBundle(hero);
+                                            intent.putExtras(bundle);
+                                            startActivityForResult(intent, MAIN_RETURN_CODE);
+                                        }
+                                        battle.setReward();
+                                        endDialog.show();
+               }
                                 }
                             },1500);
                         }
@@ -144,8 +155,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             handler.postDelayed(new Runnable() {
                                 public void run(){
                                     if (battle.isLost()) {
-                                        setPenalty();
-                                        end();
+                                        battle.setPenalty();
+
+                                        endDialog.setMessage("You lost!");
+                                        endDialog.show();
+
                                     }
                                 }
                             },1500);
@@ -165,8 +179,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     handler.postDelayed(new Runnable() {
                                         public void run(){
                                             if (battle.isLost()) {
-                                                setPenalty();
-                                                end();
+                                                battle.setPenalty();
+
+                                                endDialog.setMessage("You lost!");
+                                                endDialog.show();
+
                                             }
                                         }
                                     },1500);
@@ -182,8 +199,14 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     handler.postDelayed(new Runnable() {
                                         public void run(){
                                             if (battle.isWon()) {
-                                                setReward();
-                                                end();
+                                                if(battle.setReward()){
+                                                    Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
+                                                    Bundle bundle = bundler.generateBundle(hero);
+                                                    intent.putExtras(bundle);
+                                                    startActivityForResult(intent, MAIN_RETURN_CODE);
+                                                }
+                                                endDialog.show();
+
                                             }
                                         }
                                     },1500);
@@ -224,26 +247,26 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     Bundle bundle = bundler.generateBundle(hero);
                                     setResult(RESULT_OK, getIntent().putExtras(bundle));
 
-                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
-                                    alertDialog.setMessage("You successfully fled!");
-                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                    AlertDialog fleeDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    fleeDialog.setMessage("You successfully fled!");
+                                    fleeDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                                             new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     end();
                                                 }
                                             });
-                                    alertDialog.show();
+                                    fleeDialog.show();
                                 }
                                 else {
-                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
-                                    alertDialog.setMessage("You couldn't escape!");
-                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                    AlertDialog fleeDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    fleeDialog.setMessage("You couldn't escape!");
+                                    fleeDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                                             new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     dialog.dismiss();
                                                 }
                                             });
-                                    alertDialog.show();
+                                    fleeDialog.show();
 
                                     battle.enemyTurn();
                                     attacker = battle.enemy.getName();
@@ -252,7 +275,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     reloadBattleScreen();
 
                                     if (battle.isLost()) {
-                                        setPenalty();
+                                        battle.setPenalty();
                                         end();
                                     }
                                 }
@@ -352,43 +375,5 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
             attackPic.setScaleX(1);
         else if(attacker == battle.enemy.getName())
             attackPic.setScaleX(-1);
-    }
-
-    protected void setPenalty(){
-        /** Lose money (10%) */
-        hero.setMoney(hero.getMoney() - (hero.getMoney()/10));
-    }
-
-    protected void setReward(){
-        /** Update Quest */
-        hero.getCurrentQuest().updateQuestProgress(battle.battleEnemy);
-
-        /** Gain Money */
-        hero.setMoney(hero.getMoney() + enemy.getMoney());
-
-        /** Loot Drop */
-        int rand = (int)(Math.random()*10);
-        if(rand < 2) {
-            /** Drop Random Weapon (20%) */
-            List<Weapon> wList = WeaponRepo.getAllItems();
-            Collections.shuffle(wList);
-            InventoryRepo.addItemToInventory(wList.get(0));
-        }
-        else {
-            /** Drop Random Consumable (80%) */
-            List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
-            Collections.shuffle(cList);
-            InventoryRepo.addItemToInventory(cList.get(0));
-        }
-
-        /** Gain XP + Level Up */
-        int xp = hero.getXP();
-        hero.inc_experience(enemy.getXP());
-        if(xp + enemy.getXP() > 100) {
-            Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
-            Bundle bundle = bundler.generateBundle(hero);
-            intent.putExtras(bundle);
-            startActivityForResult(intent, MAIN_RETURN_CODE);
-        }
     }
 }
