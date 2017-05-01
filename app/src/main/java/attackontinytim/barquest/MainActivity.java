@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     // DB Handler object for all database calls
     private static DBHandler dbHandler;
 
-	// This is called when the activity is created
+    // This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,42 +66,41 @@ public class MainActivity extends AppCompatActivity {
         // Inserts value to database if database is empty
         InsertDataValues.createDatabaseValues();
 
-        if (HeroRepo.getAllHeros().size() == 0){
+        if (HeroRepo.getAllHeros().size() == 0) {
             InsertDataValues.initializeHeroValues();
-        }
-        else {
+        } else {
             hero = HeroRepo.getHeroByName("HERO");
         }
     }
 
     private void checkPermissions() {
         // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-        }
-
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        }
-
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-            new String[]{Manifest.permission.CAMERA}, 0);
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, 0);
         }
     }
 
     // THIS is disgusting
-    public void onClickButtonListener(){
-        battle = (Button)findViewById(R.id.battleButton);
-        scan = (Button)findViewById(R.id.scannerButton);
-        character = (Button)findViewById(R.id.characterButton);
-        inventory = (Button)findViewById(R.id.inventoryButton);
-        shop = (Button)findViewById(R.id.shopButton);
-        levelUp = (Button)findViewById(R.id.levelUpButton);
-        quest = (Button)findViewById(R.id.questButton);
-        reset = (Button)findViewById(R.id.CharReset);
+    public void onClickButtonListener() {
+        battle = (Button) findViewById(R.id.battleButton);
+        scan = (Button) findViewById(R.id.scannerButton);
+        character = (Button) findViewById(R.id.characterButton);
+        inventory = (Button) findViewById(R.id.inventoryButton);
+        shop = (Button) findViewById(R.id.shopButton);
+        levelUp = (Button) findViewById(R.id.levelUpButton);
+        quest = (Button) findViewById(R.id.questButton);
+        reset = (Button) findViewById(R.id.CharReset);
 
         battle.setOnClickListener(
                 new View.OnClickListener() {
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         Bundle bundle = bundler.generateBundle(hero);
 
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent("attackontinytim.barquest.CharacterScreenActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent("attackontinytim.barquest.InventoryActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                         Bundle bundle = bundler.generateBundle(hero);
 
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -171,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent("attackontinytim.barquest.QuestActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent,  MAIN_RETURN_CODE);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
                     }
                 }
         );
@@ -208,15 +207,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-	// This reconstructs the hero after a called activity ends
+    // This reconstructs the hero after a called activity ends
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_CANCELED) {
-            switch (requestCode) {
-                default:
+        switch (requestCode) {
+            default:
+                try {
                     Bundle bundle = data.getExtras();
                     hero = bundler.unbundleHero(bundle);
-            }
+                } catch (Exception ex) {
+                    hero = HeroRepo.getHeroByName("HERO");
+                }
+
         }
     }
 }
+
