@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
-import android.support.design.widget.TabLayout;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Collections;
@@ -105,7 +102,15 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         attack = (Button) findViewById(R.id.attackButton);
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
-        //TODO: implement item functionality
+
+        final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();
+        endDialog.setMessage("You won!");
+        endDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        end();
+                    }
+                });
 
         attack.setOnClickListener(
                 new View.OnClickListener() {
@@ -133,8 +138,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                             intent.putExtras(bundle);
                                             startActivityForResult(intent, MAIN_RETURN_CODE);
                                         }
-                                        end();
-                                    }
+                                        battle.setReward();
+                                        endDialog.show();
+               }
                                 }
                             },1500);
                         }
@@ -150,7 +156,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 public void run(){
                                     if (battle.isLost()) {
                                         battle.setPenalty();
-                                        end();
+
+                                        endDialog.setMessage("You lost!");
+                                        endDialog.show();
+
                                     }
                                 }
                             },1500);
@@ -171,7 +180,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                         public void run(){
                                             if (battle.isLost()) {
                                                 battle.setPenalty();
-                                                end();
+
+                                                endDialog.setMessage("You lost!");
+                                                endDialog.show();
+
                                             }
                                         }
                                     },1500);
@@ -193,7 +205,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                                     intent.putExtras(bundle);
                                                     startActivityForResult(intent, MAIN_RETURN_CODE);
                                                 }
-                                                end();
+                                                endDialog.show();
+
                                             }
                                         }
                                     },1500);
@@ -234,26 +247,26 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     Bundle bundle = bundler.generateBundle(hero);
                                     setResult(RESULT_OK, getIntent().putExtras(bundle));
 
-                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
-                                    alertDialog.setMessage("You successfully fled!");
-                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                    AlertDialog fleeDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    fleeDialog.setMessage("You successfully fled!");
+                                    fleeDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                                             new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     end();
                                                 }
                                             });
-                                    alertDialog.show();
+                                    fleeDialog.show();
                                 }
                                 else {
-                                    AlertDialog alertDialog = new AlertDialog.Builder(BattleActivity.this).create();
-                                    alertDialog.setMessage("You couldn't escape!");
-                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                    AlertDialog fleeDialog = new AlertDialog.Builder(BattleActivity.this).create();
+                                    fleeDialog.setMessage("You couldn't escape!");
+                                    fleeDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                                             new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     dialog.dismiss();
                                                 }
                                             });
-                                    alertDialog.show();
+                                    fleeDialog.show();
 
                                     battle.enemyTurn();
                                     attacker = battle.enemy.getName();

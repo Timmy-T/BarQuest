@@ -2,18 +2,16 @@ package attackontinytim.barquest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 import android.os.Handler;
 import java.lang.Runnable;
 import java.util.Collections;
 import java.util.List;
-
 import android.util.Log;
 
 import attackontinytim.barquest.Database.ConsumableItem;
-import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
+import attackontinytim.barquest.Database.ConsumableRepo;
 import attackontinytim.barquest.Database.Weapon;
 import attackontinytim.barquest.Database.WeaponRepo;
 

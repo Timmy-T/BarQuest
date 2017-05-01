@@ -79,4 +79,3 @@ public class DBHandler extends SQLiteOpenHelper {
         DatabaseManager.getInstance().closeDatabase();
     }
 }
-
