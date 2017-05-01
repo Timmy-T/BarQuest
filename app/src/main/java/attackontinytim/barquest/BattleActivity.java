@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
 import java.util.List;
 import java.util.Collections;
 
+import attackontinytim.barquest.Database.HeroRepo;
 import attackontinytim.barquest.Database.InventoryRepo;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.MonsterRepo;
@@ -37,6 +38,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     // Return
     static public int MAIN_RETURN_CODE = 1;
+    final static public int LEVEL_UP_RETURN = 6969;
 
     // Buttons
     private static Button attack;
@@ -142,10 +144,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                         if (!aftermath){
                                             aftermath = true;
                                             if(battle.setReward()){
+
                                                 Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
                                                 Bundle bundle = bundler.generateBundle(hero);
                                                 intent.putExtras(bundle);
-                                                startActivityForResult(intent, MAIN_RETURN_CODE);
+                                                startActivityForResult(intent, LEVEL_UP_RETURN);
                                             }
                                         }
                                         endDialog.show();
@@ -216,7 +219,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                                         Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
                                                         Bundle bundle = bundler.generateBundle(hero);
                                                         intent.putExtras(bundle);
-                                                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                                                        startActivityForResult(intent, LEVEL_UP_RETURN);
                                                     }
                                                 }
                                                 endDialog.show();
@@ -336,6 +339,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         }, 1500); //wait 1s
                     }
                     break;
+                }
+                case (LEVEL_UP_RETURN) :{
+                    hero = HeroRepo.getHeroByName(hero.getName());
                 }
                 default:
                     end();
