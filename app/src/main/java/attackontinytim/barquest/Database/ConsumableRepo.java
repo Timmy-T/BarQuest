@@ -95,6 +95,33 @@ public class ConsumableRepo {
         }
     }
 
+
+    /**
+     * Returns list of consumables with the same effect
+     * @param effect The effect to search by 
+     * @return Consumable List object
+     */
+    public static List<ConsumableItem> getConsumableListByType(String effect) {
+        List<ConsumableItem> conList = new ArrayList<>();
+
+        String countQuery = "SELECT * FROM " + TABLE_CONSUMABLE + " WHERE " + KEY_EFFECT + " = '" + effect +"'" ;
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ConsumableItem consumable = new ConsumableItem(cursor);
+                // Adding contact to list
+                conList.add(consumable);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        DatabaseManager.getInstance().closeDatabase(); // Closing database connection
+        return conList;
+    }
+
+
     /**
      *  Returns a List of all consumables in the consumables table
      * @return List containing all consumables

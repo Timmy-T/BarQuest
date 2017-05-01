@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shop_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="attackontinytim.barquest.fragment_mainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item (Cost)"
+        android:id="@+id/textView3"
+        android:textSize="21sp"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignEnd="@+id/weapon_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity Owned"
+        android:id="@+id/textView4"
+        android:textSize="21sp"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hp_pot"
+        android:id="@+id/hp_pot_label"
+        android:layout_marginTop="12dp"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/hp_pot_quantity"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/HP_Pot_button"
+        android:layout_alignBottom="@+id/HP_Pot_button"
+        android:layout_alignStart="@+id/stat_pot_1_quantity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/stat_pot_1_quantity"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/HP_Pot_button"
+        android:layout_alignStart="@+id/stat_pot_2_quantity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/stat_pot_2_quantity"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/Stat_pot_2_button"
+        android:layout_alignBottom="@+id/Stat_pot_2_button"
+        android:layout_alignStart="@+id/stat_pot_3_quantity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stat_pot_1"
+        android:id="@+id/stat_pot_1_label"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/stat_pot_1_quantity"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stat_pot_2"
+        android:id="@+id/stat_pot_2_label"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/stat_pot_2_quantity"
+        android:layout_alignBottom="@+id/stat_pot_2_quantity"
+        android:layout_alignStart="@+id/hp_pot_label" />
+
+    <Button
+        android:id="@+id/HP_Pot_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/hp_pot_label"
+        android:layout_alignBottom="@+id/hp_pot_label"
+        android:layout_alignParentEnd="true"
+        android:text="Buy x 1"
+        android:textSize="21sp" />
+
+    <Button
+        android:id="@+id/Stat_pot_2_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/Stat_pot_1_button"
+        android:layout_marginTop="11dp"
+        android:text="Buy x 1"
+        android:textSize="21sp" />
+
+    <Button
+        android:id="@+id/Stat_pot_1_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/stat_pot_1_quantity"
+        android:layout_alignBottom="@+id/stat_pot_1_quantity"
+        android:layout_alignParentEnd="true"
+        android:text="Buy x 1"
+        android:textSize="21sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stat_pot_3"
+        android:id="@+id/stat_pot_3_label"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/stat_pot_3_quantity"
+        android:layout_alignBottom="@+id/stat_pot_3_quantity"
+        android:layout_alignStart="@+id/stat_pot_2_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/stat_pot_3_quantity"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/stat_pot_3_button"
+        android:layout_alignBottom="@+id/stat_pot_3_button"
+        android:layout_alignStart="@+id/weapon_quantity" />
+
+    <Button
+        android:id="@+id/stat_pot_3_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/Stat_pot_2_button"
+        android:layout_marginTop="11dp"
+        android:text="Buy x 1"
+        android:textSize="21sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="weapon_label"
+        android:id="@+id/weapon_label"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/weapon_button"
+        android:layout_alignBottom="@+id/weapon_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NULL"
+        android:id="@+id/weapon_quantity"
+        android:textSize="18sp"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/stat_pot_3_button"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/weapon_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buy x 1"
+        android:textSize="21sp"
+        android:layout_alignBaseline="@+id/weapon_quantity"
+        android:layout_alignBottom="@+id/weapon_quantity"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

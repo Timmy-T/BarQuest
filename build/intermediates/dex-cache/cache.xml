@@ -3,87 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\28f8c39d0fecd4c4b00aae572da5f4fe44f634d6\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ad23d87fe8ceb5472657b7c58af4067c16db5342\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\e0aaa3603ad5506e7a0519d1ca1d9106dee00e12\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_025ee35d5dc6c9d52d7cf80eb3d513ebe79fb558\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\262d99fb2acfaa8acac4b1fe474b5f93565908a7\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_eb894d0c10aec0c350f15b7ddc7311ece69f0d89\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\744acccf840c503801f22f59523d2b5d993c00a4\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ef989a2af45c76d438fa52221df7cc76dc5a2a1c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\1322d055f6b23ef11179289cd7bb9f706ec9d982\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ce48459bb8d9d32a00ce67555e9cf8aa6afa6e37\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\64e919fa2ecd87514ec2edbe279f096e8ad5bf41\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3ad266cd9241e2ee8b9a679417b95c8e16ac6769\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\cecaf10c95a65c68371210fb60490c0318399825\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_48fc53d47fce6ac29b3370308ec7817aa7b77b35\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b9d7d9176d161a807637cd15f72ee9077ae1e314">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_36379251b196677168ab6d6c3bc974abc83c2b0a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\3872f40501e2d7e9325e2a31d7d260c2c9b1eb03\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4049c7bc52c1242756fcc2d069828455d2e3bafa\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -93,39 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\c35d4efd036f414430f4a17e7ec94a13eb7556dc\output\jars\classes.jar"
+        jar="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fcaa9a0d0cecc36240078f43d9b333638e175fa3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\86407c4812f73c2a641cf2d9da33b66c944fdb8d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3c954d0af3278a331112d08422c01ddd68b7d703\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\1e7e1ff8b055ce58458ecfbea9ba5645fb6698a3\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_92245c97ac62aea267dd7cb03d62284997750edd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Tim Buesking\.android\build-cache\dabb248cfb27c1bb6ddcb7c77ba2320ff2989cd7\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bbbd5dfd1b2744a10b1ef28c89bd08ee1f27b103\classes.dex" />
+        sha1="6fdf6561a45ac4cf6caba3b91d26554532e4784b">
+        <dex dex="C:\Users\Tim Buesking\AndroidStudioProjects\BarQuest\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_36379251b196677168ab6d6c3bc974abc83c2b0a\classes.dex" />
     </item>
 
 </items>
