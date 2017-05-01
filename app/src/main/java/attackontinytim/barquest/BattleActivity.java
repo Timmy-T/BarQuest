@@ -104,6 +104,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         flee = (Button) findViewById(R.id.fleeButton);
 
         final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();
+        endDialog.setMessage("You won!");
         endDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
