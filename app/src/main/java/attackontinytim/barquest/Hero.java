@@ -94,7 +94,7 @@ public class Hero implements Parcelable {
 
     }
 
-    private void getScannerTimeFromDB() {
+    public void getScannerTimeFromDB() {
         Timer[] tempTimers = new Timer[10];
 
         List<Long> timerList = TimerRepo.getAllTimers(this.name);
