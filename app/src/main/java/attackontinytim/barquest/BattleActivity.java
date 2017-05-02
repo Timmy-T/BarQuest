@@ -111,8 +111,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         item = (Button) findViewById(R.id.itemButton);
         flee = (Button) findViewById(R.id.fleeButton);
         
-        final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();		
-        endDialog.setMessage("You won!");		
+        final AlertDialog endDialog = new AlertDialog.Builder(BattleActivity.this).create();
         endDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",		
                 new DialogInterface.OnClickListener() {		
                     public void onClick(DialogInterface dialog, int which) {		
@@ -144,13 +143,17 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                         if (!aftermath){
                                             aftermath = true;
                                             if(battle.setReward()){
-
                                                 Intent intent = new Intent("attackontinytim.barquest.LevelUpActivity");
                                                 Bundle bundle = bundler.generateBundle(hero);
                                                 intent.putExtras(bundle);
                                                 startActivityForResult(intent, LEVEL_UP_RETURN);
                                             }
                                         }
+                                        String weapReward = battle.winWeaponName;
+                                        String itemReward = battle.winItemName;
+                                        String moneyReward = String.valueOf(battle.enemy.getMoney());
+                                        String expReward = String.valueOf(battle.enemy.getXP());
+                                        endDialog.setMessage("You won!\nReward: " + weapReward + itemReward + "\nMoney: +" + moneyReward + "\nEXP: +" + expReward);
                                         endDialog.show();
                                     }
                                 }
@@ -171,7 +174,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                             aftermath = true;
                                             battle.setPenalty();
                                         }
-                                        endDialog.setMessage("You lost!");
+                                        endDialog.setMessage("You lost!\nMoney: -" + String.valueOf(hero.getMoney()/10));
                                         endDialog.show();
                                     }
                                 }
@@ -196,7 +199,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                                     aftermath = true;
                                                     battle.setPenalty();
                                                 }
-                                                endDialog.setMessage("You lost!");
+                                                endDialog.setMessage("You lost!\nMoney: -" + String.valueOf(hero.getMoney()/10));
                                                 endDialog.show();
                                             }
                                         }
@@ -222,6 +225,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                                         startActivityForResult(intent, LEVEL_UP_RETURN);
                                                     }
                                                 }
+                                                String weapReward = battle.winWeaponName;
+                                                String itemReward = battle.winItemName;
+                                                String moneyReward = String.valueOf(battle.enemy.getMoney());
+                                                String expReward = String.valueOf(battle.enemy.getXP());
+                                                endDialog.setMessage("You won!\nReward: " + weapReward + itemReward + "\nMoney: +" + moneyReward + "\nEXP: +" + expReward);
                                                 endDialog.show();
                                             }
                                         }
