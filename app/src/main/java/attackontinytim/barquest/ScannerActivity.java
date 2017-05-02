@@ -1,6 +1,8 @@
 package attackontinytim.barquest;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,6 @@ import attackontinytim.barquest.Database.Weapon;
 import static attackontinytim.barquest.MainActivity.MAIN_RETURN_CODE;
 
 public class ScannerActivity extends AppCompatActivity {
-
     public Hero hero;
 
 	// This is called when the activity is created
@@ -45,26 +46,30 @@ public class ScannerActivity extends AppCompatActivity {
     // This is called when the activity is ended via result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null && resultCode == RESULT_OK) {
-            if((result.getContents() != null) && (hero.timerPress())) {
-                int numberValue = scannerHash(result.getContents());
-
-                Bundle bundle = bundler.generateBundle(hero);
-                bundle.putInt("MonsterHash", numberValue);
-
-                Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
-                intent.putExtras(bundle);
-                startActivityForResult(intent,  MAIN_RETURN_CODE);
+        switch (requestCode) {
+            case (MAIN_RETURN_CODE):
                 end();
-            }
-        } else {
-            end();
+
+            default:
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if (result != null && resultCode == RESULT_OK) {
+                    if ((result.getContents() != null) && (hero.timerPress())) {
+                        int numberValue = scannerHash(result.getContents());
+
+                        Bundle bundle = bundler.generateBundle(hero);
+                        bundle.putInt("MonsterHash", numberValue);
+
+                        Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent, MAIN_RETURN_CODE);
+                        end();
+                    }
+                } else {
+                    end();
+                }
         }
     }
 
-	// This is what is called when back is pressed
-    @Override
     public void onBackPressed() {
 		// it ends the acitivity
         end();

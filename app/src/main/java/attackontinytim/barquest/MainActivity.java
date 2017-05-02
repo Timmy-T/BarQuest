@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public Hero hero;
 
     // Return
-    static public int MAIN_RETURN_CODE = 1;
+    final static public int MAIN_RETURN_CODE = 1;
 
 
     // Buttons
