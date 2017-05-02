@@ -103,6 +103,15 @@ public class ShopActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // What is done when hardware back button is pressed
+    @Override
+    public void onBackPressed() {
+        Bundle bundle = bundler.generateBundle(hero);
+
+        setResult(RESULT_OK,getIntent().putExtras(bundle));
+        finish();
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -326,16 +335,12 @@ public class ShopActivity extends AppCompatActivity {
                             hero.setMoney(hero.getMoney() + selectedItemCon.getValue());
                             InventoryRepo.subtractItemFromInvetory(selectedItemCon);
                             HeroRepo.updateHero(hero);
+
                             getActivity().finish();
                             startActivity(getActivity().getIntent());
                         }
                         else {
-                            if (InventoryRepo.getItemQuantity(selectedItemWep) == 1) {
-                                if (hero.getActive() == selectedItemWep) {
-                                    //you can't sell your active item
-                                }
-
-                            } else {
+                            if ((InventoryRepo.getItemQuantity(selectedItemWep) != 1) || ! hero.getActive().getName().equalsIgnoreCase(selectedItemWep.getName())){
                                 hero.setMoney(hero.getMoney() + selectedItemWep.getValue());
                                 InventoryRepo.subtractItemFromInvetory(selectedItemWep);
                                 HeroRepo.updateHero(hero);
