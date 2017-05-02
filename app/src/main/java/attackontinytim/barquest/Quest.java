@@ -8,13 +8,15 @@ import java.util.Random;
 import attackontinytim.barquest.Database.Monster;
 import attackontinytim.barquest.Database.QuestRepo;
 
-public class Quest{
+public class Quest {
     
     /* ********* */
     /* VARIABLES */
     /* ********* */
-    
-    /** Common variables for all Quest objects */
+
+    /**
+     * Common variables for all Quest objects
+     */
     private int id; //  Quest ID
     private String name; // Name of the quest
     private String description; // Text description of the quest
@@ -178,6 +180,7 @@ public class Quest{
     public void setQuestTarget(String questTarget) {
         QuestTarget = questTarget;
     }
+
     public String getName() {
         return name;
     }
@@ -187,77 +190,17 @@ public class Quest{
      * Currently checks for the monster rarity and the monster name
      * @param mon Monster that was killed
      */
-    public void updateQuestProgress(Monster mon){
-        if (this.getQuestType() == "Rarity"){
-            if (this.getQuestTarget() == mon.getRarity()){
-                this.setProgress( this.getProgress() + 1 );
+    public void updateQuestProgress(Monster mon) {
+        if (this.getQuestType().equalsIgnoreCase("Rarity")) {
+            if (this.getQuestTarget().equalsIgnoreCase(mon.getRarity())) {
+                this.setProgress(this.getProgress() + 1);
             }
-        }
-        else if (this.getQuestType() == "Monster"){
-            if (this.getQuestTarget() == mon.getName()){
-                this.setProgress( this.getProgress() + 1 );
+        } else if (this.getQuestType().equalsIgnoreCase("Monster")) {
+            if (this.getQuestTarget().equalsIgnoreCase(mon.getName())) {
+                this.setProgress(this.getProgress() + 1);
             }
         }
 
         QuestRepo.updateQuest(this);
     }
-
-
-    /* ************* */
-    /* MISC. METHODS */
-    /* ************* */
-    
-
-    // Framework Methods
-    /////////////////////
-/*
-    public static Creator<Quest> getCREATOR() {
-        return CREATOR;
-    }
-    // Parcel Constructor
-    public Quest(Parcel in) {
-        int temp;
-
-        this.id = in.readInt();
-        this.currentCompleted = in.readInt();
-        this.completionGoal = in.readInt();
-        temp = in.readInt();
-
-        if (temp == 0)
-            this.canTurnInEarly = false;
-        else
-            this.canTurnInEarly = true;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-	
-	// This allows us to use parcelling for easier transmission of Quest objects
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        //TODO: Parcelelize Quest attributes
-        int temp;
-        if (!this.canTurnInEarly)
-            temp = 0;
-        else
-            temp = 1;
-
-        dest.writeInt(this.getId());
-        dest.writeInt(this.getCurrentCompleted());
-        dest.writeInt(this.getCompletionGoal());
-        dest.writeInt(temp);
-    }
-
-    public static final Parcelable.Creator<Quest> CREATOR = new Parcelable.Creator<Quest>() {
-
-        public Quest createFromParcel(Parcel in) {
-            return new Quest(in);
-        }
-
-        public Quest[] newArray(int size) {
-            return new Quest[size];
-        }
-    };*/
 }
