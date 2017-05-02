@@ -298,6 +298,21 @@ public class Hero implements Parcelable {
         return pressed;
     }
 
+    public int getNumTimersReady() {
+        int numTimers = 0;
+
+        this.getScannerTimeFromDB();
+
+       for (int i = 0; i < 10; i++)
+        {
+            if (this.scanTimers[i].checkIfPast()) {
+                numTimers += 1;
+            }
+        }
+
+        return numTimers;
+    }
+
     // Framework Methods
     /////////////////////
 
