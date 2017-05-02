@@ -3,6 +3,7 @@ package attackontinytim.barquest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
@@ -96,6 +97,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         TextView TotalMonHP = (TextView) findViewById(R.id.monhp);
         TextView CurrMonHP = (TextView) findViewById(R.id.currMonHP);
         ProgressBar MonHPBar = (ProgressBar) findViewById(R.id.MonHPBar);
+        ImageView monPic = (ImageView) findViewById(R.id.monsterPic);
 
         MonName.setText(String.valueOf(battle.enemy.getName()));
         MonLvl.setText(String.valueOf(battle.enemy.getLevel()));
@@ -105,6 +107,12 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         MonHPBar.setMax(battle.enemy.getHP());
         MonHPBar.setProgress(battle.enemy.getHP());
 
+        int resourceId = this.getResources().getIdentifier(battle.enemy.getImage(), "drawable", getPackageName());
+        monPic.setImageResource(resourceId);
+        if(monPic.getDrawable() == null) {
+            resourceId = this.getResources().getIdentifier("temp_monster", "drawable", getPackageName());
+            monPic.setImageResource(resourceId);
+        }
         onClickButtonListener();
 
         Tutorial.battleTutorial(this);

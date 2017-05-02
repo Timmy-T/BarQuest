@@ -73,7 +73,7 @@
             android:layout_gravity="center|bottom"
             android:layout_row="1"
             android:scaleType="fitEnd"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/hero" />
 
         <ImageView
             android:id="@+id/attackPic"
