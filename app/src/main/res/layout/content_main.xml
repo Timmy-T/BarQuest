@@ -5,6 +5,7 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main1"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -21,18 +22,11 @@
         style="@style/Widget.AppCompat.Button.Colored"/>
 
     <Button
-        android:text="Battle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/battleButton"
-        android:layout_below="@+id/scannerButton"/>
-
-    <Button
         android:text="Character"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/characterButton"
-        android:layout_below="@+id/battleButton"/>
+        android:layout_below="@+id/scannerButton"/>
 
     <Button
         android:text="Level Up"
@@ -61,13 +55,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/questButton"
         android:layout_below="@+id/shopButton"/>
-
-    <Button
-        android:text="Reset Character"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/CharReset"
-        android:layout_below="@+id/questButton"/>
-
 
 </RelativeLayout>

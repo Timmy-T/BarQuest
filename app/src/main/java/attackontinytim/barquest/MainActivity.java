@@ -35,15 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Buttons
-    private static Button battle;
     private static Button scan;
     private static Button character;
     private static Button inventory;
     private static Button shop;
     private static Button levelUp;
     private static Button quest;
-    private static Button consumables;
-    private static Button reset;
 
     // DB Handler object for all database calls
     private static DBHandler dbHandler;
@@ -96,26 +93,13 @@ public class MainActivity extends AppCompatActivity {
 
     // THIS is disgusting
     public void onClickButtonListener() {
-        battle = (Button) findViewById(R.id.battleButton);
         scan = (Button) findViewById(R.id.scannerButton);
         character = (Button) findViewById(R.id.characterButton);
         inventory = (Button) findViewById(R.id.inventoryButton);
         shop = (Button) findViewById(R.id.shopButton);
         levelUp = (Button) findViewById(R.id.levelUpButton);
         quest = (Button) findViewById(R.id.questButton);
-        reset = (Button) findViewById(R.id.CharReset);
 
-        battle.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        Intent intent = new Intent("attackontinytim.barquest.BattleActivity");
-                        Bundle bundle = bundler.generateBundle(hero);
-
-                        intent.putExtras(bundle);
-                        startActivityForResult(intent, MAIN_RETURN_CODE);
-                    }
-                }
-        );
         scan.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -174,14 +158,6 @@ public class MainActivity extends AppCompatActivity {
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent, MAIN_RETURN_CODE);
-                    }
-                }
-        );
-        reset.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View v) {
-                        dbHandler.resetData();
-                        hero = HeroRepo.getHeroByName("HERO");
                     }
                 }
         );

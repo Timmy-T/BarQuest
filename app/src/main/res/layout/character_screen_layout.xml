@@ -187,7 +187,8 @@
             android:id="@+id/statButton"
             android:text = "Distribute Stats"
             android:padding = "10dp"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
             android:layout_row="3"
             android:layout_column="0">
         </Button>

@@ -52,8 +52,8 @@ public class InsertDataValues {
             WeaponRepo.addItem(new Weapon("Long", 55,3,"Thrown Fedora", 10, 2.5));
             WeaponRepo.addItem(new Weapon("Long", 55,3,"Netscan", 10, 2.5));
             WeaponRepo.addItem(new Weapon("Long", 55,3,"HDD of Destiny", 10, 2.5));
-            WeaponRepo.addItem(new Weapon("Close", 1, 0, "Trenton's Flag", 0, 0.1));
-            WeaponRepo.addItem(new Weapon("Close", 0, 0, "Trenton's Other Flag", 25, 0));
+            WeaponRepo.addItem(new Weapon("Close", 1, 0, "Flag of Trenton", 0, 0.1));
+            WeaponRepo.addItem(new Weapon("Close", 0, 0, "Other Flag of Trenton", 25, 0));
         }
         //The order of effects (the first four ints) goes as follows: HP, Speed, Defense, Attack
         if(ConsumableRepo.getConsumableCount() == 0){

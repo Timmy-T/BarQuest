@@ -138,7 +138,10 @@ public class QuestActivity extends AppCompatActivity {
 
         ((TextView) findViewById(R.id.Title)).setText(quest.getName());
         ((TextView) findViewById(R.id.Description)).setText(quest.getDescription());
-        ((TextView) findViewById(R.id.Complete)).setText(String.valueOf(quest.isCompleted()));
+        if(quest.isCompleted())
+            ((TextView) findViewById(R.id.Complete)).setText("Yes");
+        else
+            ((TextView) findViewById(R.id.Complete)).setText("No");
         ((TextView) findViewById(R.id.QuestTotal)).setText(String.valueOf(quest.getGoal()));
         ((TextView) findViewById(R.id.Progress)).setText(String.valueOf(quest.getProgress()));
     }
