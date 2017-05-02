@@ -30,27 +30,33 @@
             android:paddingTop="10dp"
             android:layout_row="0"
             android:layout_column="0">
-            <TableRow>
+            <TableRow
+                android:layout_width="wrap_content">
                 <TextView
                     android:id="@+id/attackerText"
+                    android:layout_width="wrap_content"
                     android:textSize="15dp"/>
                 <TextView
-                    android:text=" attacks "
+                    android:id="@+id/usedattacks"
+                    android:layout_width="wrap_content"
                     android:textSize="15dp"/>
                 <TextView
                     android:id="@+id/defenderText"
+                    android:layout_width="wrap_content"
                     android:textSize="15dp"/>
                 <TextView
                     android:text=" for "
+                    android:layout_width="wrap_content"
                     android:textSize="15dp"/>
                 <TextView
                     android:id="@+id/damageText"
+                    android:layout_width="wrap_content"
                     android:textSize="15dp"/>
                 <TextView
-                    android:text=" damage! "
+                    android:id="@+id/exc"
+                    android:layout_width="wrap_content"
                     android:textSize="15dp"/>
             </TableRow>
-
         </TableLayout>
 
         <ImageView

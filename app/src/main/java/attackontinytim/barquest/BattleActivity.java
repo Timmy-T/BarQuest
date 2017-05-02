@@ -35,6 +35,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     private Battle battle;
     private Hero hero;
     private Monster enemy;
+    private ConsumableActivity consumableActivity;
 
     // Return
     static public int MAIN_RETURN_CODE = 1;
@@ -47,8 +48,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
     // Description variables
     private String attacker;
+    private String usedattacks;
     private String defender;
     private int damage;
+    private String exc;
     
     private boolean aftermath;
 
@@ -133,8 +136,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                             damage = battle.battleEnemy.getHP();
                             battle.heroTurn();
                             attacker = battle.hero.getName();
+                            usedattacks = " attacks ";
                             defender = battle.enemy.getName();
                             damage = damage - battle.battleEnemy.getHP();
+                            exc = " damage!";
                             reloadBattleScreen();
 
                             final Handler handler = new Handler();
@@ -163,8 +168,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         else {
                             battle.enemyTurn();
                             attacker = battle.enemy.getName();
+                            usedattacks = " attacks ";
                             defender = battle.hero.getName();
                             damage = battle.enemy.getAttack();
+                            exc = " damage!";
                             reloadBattleScreen();
 
                             final Handler handler = new Handler();
@@ -189,8 +196,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                 if (battle.heroPriority()) {
                                     battle.enemyTurn();
                                     attacker = battle.enemy.getName();
+                                    usedattacks = " attacks ";
                                     defender = battle.hero.getName();
                                     damage = battle.enemy.getAttack();
+                                    exc = " damage!";
                                     reloadBattleScreen();
 
                                     handler.postDelayed(new Runnable() {
@@ -210,8 +219,10 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                                     damage = battle.battleEnemy.getHP();
                                     battle.heroTurn();
                                     attacker = battle.hero.getName();
+                                    usedattacks = " attacks ";
                                     defender = battle.enemy.getName();
                                     damage = damage - battle.battleEnemy.getHP();
+                                    exc = " damage!";
                                     reloadBattleScreen();
 
                                     handler.postDelayed(new Runnable() {
@@ -263,6 +274,8 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
                         startActivityForResult(intent, 9000);
+
+                        reloadBattleScreen();
                     }
                 }
         );
@@ -340,9 +353,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
                         handler.postDelayed(new Runnable() {
                             public void run(){
                                 battle.enemyTurn();
-                                attacker = battle.enemy.getName();
-                                defender = battle.hero.getName();
-                                damage = battle.enemy.getAttack();
+                                attacker = battle.hero.getName();
+                                usedattacks = " used ";
+                                defender = battle.usedItem.getName();
+                                damage = -1;
+                                exc = "!";
                                 reloadBattleScreen();
                             }
                         }, 1500); //wait 1s
@@ -382,12 +397,19 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         TableLayout battleDesc = (TableLayout) findViewById(R.id.battleDescription);
         battleDesc.setVisibility(View.VISIBLE);
         TextView attackerText = (TextView) findViewById(R.id.attackerText);
+        TextView usedattacksText = (TextView) findViewById(R.id.usedattacks);
         TextView defenderText = (TextView) findViewById(R.id.defenderText);
         TextView damageText = (TextView) findViewById(R.id.damageText);
+        TextView excText = (TextView) findViewById(R.id.exc);
 
         attackerText.setText(attacker);
+        usedattacksText.setText(usedattacks);
         defenderText.setText(defender);
-        damageText.setText(String.valueOf(damage));
+        if(damage == -1)
+            damageText.setText(battle.usedItem.getEffect());
+        else
+            damageText.setText(String.valueOf(damage));
+        excText.setText(exc);
 
         // Update Player stats
         TextView CurrHPStat = (TextView) findViewById(R.id.currCharHP);
