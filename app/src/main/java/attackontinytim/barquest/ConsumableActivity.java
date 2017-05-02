@@ -63,7 +63,7 @@ public class ConsumableActivity extends AppCompatActivity {
             }
         });
 
-    };
+    }
 
     // This is called when the activity is ended via result
     @Override
