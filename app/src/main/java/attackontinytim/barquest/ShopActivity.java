@@ -131,13 +131,14 @@ public class ShopActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             View viewOne;
             View viewTwo;
 
-
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
                 viewOne = inflater.inflate(R.layout.fragment_main, container, false);
+
+                TextView Money = (TextView) viewOne.findViewById(R.id.currMoney);
+                Money.setText(String.valueOf(hero.getMoney()));
 
                 TextView hp_pot_label = (TextView) viewOne.findViewById(R.id.hp_pot_label);
                 TextView hp_pot_value = (TextView) viewOne.findViewById(R.id.hp_pot_value);
@@ -289,6 +290,8 @@ public class ShopActivity extends AppCompatActivity {
 
             else {
                 viewTwo = inflater.inflate(R.layout.fragment_main_two, container, false);
+                TextView Money = (TextView) viewTwo.findViewById(R.id.currMoney);
+                Money.setText(String.valueOf(hero.getMoney()));
 
                 // populate weapons list
                 final ListView itemList = (ListView) viewTwo.findViewById(R.id.itemList);
