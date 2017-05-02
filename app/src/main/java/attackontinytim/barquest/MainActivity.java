@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
         }
+        Tutorial.homeTutorial(this);
     }
 }
 
