@@ -2,6 +2,7 @@ package attackontinytim.barquest;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -53,6 +54,9 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     private String defender;
     private int damage;
     private String exc;
+
+    // Music
+    private MediaPlayer mp;
     
     private boolean aftermath;
 
@@ -113,6 +117,11 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
             resourceId = this.getResources().getIdentifier("temp_monster", "drawable", getPackageName());
             monPic.setImageResource(resourceId);
         }
+
+        // Music
+        mp = MediaPlayer.create(this, R.raw.battle_music);
+        mp.start();
+
         onClickButtonListener();
 
         Tutorial.battleTutorial(this);
@@ -392,7 +401,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
     private void end(){
         Bundle bundle = bundler.generateBundle(hero);
         setResult(RESULT_OK,getIntent().putExtras(bundle));
-
+        mp.stop();
         finish();
     }
 

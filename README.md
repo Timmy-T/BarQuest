@@ -20,7 +20,7 @@
 2. Go to Menu> Settings> Security and check Unknown Sources are enabled.
 3. Clone the release branch to get the BarQuest.APK file.
 4. Copy the BarQuest.APK file to your phone.
-5. On your phone use the file locatoin system to find the APK and tap then click install.
+5. On your phone use the file location system to find the APK and tap then click install.
 
 [![QR Code For Release](http://i.imgur.com/8oMYMV3.png)](https://github.com/Timmy-T/BarQuest/tree/release)
 #### QR Code Pointing to Release Branch
