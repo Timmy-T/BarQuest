@@ -1,4 +1,74 @@
 <resources>
     <string name="app_name">BarQuest</string>
     <string name="action_settings">Settings</string>
+    <string name="home_tut_title">Welcome to BarQuest</string>
+
+    <string name="home_tut_msg">Welcome to BarQuest, a world of adventure, danger and code!\n\n
+                        You are a simple adventurer on a quest to become stronger, and on your journey will face perilous dangers in the form of monsters.\n\n
+                        To begin your journey click “SCAN”
+    </string>
+
+    <string name="scan_tut_title">
+        Scanning
+    </string>
+
+    <string name="scan_tut_msg">
+        In order to find monsters you must scan a barcode or QR Code \n\n
+        Make sure to line up the scan line with the code you are scanning
+    </string>
+
+    <string name="battle_tut_title">
+        Battling Monsters
+    </string>
+
+    <string name="battle_tut_msg">
+        To fight a monster click the attack button \n\n
+        To heal or boost your stats temporarily use an item \n\n
+        To run away click flee, but be warned you won’t always get away \n\n
+    </string>
+
+    <string name="char_tut_title">
+        Checking Your Character
+    </string>
+
+    <string name="char_tut_msg">
+        This screen shows your character stats and your progress on your adventure
+    </string>
+
+    <string name="levelUp_tut_title">
+        Congrats You Leveled Up!
+    </string>
+
+    <string name="levelUp_tut_msg">
+        As you fight monsters and gain experience you will level up and increase your stats \n\n
+        Every 100 experience points your level will increase
+    </string>
+
+    <string name="inventory_tut_title">
+        Inventory
+    </string>
+
+    <string name="inventory_tut_msg">
+        Here you can check your items and change your equipped weapon \n\n
+        Weapons have differing reaches providing a bonus damage modifier. Long > Mid > Close > Long \n\n
+    </string>
+
+    <string name="shop_tut_title">
+        Shopping Spree!
+    </string>
+
+    <string name="shop_tut_msg">
+       Friendly shopkeeps will buy your loot and sell you new items \n\n
+        Check back often as the wares change from time to time  \n\n
+    </string>
+
+    <string name="quest_tut_title">
+        Questing!
+    </string>
+
+    <string name="quest_tut_msg">
+        Here you can check your progress on your quests.
+        Completing quests will advance your character, get new and rare items and give clues on your journey
+    </string>
 </resources>
+

@@ -61,6 +61,8 @@ public class CharacterScreenActivity extends AppCompatActivity {
         SpdStat.setText(String.valueOf(hero.getSpeed()));
 
         onClickButtonListener();
+
+        Tutorial.characterTutorial(this);
     }
 
     public void onClickButtonListener() {

@@ -30,6 +30,8 @@ public class ScannerActivity extends AppCompatActivity {
         hero = bundler.unbundleHero(bundle);
         hero.getScannerTimeFromDB();
 
+        Tutorial.scanTutorial(this);
+
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         int scanNum = hero.getScanTimers().length;

@@ -60,6 +60,7 @@ public class LevelUpActivity extends AppCompatActivity {
         SpdStat.setText(String.valueOf(hero.getSpeed()));
 
         onClickButtonListener();
+        Tutorial.levelUpTutorial(this);
     }
 	
 	// This is called when the activity is ended via result

@@ -110,6 +110,7 @@ public class QuestActivity extends AppCompatActivity {
             }
         });
 
+        Tutorial.questTutorial(this);
     }
 	
 	// This is called when the activity is ended via result

@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 /**
  * Created by Tim Buesking on 4/24/2017.

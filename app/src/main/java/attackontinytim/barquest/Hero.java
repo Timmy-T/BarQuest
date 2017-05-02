@@ -54,7 +54,7 @@ public class Hero implements Parcelable {
         this.level = 1;
         this.speed = 5;
         this.defense = 5;
-        this.attack = 500;
+        this.attack = 5;
         // Default cuz reasons
         this.active =  new Weapon("Close", 1,1,"Dagger of Wood", 0.1, 0.5);
         this.currentQuest = new Quest();

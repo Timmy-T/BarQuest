@@ -104,6 +104,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
 
         onClickButtonListener();
 
+        Tutorial.battleTutorial(this);
     }
 
     public void onClickButtonListener() {

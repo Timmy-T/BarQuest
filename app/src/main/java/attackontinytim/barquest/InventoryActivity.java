@@ -137,6 +137,8 @@ public class InventoryActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+
+        Tutorial.inventoryTutorial(this);
     }
 
 	// This is called when the activity is ended via result

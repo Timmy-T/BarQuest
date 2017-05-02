@@ -1,10 +1,11 @@
 package attackontinytim.barquest.Database;
+
+import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import attackontinytim.barquest.Hero;
-import attackontinytim.barquest.Timer;
+import attackontinytim.barquest.Tutorial;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -77,5 +78,6 @@ public class DBHandler extends SQLiteOpenHelper {
         InsertDataValues.initializeHeroValues();
 
         DatabaseManager.getInstance().closeDatabase();
+        Tutorial.setAllTrue();
     }
 }

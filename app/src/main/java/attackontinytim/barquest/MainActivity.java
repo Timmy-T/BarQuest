@@ -1,6 +1,7 @@
 package attackontinytim.barquest;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         InsertDataValues.createDatabaseValues();
 
         if (HeroRepo.getAllHeros().size() == 0) {
+            Tutorial.setAllTrue();
+            Tutorial.homeTutorial(this);
             InsertDataValues.initializeHeroValues();
         } else {
             hero = HeroRepo.getHeroByName("HERO");
