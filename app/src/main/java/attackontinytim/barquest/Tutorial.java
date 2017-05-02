@@ -28,7 +28,7 @@ public class Tutorial {
                         // continue with delete
                     }
                 })
-                .setIcon(android.R.drawable.dark_header);
+                .setIcon(android.R.drawable.ic_menu_compass);
         diag.show();
         return diag;
     }
