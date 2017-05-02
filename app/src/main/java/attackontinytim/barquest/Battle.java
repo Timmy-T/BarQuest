@@ -34,6 +34,10 @@ public class Battle {
     private static final double MON_DEF  = 2;
     private static final int CRIT_MULT = 2;
 
+    /** Loot Variables */
+    protected String winWeaponName = "";
+    protected String winItemName = "";
+
     /* ************ */
     /* CONSTRUCTORS */
     /* ************ */
@@ -277,13 +281,18 @@ public class Battle {
             /** Drop Random Weapon (20%) */
             List<Weapon> wList = WeaponRepo.getAllItems();
             Collections.shuffle(wList);
-            InventoryRepo.addItemToInventory(wList.get(0));
+            Weapon winWeapon = wList.get(0);
+            winWeaponName = winWeapon.getName();
+            InventoryRepo.addItemToInventory(winWeapon);
+
         }
         else {
             /** Drop Random Consumable (80%) */
             List<ConsumableItem> cList = ConsumableRepo.getAllConsumables();
             Collections.shuffle(cList);
-            InventoryRepo.addItemToInventory(cList.get(0));
+            ConsumableItem winItem = cList.get(0);
+            winItemName = winItem.getName();
+            InventoryRepo.addItemToInventory(winItem);
         }
 
         /** Gain XP + Level Up */
