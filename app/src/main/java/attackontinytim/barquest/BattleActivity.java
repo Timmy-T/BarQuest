@@ -67,7 +67,7 @@ public class BattleActivity extends AppCompatActivity /*implements Parcelable*/{
         }
         catch (Exception e){
             Log.d("HERE", e.getMessage());
-            enemy = new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5);
+            enemy = new Monster(1,"Bob", 100, 50, "Close", 5.0, 1, "Common", 5, 5, 5, "bug");
         }
 
         battle = new Battle(hero, enemy);

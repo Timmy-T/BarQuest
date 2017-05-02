@@ -19,24 +19,24 @@ public class InsertDataValues {
      */
     public static void createDatabaseValues(){
         if (MonsterRepo.getMonsterCount() == 0) {
-            MonsterRepo.addMonster(new Monster(1,"Bug", 10, 10, "Close", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(2,"Virus", 10, 10, "Close", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(3,"MatLab", 10, 10, "Mid", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(4,"Porygon", 10, 10, "Mid", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(5,"PHP", 10, 10, "Long", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(6,"Labview", 10, 5000, "Long", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(7,"Wurm", 10, 10, "Long", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(8,"Trojan Horse", 10, 10, "Long", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(9,"Visual Basic", 10, 10, "Mid", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(10,"Logic Bomb", 10, 100, "Mid", 5.0, 1, "Common", 5, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(11,"Botnet", 30, 50, "Close", 15.0, 1, "Uncommon", 10, 5, 5, ""));
-            MonsterRepo.addMonster(new Monster(12,"Windows Defender", 30, 50, "Mid", 15.0, 1, "Uncommon", 5, 10, 5, ""));
-            MonsterRepo.addMonster(new Monster(13,"Toolbars", 30, 50, "Long", 15.0, 1, "Uncommon", 5, 5, 10, ""));
-            MonsterRepo.addMonster(new Monster(14,"Windows Vista", 30, 50, "Long", 15.0, 1, "Uncommon", 10, 5, 10, ""));
-            MonsterRepo.addMonster(new Monster(15,"SegFault", 50, 50, "Mid", 15.0, 1, "Rare", 15, 5, 10, ""));
-            MonsterRepo.addMonster(new Monster(16,"Null Pointer", 50, 50, "Mid", 15.0, 1, "Rare", 10, 5, 15, ""));
-            MonsterRepo.addMonster(new Monster(17,"Crippling Anxiety", 100, 1000, "Mid", 0.0, 1, "Ultra Common", 5, 5, 250, ""));
-            MonsterRepo.addMonster(new Monster(18,"Norton Antivirus", 100, 1000, "Close", 1000.0, 5, "Boss", 20, 20, 50, ""));
+            MonsterRepo.addMonster(new Monster(1,"Bug", 10, 10, "Close", 5.0, 1, "Common", 5, 5, 5, "bug"));
+            MonsterRepo.addMonster(new Monster(2,"Virus", 10, 10, "Close", 5.0, 1, "Common", 5, 5, 5, "virus"));
+            MonsterRepo.addMonster(new Monster(3,"MatLab", 10, 10, "Mid", 5.0, 1, "Common", 5, 5, 5, "matlab"));
+            MonsterRepo.addMonster(new Monster(4,"Porygon", 10, 10, "Mid", 5.0, 1, "Common", 5, 5, 5, "porygon"));
+            MonsterRepo.addMonster(new Monster(5,"PHP", 10, 10, "Long", 5.0, 1, "Common", 5, 5, 5, "php"));
+            MonsterRepo.addMonster(new Monster(6,"Labview", 10, 5000, "Long", 5.0, 1, "Common", 5, 5, 5, "labview"));
+            MonsterRepo.addMonster(new Monster(7,"Wurm", 10, 10, "Long", 5.0, 1, "Common", 5, 5, 5, "wurm"));
+            MonsterRepo.addMonster(new Monster(8,"Trojan Horse", 10, 10, "Long", 5.0, 1, "Common", 5, 5, 5, "trojanhorse"));
+            MonsterRepo.addMonster(new Monster(9,"Visual Basic", 10, 10, "Mid", 5.0, 1, "Common", 5, 5, 5, "visualbasic"));
+            MonsterRepo.addMonster(new Monster(10,"Logic Bomb", 10, 100, "Mid", 5.0, 1, "Common", 5, 5, 5, "logicbomb"));
+            MonsterRepo.addMonster(new Monster(11,"Botnet", 30, 50, "Close", 15.0, 1, "Uncommon", 10, 5, 5, "botnet"));
+            MonsterRepo.addMonster(new Monster(12,"Windows Defender", 30, 50, "Mid", 15.0, 1, "Uncommon", 5, 10, 5, "windowsdefender"));
+            MonsterRepo.addMonster(new Monster(13,"Toolbars", 30, 50, "Long", 15.0, 1, "Uncommon", 5, 5, 10, "toolbars"));
+            MonsterRepo.addMonster(new Monster(14,"Windows Vista", 30, 50, "Long", 15.0, 1, "Uncommon", 10, 5, 10, "windowsvista"));
+            MonsterRepo.addMonster(new Monster(15,"SegFault", 50, 50, "Mid", 15.0, 1, "Rare", 15, 5, 10, "segfault"));
+            MonsterRepo.addMonster(new Monster(16,"Null Pointer", 50, 50, "Mid", 15.0, 1, "Rare", 10, 5, 15, "nullpointer"));
+            MonsterRepo.addMonster(new Monster(17,"Crippling Anxiety", 100, 1000, "Mid", 0.0, 1, "Ultra Common", 5, 5, 250, "cripplinganxiety"));
+            MonsterRepo.addMonster(new Monster(18,"Norton Antivirus", 100, 1000, "Close", 1000.0, 5, "Boss", 20, 20, 50, "nortonantivirus"));
         }
 
         if (WeaponRepo.getItemCount() == 0){
