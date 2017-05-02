@@ -26,6 +26,7 @@ public class MonsterRepo {
     private static final String KEY_SPEED = "Speed";
     private static final String KEY_DEFENSE = "Defense";
     private static final String KEY_ATTACK = "Attack";
+    private static final String KEY_IMAGE = "Image";
 
 
     public static String getTableName() {
@@ -44,7 +45,8 @@ public class MonsterRepo {
                 + KEY_RARITY + " TEXT,"
                 + KEY_SPEED + " INT,"
                 + KEY_DEFENSE + " INT,"
-                + KEY_ATTACK + " INT)";
+                + KEY_ATTACK + " INT,"
+                + KEY_IMAGE + " TEXT)";
     }
 
     /**
@@ -66,6 +68,7 @@ public class MonsterRepo {
         values.put(KEY_SPEED, monster.getSpeed());
         values.put(KEY_DEFENSE, monster.getDefense());
         values.put(KEY_ATTACK, monster.getAttack());
+        values.put(KEY_IMAGE, monster.getImage());
 
         // Inserting Row
 
@@ -91,7 +94,8 @@ public class MonsterRepo {
                         KEY_RARITY,
                         KEY_SPEED,
                         KEY_DEFENSE,
-                        KEY_ATTACK}, KEY_NAME + "=?",
+                        KEY_ATTACK,
+                        KEY_IMAGE}, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
 
         if (cursor != null)
@@ -123,7 +127,8 @@ public class MonsterRepo {
                         KEY_RARITY,
                         KEY_SPEED,
                         KEY_DEFENSE,
-                        KEY_ATTACK}, KEY_ID + "=?",
+                        KEY_ATTACK,
+                        KEY_IMAGE}, KEY_ID + "=?",
                 new String[] { String.valueOf(Id) }, null, null, null, null);
 
         if (cursor != null)
@@ -201,6 +206,7 @@ public class MonsterRepo {
         values.put(KEY_SPEED, monster.getSpeed());
         values.put(KEY_DEFENSE, monster.getDefense());
         values.put(KEY_ATTACK, monster.getAttack());
+        values.put(KEY_IMAGE, monster.getImage());
 
         // updating row
          int result = db.update(TABLE_MONSTERS, values, KEY_ID + " = ?",

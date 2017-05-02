@@ -18,9 +18,10 @@ public class Monster {
     private int speed;
     private int defense;
     private int attack;
+    private String image;
 
     public Monster(int id, String name, int HP, int XP, String attackType, double money, int level,
-                   String rarity, int speed, int defense, int attack)
+                   String rarity, int speed, int defense, int attack, String image)
     {
         this.id = id;
         this.name=name;
@@ -33,6 +34,7 @@ public class Monster {
         this.speed = speed;
         this.defense = defense;
         this.attack = attack;
+        this.image = image;
     }
 
     public Monster(Cursor cursor)
@@ -48,6 +50,7 @@ public class Monster {
         this.speed = cursor.getInt(8);
         this.defense = cursor.getInt(9);
         this.attack = cursor.getInt(10);
+        this.image = cursor.getString(11);
     }
 
     /** Copy Constructor makes a deep copy of the Monster */
@@ -63,7 +66,8 @@ public class Monster {
                 this.getRarity(),
                 this.getSpeed(),
                 this.getDefense(),
-                this.getAttack());
+                this.getAttack(),
+                this.getImage());
     }
 
     public int getId() {
@@ -153,6 +157,15 @@ public class Monster {
     public void setXP(int XP) {
         this.XP = XP;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 
     public int getAtkSpd(){
         int atk_spd = (int)Math.round(MON_SPD * this.getSpeed());
