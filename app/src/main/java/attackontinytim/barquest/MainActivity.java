@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     // DB Handler object for all database calls
     private static DBHandler dbHandler;
 
+    // Music
+    private MediaPlayer mp;
+
     // This is called when the activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             hero = HeroRepo.getHeroByName("HERO");
         }
+        mp = MediaPlayer.create(this, R.raw.main_music);
+        mp.start();
     }
 
     private void checkPermissions() {
@@ -103,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         scan.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        mp.pause();
                         Intent intent = new Intent("attackontinytim.barquest.ScannerActivity");
                         Bundle bundle = bundler.generateBundle(hero);
                         intent.putExtras(bundle);
@@ -200,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         Tutorial.homeTutorial(this);
+        mp.start();
     }
 }
 
