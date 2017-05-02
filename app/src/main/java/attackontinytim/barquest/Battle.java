@@ -34,9 +34,10 @@ public class Battle {
     private static final double MON_DEF  = 2;
     private static final int CRIT_MULT = 2;
 
-    /** Loot Variables */
+    /** Misc Variables */
     protected String winWeaponName = "";
     protected String winItemName = "";
+    protected ConsumableItem usedItem;
 
     /* ************ */
     /* CONSTRUCTORS */
@@ -177,7 +178,6 @@ public class Battle {
     protected void consumeItem(ConsumableItem item){
         //assume item exists in inventory, because if it didn't we wouldn't be able to click on it
         //from the item screen
-        Log.d(TAG, "battleHero HP before: " + String.valueOf(this.battleHero.getHP()));
 
         //apply effects to the hero or the enemy
         if (item.getTarget().equalsIgnoreCase("Hero")){
@@ -201,6 +201,7 @@ public class Battle {
         }
 
         //now that the item has been consumed, remove it from the inventory
+        usedItem = item;
         InventoryRepo.subtractItemFromInvetory(item);
 
         Log.d(TAG, "battleHero HP after: " + String.valueOf(this.battleHero.getHP()));
